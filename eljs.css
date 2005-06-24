@@ -1,0 +1,86 @@
+pre.stdio {
+  border: solid 1px #999999;
+  margin: 0px;
+  padding: 2px;
+}
+
+span.message { color: Gray; }
+span.prompt  { color: #666666; }
+span.usr { font-style: normal; color: Teal; }
+span.err { font-style: normal; color: #ff3333; }
+span.emp { font-style: normal; color: Gray; }
+span.new { color: #3366cc; }
+
+span.accesskey { font-style: normal; text-decoration: underline; }
+
+a:link    { color: #336666; font-weight: bold; text-decoration: none; }
+a:visited { color: #669999; font-weight: bold; text-decoration: none; }
+a:hover   { color: #003333; font-weight: bold; text-decoration: underline; }
+
+em {
+  font-style: normal;
+  font-weight: bold;
+}
+
+strong {
+  font-style: normal;
+  font-weight: bold;
+  color: red;
+}
+
+.weak {
+  color: #666666;
+}
+
+div.fieldhead {
+  background-color: #99cccc;
+  margin: 0;
+  padding: .4em .8em;
+}
+
+div.fieldbody {
+  border: solid #99cccc;
+  border-width: 0 2px 2px 2px;
+  margin: 0;
+  padding: .4em;
+}
+
+a.fieldtitle:link    { color: #336666; font-weight: bold; text-decoration: none; }
+a.fieldtitle:visited { color: #336666; font-weight: bold; text-decoration: none; }
+a.fieldtitle:hover   { color: #003333; font-weight: bold; text-decoration: underline; }
+
+a.menu:link    { color: Black; font-weight: normal; text-decoration: none; }
+a.menu:visited { color: Black; font-weight: normal; text-decoration: none; }
+a.menu:hover   { color: Black; font-weight: normal; text-decoration: underline; }
+
+.footer a:link    { font-weight: normal; color: Black; text-decoration: none; }
+.footer a:visited { font-weight: normal; color: Black; text-decoration: none; }
+.footer a:hover   { font-weight: normal; color: Black; text-decoration: underline; }
+
+div.version { text-align: right; }
+
+hr { border: solid thin #669999; }
+
+h1 {
+  border-bottom: solid 4px Gray;
+  color: Gray;
+  font-size: x-large;
+  text-align: right;
+}
+
+h2 {
+  border-bottom: solid 2px Gray;
+  color: Gray;
+  font-size: large;
+}
+
+h3 {
+  border-bottom: dotted 2px Gray;
+  color: Gray;
+  
+  font-size: medium;
+}
+
+q {
+  text-decoration: underline;
+}

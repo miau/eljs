@@ -1,0 +1,138 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="ja">
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<!--
+<meta name="author" content="">
+<meta name="description" content="">
+<meta name="keywords" content="">
+-->
+
+<title>eelll/JS help</title>
+
+<link rel="stylesheet" href="eljs.css">
+<!--
+<link rel="alternate" href="">
+<link rel="start" href="">
+<link rel="next" href="">
+<link rel="previous" href="">
+<link rel="contents" href="">
+<link rel="index" href="">
+<link rel="glossary" href="">
+<link rel="copyright" href="">
+<link rel="chapter" href="">
+<link rel="section" href="">
+<link rel="subsection" href="">
+<link rel="help" href="">
+<link rel="bookmark" href="">
+-->
+
+<style type="text/css">
+.st1 { color: red; }
+.st2 { background-color: #ccffcc; }
+/**
+.em1 { border-bottom: solid 2px #ff9999; }
+.em2 { border-bottom: solid 2px #99cc99; }
+pre.stdio { line-height: 100%; }
+body {line-height: 140%; }
+**/
+.em1 { font-weight: bold; color: #ff6666; }
+.em2 { font-weight: bold; color: #669966; }
+</style>
+
+<script type="text/javascript">
+</script>
+
+</head>
+
+
+
+<body>
+
+<h1>eelll/JS help</h1>
+
+<!-- ============================================================= -->
+
+<h2><a name="sec_stroke_table">ストローク表の見かた</a></h2>
+
+<p>ストローク表は、T-Code の文字の打ち方 (コード)
+を表現するための方法の一つです。
+「<em>木を見て森を見る表</em>」と呼ばれることもあります。
+ストローク表は LL, LR, RL, RR の 4 パターンがありますが、
+ここではそのうちの一つを見てみましょう。
+</p>
+
+<pre class="stdio"><span class="em1">R</span><span class="em2">L</span>
+
+  ・ ・・・・  ・ ・・・・  ・ ・・・・  ・ 山・・・    ・ 金・・女
+  ・ ・・代・  ・ ・・千・  ・ ・・・・  ・ ・日国・    ・ ・・え・
+  ・ ・・・・  付 ・・・・  ・ ・・・・  ・ ・・・・    ・ ・・・入
+  
+  ・ ・もお・  ・ ・・・・  う ・・・・  ・ ・・・・    ・ さ・高・
+  ・ ・・・る  ・ ・・一が  い 、の・・  。 ・・・・    で はに・を
+  ・ 人・・ち  ・ ・万・・  ・ ・・・・  ・ ・・・・    ・ ・・・・
+  
+  ・ ・・・・  ・ ・・・・  <span class="st2">・ ・・・・</span>  ・ ・・・・    ・ ・・・・
+  ・ ・円小・  ・ ・社野・  <span class="st2">・ ・・・<span class="st1">大</span></span>  ・ ・・子・    ・ ・会前・
+  ・ 道・・・  ・ ・・・・  <span class="st2">・ ・・・・</span>  ・ ・・・・    ・ ・・・・
+</pre>
+
+<p>
+表全体は、文字が 5×3 に並んだ「<em>ブロック</em>」が、
+やはり 5×3 に並んだ構造になっています
+(場合によっては、5×4 の時もある)。
+このうち、
+<br>
+各ブロックの中での<span class="em1">文字の位置</span>が、
+<span class="em1">第一打鍵</span>の位置を、
+<br>
+表全体の中の<span class="em2">ブロックの位置が</span>、
+<span class="em2">第二打鍵</span>の位置を、
+<br>
+それぞれ
+<em>片手ずつ</em>
+表わしています。
+</p>
+
+<p>
+表のいちばん左上に <span class="em1">R</span><span class="em2">L</span>
+と書いてあるので、
+<br>
+<span class="em1">第一打鍵は右手</span>、
+<br>
+<span class="em2">第二打鍵は左手</span>
+<br>
+です。まずこれを頭に入れておきましょう。
+</p>
+
+<p>
+たとえば、「<em>大</em>」という文字は、
+<br>
+<span class="em1">ブロックの中で、中段・右端</span>にあるので、
+<span class="em1">第一打鍵は、右手の中段・小指</span>
+<br>
+です。
+さらに、「<em>大</em>」の属するブロックは、
+<br>
+<span class="em2">表全体の中で、下段・中央</span>にあるので、
+<span class="em2">第二打鍵は、左手の下段・中指</span>
+<br>
+となります。
+結局、「<em>大</em>」は「右・中・小 → 左・下・中」と打てばよい
+ことが分かります
+(QWERTY 配列の「;c」、Dvorak 配列の「sj」)。
+</p>
+
+<p>
+他の LL, LR, RR のパターンの表にの見かたについても同様です。
+</p>
+
+</body>
+
+</html>
