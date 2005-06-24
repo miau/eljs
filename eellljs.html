@@ -1,0 +1,470 @@
+<!--
+  :: eelll/JS (JavaScript implemented EELLL)
+  :: 
+  :: Copyright (C) 2005  YUSE Yosihiro
+  :: 
+  :: This program is free software; you can redistribute it and/or modify
+  :: it under the terms of the GNU General Public License as published by
+  :: the Free Software Foundation; either version 2 of the License, or
+  :: (at your option) any later version.
+  :: 
+  :: This program is distributed in the hope that it will be useful,
+  :: but WITHOUT ANY WARRANTY; without even the implied warranty of
+  :: MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  :: GNU General Public License for more details.
+  :: 
+  :: You should have received a copy of the GNU General Public License
+  :: along with this program; if not, write to the Free Software
+  :: Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+  -->
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="ja">
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+
+<meta name="author" content="YUSE Yosihiro">
+<meta name="description" content="eelll/JS (JavaScript implemented EELLL)">
+<meta name="keywords" content="T-Code,TUT-Code,EELLL,漢直,練習,連習">
+
+<!-- ============================================================= -->
+<!-- タイトル -->
+
+<title>eelll/JS</title>
+
+<!-- ============================================================= -->
+<!-- スタイル -->
+
+<link rel="stylesheet" href="eljs.css">
+
+<style type="text/css">
+</style>
+
+<!-- ============================================================= -->
+<!-- 関連ファイル -->
+<!--
+<link rel="alternate stylesheet" href="" title="">
+<link rel="alternate" href="">
+<link rel="start" href="">
+<link rel="next" href="">
+<link rel="previous" href="">
+<link rel="glossary" href="">
+<link rel="chapter" href="">
+<link rel="section" href="">
+<link rel="subsection" href="">
+<link rel="bookmark" href="">
+<link rel="index" href="">
+-->
+<link rel="contents" href="index.html">
+<link rel="help" href="help.html">
+<link rel="copyright" href="gpl.txt" type="text/plain">
+<link rev="made" href="mailto:yuse@kuis.kyoto-u.ac.jp">
+
+<!-- ============================================================= -->
+<!-- 外部スクリプト -->
+
+<!-- eelll/JS -->
+<script type="text/javascript" src="eljs.js"></script>
+
+<!-- kb -->
+<script type="text/javascript" src="eljs_kb_qwerty_jis.js"></script>
+<script type="text/javascript" src="eljs_kb_qwerty.js"></script>
+<script type="text/javascript" src="eljs_kb_dvorak.js"></script>
+
+<!-- T-Code -->
+<script type="text/javascript" src="eljs_im_t.js" charset="UTF-8">
+</script>
+<script type="text/javascript" src="eljs_lt_eellltxt.js" charset="UTF-8">
+</script>
+
+<!-- TUT-Code -->
+<script type="text/javascript" src="eljs_im_tut.js" charset="UTF-8">
+</script>
+<script type="text/javascript" src="eljs_lt_kanji_a1.js" charset="UTF-8">
+</script>
+
+<!-- ============================================================= -->
+
+<!-- G-Code -->
+<script type="text/javascript" src="eljs_im_g.js" charset="UTF-8">
+</script>
+
+<!-- Try-Code -->
+<script type="text/javascript" src="eljs_im_try.js" charset="UTF-8">
+</script>
+
+<!-- TT-Code -->
+<script type="text/javascript" src="eljs_im_tt.js" charset="UTF-8">
+</script>
+<script type="text/javascript" src="eljs_lt_eellltxt_tt.js" charset="UTF-8">
+</script>
+
+<!-- ============================================================= -->
+
+<!-- phoenix-->
+<!--
+<script type="text/javascript" src="eljs_im_phoenix.js" charset="UTF-8">
+</script>
+-->
+
+<!-- nil -->
+<!--
+<script type="text/javascript" src="eljs_im_nil.js" charset="UTF-8">
+</script>
+-->
+
+<!-- ============================================================= -->
+<!-- スクリプト -->
+
+</head>
+
+
+<!-- ============================================================= -->
+<!-- 本体 -->
+
+<body
+ onLoad="do_init();">
+
+<!-- ============================================================= -->
+
+<noscript>
+<p>このページでは JavaScript が使われています。</p>
+<p>JavaScript を ON にしてごらんください。</p>
+</noscript>
+
+<!-- ============================================================= -->
+<!-- 設定 -->
+
+<form action="#" method="post"
+ id="fm_config"
+ onSubmit="return do_set_config();">
+<!-- タイトル -->
+<div class="fieldhead">
+ <a href="javascript:void(div_togglevisible(elm.dv_config));"
+  accesskey="c"
+  class="fieldtitle">設定(<span class="accesskey">C</span>)</a>
+</div>
+<!-- 本体 -->
+<!-- 詳細 -->
+<div id="dv_config"
+ style="display: block;" class="fieldbody">
+<!-- 入力方式 -->
+ <label for="sl_im"
+  accesskey="i">入力方式(<span class="accesskey">I</span>)</label>
+ <select id="sl_im">
+  <option>---</option>
+ </select>
+<!-- 練習テキスト -->
+ <label for="sl_lt"
+  accesskey="x">練習テキスト(<span class="accesskey">X</span>)</label>
+ <select id="sl_lt">
+  <option>---</option>
+ </select>
+<!-- キーボード -->
+ <label for="sl_kb"
+  accesskey="k">キーボード(<span class="accesskey">K</span>)</label>
+ <select id="sl_kb">
+  <option>---</option>
+ </select>
+
+<!-- 設定・キャンセル -->
+ <input type="submit" value="設定"
+  accesskey="o">
+ <input type="button" value="取消"
+  onClick="do_cancel_config();"
+  onKeyPress="do_cancel_config();">
+</div>
+</form>
+
+<!-- ============================================================= -->
+<!-- ヘルプ -->
+
+<form action="#" method="post"
+ id="fm_help"
+ onSubmit="return false;">
+<!-- タイトル -->
+<div class="fieldhead">
+<a href="javascript:void(div_togglevisible(elm.dv_help));"
+ accesskey="h"
+ class="fieldtitle">ヘルプ(<span class="accesskey">H</span>)</a>
+</div>
+<!-- 本体 -->
+<!-- 詳細 -->
+<div id="dv_help"
+ style="display: block;"
+ class="fieldbody">
+<!-- LL -->
+ <input type="radio" name="rd_help" id="rd_help_LL" value="LL"
+  accesskey="1"
+  onClick="do_help1(this.value);"
+  onKeyPress="do_help1(this.value);">
+ <label for="rd_help_LL">LL(<span class="accesskey">1</span>)</label>
+<!-- LR -->
+ <input type="radio" name="rd_help" id="rd_help_LR" value="LR"
+  accesskey="2"
+  onClick="do_help1(this.value);"
+  onKeyPress="do_help1(this.value);">
+ <label for="rd_help_LR">LR(<span class="accesskey">2</span>)</label>
+<!-- RL -->
+ <input type="radio" name="rd_help" id="rd_help_RL" value="RL"
+  accesskey="9"
+  onClick="do_help1(this.value);"
+  onKeyPress="do_help1(this.value);">
+ <label for="rd_help_RL">RL(<span class="accesskey">9</span>)</label>
+<!-- RR -->
+ <input type="radio" name="rd_help" id="rd_help_RR" value="RR"
+  accesskey="0"
+  onClick="do_help1(this.value);"
+  onKeyPress="do_help1(this.value);">
+ <label for="rd_help_RR">RR(<span class="accesskey">0</span>)</label>
+<!-- 英字 -->
+ <input type="radio" name="rd_help" id="rd_help_alnum" value="alnum"
+  accesskey="-"
+  onClick="do_help1_alnum();"
+  onKeyPress="do_help1_alnum();">
+ <label for="rd_help_alnum">英字(<span class="accesskey">-</span>)</label>
+<!-- 全て -->
+ <input type="checkbox" id="cb_help_all"
+  name="cb_help" value="true"
+  checked
+  accesskey="8"
+  onClick="do_help();"
+  onKeyPress="do_help();">
+ <label for="cb_help_all">全て(<span class="accesskey">8</span>)</label>
+<!-- ヘルプのヘルプ -->
+ <a href="help.html#sec_stroke_table" class="menu"
+  target="eljs_help">表の見かた</a>
+<!--   <br> -->
+<!-- ヘルプ表 -->
+ <pre id="pr_help"
+  class="stdio">&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;</pre>
+</div>
+</form>
+
+<!-- ============================================================= -->
+<!-- 練習 -->
+
+<form action="#" method="post"
+ id="fm_main"
+ onSubmit="return do_input();">
+<!-- タイトル -->
+<div class="fieldhead">
+<a href="javascript:void(div_togglevisible(elm.dv_main));"
+ accesskey="l"
+ class="fieldtitle">メイン(<span class="accesskey">L</span>)</a>
+</div>
+<div class="fieldbody">
+<!-- 本体 -->
+<!-- 出力欄 -->
+ <pre id="pr_main"
+  class="stdio">&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;</pre>
+<span>
+<!-- 入力欄 -->
+ <input type="password" size="80" id="pw_input"
+  name="pw_input"
+  accesskey="j"
+  style="color: White;"
+  value="">
+<!-- 送信 -->
+ <input type="submit" value="CR"
+  id="sb_cr"
+  accesskey="m">
+</span>
+<br>
+<!-- 詳細 -->
+<div id="dv_main"
+ style="display: block;">
+<!-- ← 前 -->
+ <input type="button" value="≪ 前"
+  accesskey="p"
+  onClick="do_bt_command('p');"
+  onKeyPress="do_bt_command('p');">
+<!-- もう一度 -->
+ <input type="button" value="もう一度"
+  accesskey="a"
+  onClick="do_bt_command('a');"
+  onKeyPress="do_bt_command('a');">
+<!-- 次 → -->
+ <input type="button" value="次 ≫"
+  accesskey="n"
+  onClick="do_bt_command('n');"
+  onKeyPress="do_bt_command('n');">
+<!-- 終了 -->
+ <input type="button" value="終了"
+  title="終了(Q)"
+  accesskey="q"
+  onClick="do_bt_command('q');"
+  onKeyPress="do_bt_command('q');">
+<!-- エコー -->
+ <input type="checkbox" id="cb_echo"
+  name="cb_echo" value="true"
+  accesskey="e"
+  onClick="do_cb_echo();"
+  onKeyPress="do_cb_echo();">
+ <label for="cb_echo">エコー(<span class="accesskey">E</span>)</label>
+<!-- シャッフル -->
+ <input type="checkbox" id="cb_shuffle"
+  name="cb_shuffle" value="true"
+  accesskey="f"
+  onClick="do_cb_shuffle();"
+  onKeyPress="do_cb_shuffle();">
+ <label for="cb_shuffle">シャッフル(<span class="accesskey">F</span>)</label>
+</div>
+</div>
+</form>
+
+<!-- ============================================================= -->
+<!-- レッスン -->
+
+<form action="#" method="post"
+ id="fm_lesson"
+ onSubmit="return do_set_lesson();">
+<!-- タイトル -->
+<div class="fieldhead">
+<a href="javascript:void(div_togglevisible(elm.dv_lesson));"
+ accesskey="w"
+ class="fieldtitle">レッスン(<span class="accesskey">W</span>)</a>
+</div>
+<div class="fieldbody">
+<!-- 本体 -->
+<!-- 標準テキスト -->
+ <input type="radio" name="rd_lesson" id="rd_lesson_std"
+  value="std"
+  checked
+  onClick="do_change_lesson_std();"
+  onKeyPress="do_change_lesson_std();">
+ <label for="rd_lesson_std"
+  accesskey="t">標準テキスト(<span class="accesskey">T</span>)</label>
+<!-- 課 -->
+ <label for="sl_lesson"
+  accesskey="s">課(<span class="accesskey">S</span>)</label>
+ <select id="sl_lesson"
+  onChange="do_change_lesson_std();">
+  <option>---</option>
+ </select>
+<!-- 設定 -->
+ <input type="submit" value="選択"
+  accesskey="d">
+<!-- キャンセル -->
+ <input type="button" value="取消"
+  onClick="do_cancel_lesson();"
+  onKeyPress="do_cancel_lesson();">
+<!-- 詳細 -->
+<div id="dv_lesson"
+ style="display: block;">
+<!-- ユーザ入力テキスト -->
+ <input type="radio" name="rd_lesson" id="rd_lesson_usr"
+  value="usr"
+  onClick="do_change_lesson_usr();"
+  onKeyPress="do_change_lesson_usr();">
+ <label for="rd_lesson_usr"
+  accesskey="u">ユーザ入力(<span class="accesskey">U</span>)</label>
+ <br>
+<!-- レッスン内容 -->
+ <textarea cols="80" rows="10" id="ta_lesson"
+  disabled>---</textarea>
+</div>
+<!--  </fieldset> -->
+</div>
+</form>
+
+<!-- ============================================================= -->
+<!-- ログ -->
+
+<form action="#" method="post"
+ id="fm_log"
+ onSubmit="return false;">
+<!-- タイトル -->
+<div class="fieldhead">
+<a href="javascript:void(div_togglevisible(elm.dv_log));"
+ accesskey="g"
+ class="fieldtitle">ログ(<span class="accesskey">G</span>)</a>
+</div>
+<!-- 本体 -->
+<!-- 詳細 -->
+<div id="dv_log"
+ style="display: block;"
+ class="fieldbody">
+<!-- ログ内容 -->
+ <textarea cols="80" rows="10" id="ta_log"
+  readonly>---</textarea>
+ <br>
+<!-- 更新 -->
+ <input type="button" id="bt_log_refresh"
+  value="更新"
+  onClick="io.log.refresh();"
+  onKeyPress="io.log.refresh();">
+<!-- クリア -->
+ <input type="button" id="bt_log_clear"
+  value="クリア"
+  onClick="do_clear_log();"
+  onKeyPress="do_clear_log();">
+<!-- 送信(?) -->
+ <input type="submit" value="送信"
+  disabled
+  accesskey="b">
+<!-- クッキー消去 -->
+ <input type="button" id="bt_ck_remove"
+  value="クッキーを消去"
+  onClick="do_remove_cookie();"
+  onKeyPress="do_remove_cookie();">
+</div>
+</form>
+
+<!-- ============================================================= -->
+<!-- 区切り -->
+
+<!--  <hr> -->
+
+<!-- ============================================================= -->
+<!-- タイトル -->
+
+<!--  <h1>eelll/JS</h1> -->
+
+<!-- ============================================================= -->
+<!-- もどる -->
+
+<hr>
+
+<div class="footer">
+<a href=".">もどる</a>
+</div>
+
+<div class="version">
+eelll/JS version 0.1<!-- , Copyright &copy; 2005 YUSE Yosihiro -->
+</div>
+
+<!-- <hr> -->
+<!-- ============================================================= -->
+<!-- End -->
+
+</body>
+
+</html>
