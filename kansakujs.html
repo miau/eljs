@@ -1,0 +1,336 @@
+<!--
+  :: KANSAKU/JS (T-Code search on JavaScript)
+  :: 
+  :: Copyright (C) 2006  YUSE Yosihiro
+  :: 
+  :: This program is free software; you can redistribute it and/or modify
+  :: it under the terms of the GNU General Public License as published by
+  :: the Free Software Foundation; either version 2 of the License, or
+  :: (at your option) any later version.
+  :: 
+  :: This program is distributed in the hope that it will be useful,
+  :: but WITHOUT ANY WARRANTY; without even the implied warranty of
+  :: MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  :: GNU General Public License for more details.
+  :: 
+  :: You should have received a copy of the GNU General Public License
+  :: along with this program; if not, write to the Free Software
+  :: Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+  -->
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="ja">
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+
+<meta name="author" content="YUSE Yosihiro">
+<meta name="description" content="eelll/JS (JavaScript implemented EELLL)">
+<meta name="keywords" content="T-Code,TUT-Code,漢索,漢直,練習,連習">
+
+<!-- ============================================================= -->
+<!-- Title -->
+
+<title>漢索/JS 0.2</title>	<!-- version/ -->
+
+<!-- ============================================================= -->
+<!-- Style -->
+
+<link rel="stylesheet" href="css/default.css" charset="EUC-JP">
+<link rel="stylesheet" href="css/eljs.css" charset="EUC-JP">
+
+<!-- ============================================================= -->
+<!-- Related -->
+<!--
+<link rel="alternate stylesheet" href="" title="">
+<link rel="alternate" href="">
+<link rel="start" href="">
+<link rel="next" href="">
+<link rel="previous" href="">
+<link rel="glossary" href="">
+<link rel="chapter" href="">
+<link rel="section" href="">
+<link rel="subsection" href="">
+<link rel="bookmark" href="">
+<link rel="index" href="">
+<link rel="help" href="">
+-->
+<link rel="contents" href="index.html">
+<link rel="copyright" href="gpl.txt" type="text/plain">
+<link rev="made" href="mailto:yuse@kuis.kyoto-u.ac.jp">
+<link rel="next" href="eellljs.html">
+
+<link rel="icon" href="img/ksjs.png" type="image/png">
+
+<!-- ============================================================= -->
+<!-- External scripts -->
+
+<!-- main -->
+<script type="text/javascript" src="js/utils.js"></script>
+<script type="text/javascript" src="js/kansaku.js"></script>
+<script type="text/javascript" src="js/ksjsmain.js"></script>
+
+<!-- kb -->
+<script type="text/javascript" src="js/kb/qwerty_jis.js"></script>
+<script type="text/javascript" src="js/kb/qwerty.js"></script>
+<script type="text/javascript" src="js/kb/dvorak.js"></script>
+
+<!-- ============================================================= -->
+<!-- input methods -->
+
+<!-- T-Code -->
+<script type="text/javascript" src="js/im/t.js"></script>
+
+<!-- TUT-Code -->
+<script type="text/javascript" src="js/im/tut.js"></script>
+
+<!-- G-Code -->
+<script type="text/javascript" src="js/im/g.js"></script>
+
+<!-- chou -->
+<!--
+<script type="text/javascript" src="js/im/chou.js"></script>
+-->
+
+<!-- Try-Code -->
+<script type="text/javascript" src="js/im/try.js"></script>
+
+<!-- TT-Code -->
+<script type="text/javascript" src="js/im/tt.js"></script>
+
+<!-- phoenix-->
+<script type="text/javascript" src="js/im/phoenix.js"></script>
+
+<!-- ASCII -->
+<script type="text/javascript" src="js/im/ascii.js" charset="euc-jp"></script>
+
+<!--
+<script type="text/javascript" src="js/im/d.js" charset="euc-jp"></script>
+<script type="text/javascript" src="js/im/wind.js" charset="euc-jp"></script>
+-->
+
+<!-- ============================================================= -->
+<!-- script -->
+
+<script type="text/javascript">
+<!--
+// -->
+</script>
+
+<style type="text/css">
+<!--
+-->
+</style>
+
+</head>
+
+
+<!-- ============================================================= -->
+<!-- 本体 -->
+
+<body class="eljs" id="bd_kansakujs"
+ onload="do_init();"
+ onunload="watch_end();">
+
+<!-- ============================================================= -->
+
+<noscript>
+<p>このページでは JavaScript が使われています。</p>
+<p>JavaScript を ON にしてごらんください。</p>
+</noscript>
+
+<!-- ============================================================= -->
+<!-- 設定 -->
+
+<div class="field" id="dv_field_config">
+<!-- タイトル -->
+<div class="fieldhead" id="dv_config_head">
+ <a href="#fd_config" name="fd_config"
+  class="fieldtitle" title="設定を行います"
+  onclick="div_togglevisible(elm.dv_config); return false;"
+  accesskey="c">設定(<span class="accesskey">C</span>)</a>
+</div>
+<!-- 本体 -->
+<!-- 詳細 -->
+
+<div id="dv_config" style="display: block;" class="fieldbody">
+
+<form action="#" method="post" id="fm_config"
+ onsubmit="return false;">
+
+<table class="layout">
+<tbody>
+<tr>
+<td class="vtop">
+
+<table class="layout">
+<tbody>
+<tr>
+<td class="vtop">
+<!-- 入力方式 -->
+ <label for="sl_im" title="入力方式を指定します (複数選択可)"
+  accesskey="i">入力方式<span class="footnotemark">*</span>(<span class="accesskey">I</span>)</label>
+</td>
+<td class="vtop">
+ <select id="sl_im" title="入力方式を指定します (複数選択可)"
+  multiple size="7"
+  onchange="ks.helpinvalidate(); ks.setim(this.value); do_help();">
+  <!-- XXX ↑ ks.setim(this.value) は不要? -->
+  <option></option>
+ </select>
+</td>
+<td class="vtop">
+ <input type="button" value="↑" title="選択した項目を上に並べかえます"
+  onclick="do_bt_up(elm.sl_im);">
+<br>
+ <input type="button" value="↓" title="選択した項目を下に並べかえます"
+  onclick="do_bt_dn(elm.sl_im);">
+</td>
+</tr>
+</tbody>
+</table>
+
+</td>
+<td class="vtop">
+
+<table class="layout">
+<tbody>
+<tr>
+<td class="vtop">
+<!-- 文字ヘルプのスタイル -->
+ &nbsp;
+ <label for="sl_helpstyle" title="コードの表示形式を指定します (複数選択可)"
+  accesskey="Y"
+  >スタイル<span class="footnotemark">*</span>(<span class="accesskey">Y</span>)</label>
+</td>
+<td class="vtop">
+ <select name="sl_helpstyle" id="sl_helpstyle"
+  title="コードの表示形式を指定します (複数選択可)"
+  multiple size="4"
+  onchange="do_help();">
+  <option value="dothelp" selected>打鍵図 (橋田表)</option>
+  <option value="alnum">英字</option>
+  <option value="hasidamnem">橋田ニモニック</option>
+  <option value="stroketable" disabled>ストローク表</option>
+ </select>
+</td>
+</tr>
+<tr>
+<td>
+<!-- キーボード -->
+ <label for="sl_kb" title="キーボードを指定します"
+  accesskey="k">キーボード(<span class="accesskey">K</span>)</label>
+</td>
+<td>
+ <select id="sl_kb" title="キーボードを指定します"
+  onchange="ks.helpinvalidate(); ks.setkb(this.value); do_help();">
+  <!-- XXX ↑ ks.setkb(this.value) は不要? -->
+  <option></option>
+ </select>
+</td>
+</tr>
+<tr>
+<td>
+検索オプション
+</td>
+<td>
+<!-- リアルタイム -->
+ <input type="checkbox" id="cb_realtime" name="realtime"
+  value="cb_incremantal"
+  title="検索ボタンが押されなくても自動的に検索を行います"
+  accesskey="r"
+  onchange="do_cb_realtime();">
+ <label for="cb_realtime"
+  title="検索ボタンが押されなくても自動的に検索を行います"
+ >リアルタイム(<span class="accesskey">R</span>)</label>
+</td>
+</tr>
+</tbody>
+</table>
+
+</td>
+</tr>
+</tbody>
+</table>
+
+<div>
+<span class="footnotemark">(*)</span>
+入力方式・スタイルは複数選択できます
+(Ctrl + クリック (Windows)、Command + クリック (MacOS))
+</div>
+</form>
+</div>
+</div>
+
+<!-- ============================================================= -->
+<!-- 検索 -->
+
+<div class="field" id="dv_field_query">
+
+<form action="#" method="post" id="fm_query" onsubmit="return do_input();">
+
+<!-- タイトル -->
+<div class="fieldhead" id="dv_main_head">
+<a href="#fd_main" name="fd_main"
+ title="検索を行います"
+ class="fieldtitle"
+ onclick="div_togglevisible(elm.dv_main); return false;"
+ accesskey="l">検索(<span class="accesskey">L</span>)</a>
+</div>
+
+<div class="fieldbody" id="dv_main">
+<!-- 入力欄 -->
+<label for="tx_stdin" title="検索文字列を入力します"
+ >検索(<span class="accesskey">J</span>)</label>
+
+<input type="text" value="" size="40" id="tx_stdin" name="input"
+ title="検索文字列を入力します"
+ accesskey="J"
+ onfocus="this.select();">
+
+<input type="button" value="検索(M)" id="bt_query"
+ title="検索を実行します"
+ accesskey="M"
+ onclick="return do_input();">
+
+<input type="reset" value="クリア(R)" id="bt_clear"
+ title="検索欄の内容を消去します"
+ accesskey="r"
+ onclick="do_focus_input(); return true;">
+</div>
+
+<div class="fieldbody" id="dv_stdhelp">
+<!-- 文字ヘルプ欄 -->
+<!--
+<div class="stdio" title="[コード欄] コードを表示します"></div>
+-->
+</div>
+</form>
+</div>
+
+<!-- ============================================================= -->
+<!-- フッタ -->
+
+<hr>
+
+<div class="version">
+KANSAKU/JS version <!-- version -->0.2<!-- /version -->
+<!-- time-stamp-start -->2006-04-28 yuse<!-- time-stamp-end -->
+</div>
+
+</body>
+<!-- ============================================================= -->
+<!--
+  :: Local Variables:
+  :: time-stamp-line-limit: -20
+  :: time-stamp-start: "<!-\\- *time-stamp-start *-\\-."
+  :: time-stamp-end:   "<!-\\- *time-stamp-end *-\\-."
+  :: time-stamp-format: "%:y-%02m-%02d %u"
+  :: End:
+  -->
+</html>

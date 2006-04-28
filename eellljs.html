@@ -1,7 +1,7 @@
 <!--
   :: eelll/JS (JavaScript implemented EELLL)
   :: 
-  :: Copyright (C) 2005  YUSE Yosihiro
+  :: Copyright (C) 2005, 2006  YUSE Yosihiro
   :: 
   :: This program is free software; you can redistribute it and/or modify
   :: it under the terms of the GNU General Public License as published by
@@ -34,20 +34,18 @@
 <meta name="keywords" content="T-Code,TUT-Code,EELLL,漢直,練習,連習">
 
 <!-- ============================================================= -->
-<!-- タイトル -->
+<!-- Title -->
 
-<title>eelll/JS</title>
-
-<!-- ============================================================= -->
-<!-- スタイル -->
-
-<link rel="stylesheet" href="eljs.css">
-
-<style type="text/css">
-</style>
+<title>eelll/JS 0.2</title>	<!-- version/ -->
 
 <!-- ============================================================= -->
-<!-- 関連ファイル -->
+<!-- Style -->
+
+<link rel="stylesheet" href="css/default.css" charset="EUC-JP">
+<link rel="stylesheet" href="css/eljs.css" charset="EUC-JP">
+
+<!-- ============================================================= -->
+<!-- Related -->
 <!--
 <link rel="alternate stylesheet" href="" title="">
 <link rel="alternate" href="">
@@ -60,67 +58,96 @@
 <link rel="subsection" href="">
 <link rel="bookmark" href="">
 <link rel="index" href="">
+<link rel="help" href="">
 -->
 <link rel="contents" href="index.html">
-<link rel="help" href="help.html">
 <link rel="copyright" href="gpl.txt" type="text/plain">
 <link rev="made" href="mailto:yuse@kuis.kyoto-u.ac.jp">
+<link rel="previous" href="kansakujs.html">
+
+<link rel="icon" href="img/eljs.png" type="image/png">
 
 <!-- ============================================================= -->
-<!-- 外部スクリプト -->
+<!-- External scripts -->
 
-<!-- eelll/JS -->
-<script type="text/javascript" src="eljs.js"></script>
+<!-- main -->
+<script type="text/javascript" src="js/utils.js"></script>
+<script type="text/javascript" src="js/cookie.js"></script>
+<script type="text/javascript" src="js/lcs.js"></script>
+<script type="text/javascript" src="js/kansaku.js"></script>
+<script type="text/javascript" src="js/eelll.js"></script>
+<script type="text/javascript" src="js/eljsmain.js"></script>
 
 <!-- kb -->
-<script type="text/javascript" src="eljs_kb_qwerty_jis.js"></script>
-<script type="text/javascript" src="eljs_kb_qwerty.js"></script>
-<script type="text/javascript" src="eljs_kb_dvorak.js"></script>
+<script type="text/javascript" src="js/kb/qwerty_jis.js"></script>
+<script type="text/javascript" src="js/kb/qwerty.js"></script>
+<script type="text/javascript" src="js/kb/dvorak.js"></script>
+
+<!-- ============================================================= -->
+<!-- input methods -->
 
 <!-- T-Code -->
-<script type="text/javascript" src="eljs_im_t.js" charset="EUC-JP">
-</script>
-<script type="text/javascript" src="eljs_lt_eellltxt.js" charset="EUC-JP">
-</script>
+<script type="text/javascript" src="js/im/t.js"></script>
+<script type="text/javascript" src="js/lt/eellltxt.js"></script>
 
 <!-- TUT-Code -->
-<script type="text/javascript" src="eljs_im_tut.js" charset="EUC-JP">
-</script>
-<script type="text/javascript" src="eljs_lt_kanji_a1.js" charset="EUC-JP">
-</script>
-
-<!-- ============================================================= -->
+<script type="text/javascript" src="js/im/tut.js"></script>
+<script type="text/javascript" src="js/lt/kanji_a1.js"></script>
 
 <!-- G-Code -->
-<script type="text/javascript" src="eljs_im_g.js" charset="EUC-JP">
-</script>
+<script type="text/javascript" src="js/im/g.js"></script>
+
+<!-- chou -->
+<!---
+<script type="text/javascript" src="js/im/chou.js"></script>
+<script type="text/javascript" src="js/lt/chou.js"></script>
+-->
 
 <!-- Try-Code -->
-<script type="text/javascript" src="eljs_im_try.js" charset="EUC-JP">
-</script>
+<script type="text/javascript" src="js/im/try.js"></script>
 
 <!-- TT-Code -->
-<script type="text/javascript" src="eljs_im_tt.js" charset="EUC-JP">
-</script>
-<script type="text/javascript" src="eljs_lt_eellltxt_tt.js" charset="EUC-JP">
-</script>
-
-<!-- ============================================================= -->
+<script type="text/javascript" src="js/im/tt.js"></script>
+<script type="text/javascript" src="js/lt/eellltxt_ttr.js"></script>
+<script type="text/javascript" src="js/lt/eellltxt_ttl.js"></script>
 
 <!-- phoenix-->
-<!--
-<script type="text/javascript" src="eljs_im_phoenix.js" charset="EUC-JP">
-</script>
--->
+<script type="text/javascript" src="js/im/phoenix.js"></script>
 
-<!-- nil -->
-<!--
-<script type="text/javascript" src="eljs_im_nil.js" charset="EUC-JP">
-</script>
--->
+<!-- userdef -->
+<script type="text/javascript" src="js/im/userdef.js"></script>
+<script type="text/javascript" src="js/lt/userdef.js"></script>
 
 <!-- ============================================================= -->
-<!-- スクリプト -->
+
+<script type="text/javascript">
+<!--
+// XXX
+// img preload
+
+function do_img_preload() {
+  var mth = '1 2 3 4 w x a1 a2 aw r1 r2 rw l1 l2 lw'.split(' ');
+  for (var m = 0; m < mth.length; m++) {
+    var s = '';
+    var sp = getelm('sp_preload_' + mth[m]);
+    sp.innerHTML = '<img src="img/0/0.png" width="100" height="40" class="base">';
+    for (var n = 0; n < 40; n++) {
+      if (n < 10) { n = '0' + n; }
+      var nm = 'img/' + mth[m] + '/' + n + '.png';
+      var e = '<img src="' + nm + '" width="100" height="40" class="llap100">';
+      s += e;
+    }
+    sp.innerHTML += s;
+  }
+}
+
+// -->
+</script>
+
+<style type="text/css">
+<!--
+-->
+</style>
 
 </head>
 
@@ -128,8 +155,8 @@
 <!-- ============================================================= -->
 <!-- 本体 -->
 
-<body
- onLoad="do_init();">
+<body class="eljs" id="bd_eellljs"
+ onload="do_init();">
 
 <!-- ============================================================= -->
 
@@ -141,330 +168,418 @@
 <!-- ============================================================= -->
 <!-- 設定 -->
 
-<form action="#" method="post"
- id="fm_config"
- onSubmit="return do_set_config();">
+<div class="field" id="dv_field_config">
 <!-- タイトル -->
-<div class="fieldhead">
- <a href="javascript:void(div_togglevisible(elm.dv_config));"
-  accesskey="c"
-  class="fieldtitle">設定(<span class="accesskey">C</span>)</a>
+<div class="fieldhead" id="dv_config_head">
+ <a href="#fd_config" name="fd_config"
+  class="fieldtitle" title="設定を行います"
+  onclick="div_togglevisible(elm.dv_config); return false;"
+  accesskey="c">設定(<span class="accesskey">C</span>)</a>
 </div>
 <!-- 本体 -->
 <!-- 詳細 -->
-<div id="dv_config"
- style="display: block;" class="fieldbody">
+
+<div id="dv_config" style="display: block;" class="fieldbody">
+
+<form action="#" method="post" id="fm_config"
+ onsubmit="return do_set_config();">
+
+<table class="layout">
+<tbody>
+<tr>
+<td>
 <!-- 入力方式 -->
- <label for="sl_im"
+ <label for="sl_im" title="入力方式を指定します"
   accesskey="i">入力方式(<span class="accesskey">I</span>)</label>
- <select id="sl_im">
-  <option>---</option>
+</td>
+<td>
+ <select id="sl_im" title="入力方式を指定します"
+  onchange="do_sl_im();">
+  <option></option>
  </select>
+</td>
+
+<td>
 <!-- 練習テキスト -->
- <label for="sl_lt"
-  accesskey="x">練習テキスト(<span class="accesskey">X</span>)</label>
- <select id="sl_lt">
-  <option>---</option>
+ <label for="sl_lt" title="練習テキストを指定します"
+  accesskey="t">練習テキスト(<span class="accesskey">T</span>)</label>
+</td>
+<td>
+ <select id="sl_lt" title="練習テキストを指定します"
+  onchange="do_sl_lt();">
+  <option></option>
  </select>
+
+</td>
+</tr>
+
+<tr>
+<td></td>
+
+<td>
+ <div id="dv_userdef_im" style="display: none;">
+ <!-- 
+ <label for="ta_userdef_im"
+  title="入力方式を定義します"
+  >定義内容</label><br>
+ -->
+ <textarea cols="20" rows="8" id="ta_userdef_im" name="ta_userdef_im"
+  style="vertical-align: top;"
+  title="『の=kd』のように、一行に一つずつ定義を書きます"
+  ></textarea>
+ </div>
+</td>
+
+<td></td>
+
+<td>
+ <div id="dv_userdef_lt" style="display: none;">
+ <!--
+ <label for="ta_userdef_lt"
+  title="練習テキストを定義します"
+  >定義内容</label><br>
+  -->
+ <textarea cols="50" rows="8" id="ta_userdef_lt" name="ta_userdef_lt"
+  style="vertical-align: top;"
+  title="練習テキストを定義します"
+  ></textarea>
+ </div>
+</td>
+</tr>
+
+<tr>
+<td>
 <!-- キーボード -->
- <label for="sl_kb"
+ <label for="sl_kb" title="キーボードを指定します"
   accesskey="k">キーボード(<span class="accesskey">K</span>)</label>
- <select id="sl_kb">
-  <option>---</option>
+</td>
+<td>
+ <select id="sl_kb" title="キーボードを指定します">
+  <option></option>
  </select>
+</td>
 
+<td>
+<a href="#fd_debug" name="fd_debug"
+ title="デバッグ情報を表示します"
+ onclick="div_togglevisible(elm.dv_debug); return false;"
+ accesskey="d">デバッグ(<span class="accesskey">D</span>)</a>
+</td>
+</tr>
+
+<tr>
+<td></td>
+<td colspan="3" align="left">
 <!-- 設定・キャンセル -->
- <input type="submit" value="設定"
-  accesskey="o">
- <input type="button" value="取消"
-  onClick="do_cancel_config();"
-  onKeyPress="do_cancel_config();">
-</div>
+
+ <!-- OK -->
+ <input type="button" value="OK(O)" style="width: 6em;"
+  accesskey="o"
+  onclick="do_set_config(); div_visible(elm.dv_config, false);">
+
+ <!-- キャンセル -->
+ <input type="button" value="キャンセル"
+  style="width: 6em;"
+  onclick="do_cancel_config();">
+
+ <!-- 適用 -->
+ <input type="submit" value="適用" style="width: 5em;">
+
+ <!-- ヘルプ -->
+ <input type="button" value="ヘルプ" style="width: 5em;" disabled>
+</td>
+</tr>
+</tbody>
+</table>
+
 </form>
 
-<!-- ============================================================= -->
-<!-- ヘルプ -->
-
-<form action="#" method="post"
- id="fm_help"
- onSubmit="return false;">
-<!-- タイトル -->
-<div class="fieldhead">
-<a href="javascript:void(div_togglevisible(elm.dv_help));"
- accesskey="h"
- class="fieldtitle">ヘルプ(<span class="accesskey">H</span>)</a>
-</div>
-<!-- 本体 -->
 <!-- 詳細 -->
-<div id="dv_help"
- style="display: block;"
- class="fieldbody">
-<!-- LL -->
- <input type="radio" name="rd_help" id="rd_help_LL" value="LL"
-  accesskey="1"
-  onClick="do_help1(this.value);"
-  onKeyPress="do_help1(this.value);">
- <label for="rd_help_LL">LL(<span class="accesskey">1</span>)</label>
-<!-- LR -->
- <input type="radio" name="rd_help" id="rd_help_LR" value="LR"
-  accesskey="2"
-  onClick="do_help1(this.value);"
-  onKeyPress="do_help1(this.value);">
- <label for="rd_help_LR">LR(<span class="accesskey">2</span>)</label>
-<!-- RL -->
- <input type="radio" name="rd_help" id="rd_help_RL" value="RL"
-  accesskey="9"
-  onClick="do_help1(this.value);"
-  onKeyPress="do_help1(this.value);">
- <label for="rd_help_RL">RL(<span class="accesskey">9</span>)</label>
-<!-- RR -->
- <input type="radio" name="rd_help" id="rd_help_RR" value="RR"
-  accesskey="0"
-  onClick="do_help1(this.value);"
-  onKeyPress="do_help1(this.value);">
- <label for="rd_help_RR">RR(<span class="accesskey">0</span>)</label>
-<!-- 英字 -->
- <input type="radio" name="rd_help" id="rd_help_alnum" value="alnum"
-  accesskey="-"
-  onClick="do_help1_alnum();"
-  onKeyPress="do_help1_alnum();">
- <label for="rd_help_alnum">英字(<span class="accesskey">-</span>)</label>
-<!-- 全て -->
- <input type="checkbox" id="cb_help_all"
-  name="cb_help" value="true"
-  checked
-  accesskey="8"
-  onClick="do_help();"
-  onKeyPress="do_help();">
- <label for="cb_help_all">全て(<span class="accesskey">8</span>)</label>
-<!-- ヘルプのヘルプ -->
- <a href="help.html#sec_stroke_table" class="menu"
-  target="eljs_help">表の見かた</a>
-<!--   <br> -->
-<!-- ヘルプ表 -->
- <pre id="pr_help"
-  class="stdio">&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;</pre>
+<div id="dv_debug" style="display: block;">
+<!-- class="fieldbody" -->
+<hr>
+
+<!-- ログ -->
+<div>
+<a href="#fd_log" name="fd_log"
+ title="ログを表示します"
+ onclick="div_togglevisible(elm.dv_log); return false;"
+ accesskey="g"
+ >Log(<span class="accesskey">G</span>)</a></div>
+
+<div id="dv_log" style="display: none;">
+
+<form action="#" method="post" id="fm_log"
+ enctype="multipart/form-data"
+ accept-charset="euc-jp"
+ onsubmit="return do_submit_log();">
+
+<!-- ログの内容 -->
+<div>
+<textarea cols="80" rows="8" id="ta_log" name="log" readonly></textarea>
+</div>
+
+<div>
+<!-- 更新 -->
+<input type="button" value="更新" onclick="io.log.refresh();">
+
+<!-- クリア -->
+<input type="button" value="クリア" onclick="do_log_clear();">
+
+<!-- 送信(?) -->
+<input type="submit" value="送信(B)" accesskey="b">
+
+<!-- 送信設定 -->
+ &nbsp;
+ <label for="tx_log_cgi">URL</label>
+ <input type="text" size="24" value="" title="送信先 URL を指定します"
+  id="tx_log_cgi" name="cgi">
+ &nbsp;
+ <label for="tx_log_user">user</label>
+ <input type="text" size="24" id="tx_log_user" name="user" value=""
+  title="ユーザ名を指定します">
+ <input type="hidden" id="tx_log_date" name="date" value="">
+ <input type="hidden" id="tx_log_eljs" name="eljs"
+  value="eelll/JS v0.2">	<!-- version/ -->
 </div>
 </form>
+<hr>
+</div>
+
+<!-- クッキー -->
+<div>
+<a href="#fd_ck" name="fd_ck"
+ title="クッキー情報を表示します"
+ onclick="div_togglevisible(elm.dv_ck); return false;">Cookie</a></div>
+<div id="dv_ck" style="display: none;">
+<textarea cols="80" rows="8" id="ta_ck" name="ta_ck" readonly></textarea>
+
+<div>
+<!-- 更新 -->
+<input type="button" value="更新" onclick="do_ck_refresh();">
+
+<!-- 消去 -->
+<input type="button" value="クッキーを消去" onclick="do_ck_remove();">
+</div>
+<hr>
+</div>
+
+<!-- デバッグ -->
+<div>
+<a href="#fd_dbg" name="fd_dbg" title="デバッグ情報を表示します"
+ onclick="div_togglevisible(elm.dv_dbg); return false;"
+>Debug</a></div>
+<div id="dv_dbg" style="display: none;">
+<textarea cols="80" rows="8" id="ta_dbg" readonly></textarea>
+
+<div>
+<!-- 更新 -->
+<input type="button" value="更新" onclick="io.dbg.refresh();">
+
+<!-- クリア -->
+<input type="button" value="クリア" onclick="do_dbg_clear();">
+</div>
+<hr>
+</div>
+
+
+
+<!-- img preload -->
+<div>
+<a href="#fd_imgpreload" name="fd_imgpreload"
+ title="画像ファイルのプレロードを行います"
+ onclick="div_togglevisible(getelm('dv_imgpreload')); return false;"
+>IMG Preload</a></div>
+<div id="dv_imgpreload" style="display: none;">
+
+<div>
+<span class="dothelp"><span class="st" id="sp_preload_1"
+><img src="img/0/0.png" width="100" height="40" class="base"></span></span>
+<span class="dothelp"><span class="st" id="sp_preload_2"
+><img src="img/0/0.png" width="100" height="40" class="base"></span></span>
+<span class="dothelp"><span class="st" id="sp_preload_3"
+><img src="img/0/0.png" width="100" height="40" class="base"></span></span>
+<span class="dothelp"><span class="st" id="sp_preload_4"
+><img src="img/0/0.png" width="100" height="40" class="base"></span></span>
+</div>
+
+<div>
+<span class="dothelp"><span class="st" id="sp_preload_w"
+><img src="img/0/0.png" width="100" height="40" class="base"></span></span>
+<span class="dothelp"><span class="st" id="sp_preload_x"
+><img src="img/0/0.png" width="100" height="40" class="base"></span></span>
+</div>
+
+<div>
+<span class="dothelp"><span class="st" id="sp_preload_a1"
+><img src="img/0/0.png" width="100" height="40" class="base"></span></span>
+<span class="dothelp"><span class="st" id="sp_preload_a2"
+><img src="img/0/0.png" width="100" height="40" class="base"></span></span>
+<span class="dothelp"><span class="st" id="sp_preload_aw"
+><img src="img/0/0.png" width="100" height="40" class="base"></span></span>
+</div>
+
+<div>
+<span class="dothelp"><span class="st" id="sp_preload_l1"
+><img src="img/0/0.png" width="100" height="40" class="base"></span></span>
+<span class="dothelp"><span class="st" id="sp_preload_l2"
+><img src="img/0/0.png" width="100" height="40" class="base"></span></span>
+<span class="dothelp"><span class="st" id="sp_preload_lw"
+><img src="img/0/0.png" width="100" height="40" class="base"></span></span>
+</div>
+
+<div>
+<span class="dothelp"><span class="st" id="sp_preload_r1"
+><img src="img/0/0.png" width="100" height="40" class="base"></span></span>
+<span class="dothelp"><span class="st" id="sp_preload_r2"
+><img src="img/0/0.png" width="100" height="40" class="base"></span></span>
+<span class="dothelp"><span class="st" id="sp_preload_rw"
+><img src="img/0/0.png" width="100" height="40" class="base"></span></span>
+</div>
+
+<div>
+<!-- preload -->
+<input type="button" value="preload" onclick="do_img_preload();">
+
+</div>
+</div>
+
+
+
+
+</div>
+</div>
+
+</div>
 
 <!-- ============================================================= -->
 <!-- 練習 -->
 
-<form action="#" method="post"
- id="fm_main"
- onSubmit="return do_input();">
+<div class="field" id="dv_field_lesson">
+
+<form action="#" method="post" id="fm_main" onsubmit="return do_input();">
+
 <!-- タイトル -->
-<div class="fieldhead">
-<a href="javascript:void(div_togglevisible(elm.dv_main));"
- accesskey="l"
- class="fieldtitle">メイン(<span class="accesskey">L</span>)</a>
+<div class="fieldhead" id="dv_main_head">
+<a href="#fd_main" name="fd_main"
+ title="練習を行います"
+ class="fieldtitle"
+ onclick="div_togglevisible(elm.dv_main); return false;"
+ accesskey="l">練習(<span class="accesskey">L</span>)</a>
 </div>
+
+<!-- 詳細 -->
+<div class="fieldbody" id="dv_main" style="display: block;">
+
+<div>
+<!-- 本体 -->
+<!-- レッスン -->
+ <label for="sl_lesson" title="レッスン番号を指定します"
+  accesskey="s">レッスン(<span class="accesskey">S</span>)</label>
+ <select id="sl_lesson" title="レッスン番号を指定します"
+  onchange="do_set_lesson();">
+  <option></option>
+ </select>
+<!-- 設定 -->
+<!-- シャッフル -->
+ <input type="checkbox" id="cb_shuffle" name="cb_shuffle" value="true"
+  title="問題文をシャッフルして出題します"
+  accesskey="f"
+  onclick="do_cb_shuffle();">
+ <label for="cb_shuffle" title="問題文をシャッフルして出題します"
+  >シャッフル(<span class="accesskey">F</span>)</label>
+
+<!-- 文字ヘルプのスタイル -->
+ &nbsp;<label for="sl_helpstyle" title="コードの表示形式を指定します"
+  accesskey="Y">スタイル(<span class="accesskey">Y</span>)</label>
+ <select name="sl_helpstyle" id="sl_helpstyle"
+  title="コードの表示形式を指定します"
+  onchange="do_help();">
+  <option value="dothelp" selected>打鍵図 (橋田表)</option>
+  <option value="alnum">英字</option>
+  <option value="hasidamnem">橋田ニモニック</option>
+  <option value="stroketable" disabled>ストローク表</option>
+ </select>
+</div>
+
+<div>
+<!-- ← 前 -->
+ <input type="button" value="← 前(P)" title="前のレッスンに戻ります"
+  accesskey="p" onclick="do_bt_command('p');">
+
+<!-- もう一度 -->
+ <input type="button" value="もう一度(A)"
+  title="このレッスンをもう一度練習します"
+  accesskey="a" onclick="do_bt_command('a');">
+
+<!-- 次 → -->
+ <input type="button" value="次(N) →" title="次のレッスンに進みます"
+  accesskey="n" onclick="do_bt_command('n');">
+
+<!-- ランダム -->
+ <input type="button" value="ランダム(R)" title="ランダムにレッスンを選びます"
+  accesskey="r" onclick="do_bt_command('r');">
+
+<!-- 終了 -->
+ <input type="button" value="終了(Q)" title="練習を終了します"
+  accesskey="q" onclick="do_bt_command('q');">
+
+</div>
+</div>
+
 <div class="fieldbody">
 <!-- 本体 -->
 <!-- 出力欄 -->
- <pre id="pr_main"
-  class="stdio">&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;</pre>
+ <div id="dv_stdout" class="stdio"
+  title="[出力欄] 問題文や採点結果が表示されます"></div>
 <span>
 <!-- 入力欄 -->
- <input type="password" size="80" id="pw_input"
-  name="pw_input"
+<!-- XXX -->
+ <input type="text" size="50" id="tx_stdin" name="tx_stdin"
+  title="[入力欄] ここに入力します"
+  style="color: white;"
   accesskey="j"
-  style="color: White;"
+  onfocus="with (this.style) { color = backgroundColor = '#d0f0ff'; }"
+  onblur=" with (this.style) { color = backgroundColor = 'white'; }"
   value="">
 <!-- 送信 -->
- <input type="submit" value="CR"
-  id="sb_cr"
+ <input type="submit" value="Return(M)" id="sb_cr"
+  title="リターンキーを押します"
   accesskey="m">
+
+<!-- 文字ヘルプ -->
+ <input type="button" value="ヒント(H)" id="bt_help" name="bt_help"
+  title="コードを表示します"
+  accesskey="h"
+  onclick="do_help();">
 </span>
-<br>
-<!-- 詳細 -->
-<div id="dv_main"
- style="display: block;">
-<!-- ← 前 -->
- <input type="button" value="≪ 前"
-  accesskey="p"
-  onClick="do_bt_command('p');"
-  onKeyPress="do_bt_command('p');">
-<!-- もう一度 -->
- <input type="button" value="もう一度"
-  accesskey="a"
-  onClick="do_bt_command('a');"
-  onKeyPress="do_bt_command('a');">
-<!-- 次 → -->
- <input type="button" value="次 ≫"
-  accesskey="n"
-  onClick="do_bt_command('n');"
-  onKeyPress="do_bt_command('n');">
-<!-- 終了 -->
- <input type="button" value="終了"
-  title="終了(Q)"
-  accesskey="q"
-  onClick="do_bt_command('q');"
-  onKeyPress="do_bt_command('q');">
-<!-- エコー -->
- <input type="checkbox" id="cb_echo"
-  name="cb_echo" value="true"
-  accesskey="e"
-  onClick="do_cb_echo();"
-  onKeyPress="do_cb_echo();">
- <label for="cb_echo">エコー(<span class="accesskey">E</span>)</label>
-<!-- シャッフル -->
- <input type="checkbox" id="cb_shuffle"
-  name="cb_shuffle" value="true"
-  accesskey="f"
-  onClick="do_cb_shuffle();"
-  onKeyPress="do_cb_shuffle();">
- <label for="cb_shuffle">シャッフル(<span class="accesskey">F</span>)</label>
 </div>
-</div>
-</form>
 
-<!-- ============================================================= -->
-<!-- レッスン -->
-
-<form action="#" method="post"
- id="fm_lesson"
- onSubmit="return do_set_lesson();">
-<!-- タイトル -->
-<div class="fieldhead">
-<a href="javascript:void(div_togglevisible(elm.dv_lesson));"
- accesskey="w"
- class="fieldtitle">レッスン(<span class="accesskey">W</span>)</a>
-</div>
 <div class="fieldbody">
-<!-- 本体 -->
-<!-- 標準テキスト -->
- <input type="radio" name="rd_lesson" id="rd_lesson_std"
-  value="std"
-  checked
-  onClick="do_change_lesson_std();"
-  onKeyPress="do_change_lesson_std();">
- <label for="rd_lesson_std"
-  accesskey="t">標準テキスト(<span class="accesskey">T</span>)</label>
-<!-- 課 -->
- <label for="sl_lesson"
-  accesskey="s">課(<span class="accesskey">S</span>)</label>
- <select id="sl_lesson"
-  onChange="do_change_lesson_std();">
-  <option>---</option>
- </select>
-<!-- 設定 -->
- <input type="submit" value="選択"
-  accesskey="d">
-<!-- キャンセル -->
- <input type="button" value="取消"
-  onClick="do_cancel_lesson();"
-  onKeyPress="do_cancel_lesson();">
-<!-- 詳細 -->
-<div id="dv_lesson"
- style="display: block;">
-<!-- ユーザ入力テキスト -->
- <input type="radio" name="rd_lesson" id="rd_lesson_usr"
-  value="usr"
-  onClick="do_change_lesson_usr();"
-  onKeyPress="do_change_lesson_usr();">
- <label for="rd_lesson_usr"
-  accesskey="u">ユーザ入力(<span class="accesskey">U</span>)</label>
- <br>
-<!-- レッスン内容 -->
- <textarea cols="80" rows="10" id="ta_lesson"
-  disabled>---</textarea>
-</div>
-<!--  </fieldset> -->
+<!-- 文字ヘルプ表 -->
+ <div id="dv_stdhelp" class="stdio" title="[ヒント欄] コードを表示します"></div>
 </div>
 </form>
-
-<!-- ============================================================= -->
-<!-- ログ -->
-
-<form action="#" method="post"
- id="fm_log"
- onSubmit="return false;">
-<!-- タイトル -->
-<div class="fieldhead">
-<a href="javascript:void(div_togglevisible(elm.dv_log));"
- accesskey="g"
- class="fieldtitle">ログ(<span class="accesskey">G</span>)</a>
 </div>
-<!-- 本体 -->
-<!-- 詳細 -->
-<div id="dv_log"
- style="display: block;"
- class="fieldbody">
-<!-- ログ内容 -->
- <textarea cols="80" rows="10" id="ta_log"
-  readonly>---</textarea>
- <br>
-<!-- 更新 -->
- <input type="button" id="bt_log_refresh"
-  value="更新"
-  onClick="io.log.refresh();"
-  onKeyPress="io.log.refresh();">
-<!-- クリア -->
- <input type="button" id="bt_log_clear"
-  value="クリア"
-  onClick="do_clear_log();"
-  onKeyPress="do_clear_log();">
-<!-- 送信(?) -->
- <input type="submit" value="送信"
-  disabled
-  accesskey="b">
-<!-- クッキー消去 -->
- <input type="button" id="bt_ck_remove"
-  value="クッキーを消去"
-  onClick="do_remove_cookie();"
-  onKeyPress="do_remove_cookie();">
-</div>
-</form>
 
 <!-- ============================================================= -->
-<!-- 区切り -->
-
-<!--  <hr> -->
-
-<!-- ============================================================= -->
-<!-- タイトル -->
-
-<!--  <h1>eelll/JS</h1> -->
-
-<!-- ============================================================= -->
-<!-- もどる -->
+<!-- フッタ -->
 
 <hr>
 
-<div class="footer">
-<a href=".">もどる</a>
-</div>
-
 <div class="version">
-eelll/JS version 0.1<!-- , Copyright &copy; 2005 YUSE Yosihiro -->
+eelll/JS version <!-- version -->0.2<!-- /version -->
+<!-- time-stamp-start -->2006-04-28 yuse<!-- time-stamp-end -->
 </div>
-
-<!-- <hr> -->
-<!-- ============================================================= -->
-<!-- End -->
 
 </body>
-
+<!-- ============================================================= -->
+<!--
+  :: Local Variables:
+  :: time-stamp-line-limit: -20
+  :: time-stamp-start: "<!-\\- *time-stamp-start *-\\-."
+  :: time-stamp-end:   "<!-\\- *time-stamp-end *-\\-."
+  :: time-stamp-format: "%:y-%02m-%02d %u"
+  :: End:
+  -->
 </html>
