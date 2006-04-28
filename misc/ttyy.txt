@@ -1,0 +1,231 @@
+;; -------------------------------------------------------------------
+;; 花氷表補遺 - 幻氷 v1-s-2006-02-01
+;; 
+;; 追加文字 (202)
+;; 
+;;     ：▲;4 ；▲;7 ？▲/4 ！▲14 ＾▲64   ／▲/7 （▲94 ）▲04 ＄▲44 ％▲54
+;;     ＃▲34 ＆▲74 ＊▲84 ＠▲24 ０▲07   １▲17 ２▲27 ３▲37 ４▲47 ５▲57
+;;     ６▲67 ７▲77 ８▲87 ９▲97 Ａ▲a4   Ｂ▲b4 Ｃ▲c4 Ｄ▲d4 Ｅ▲e4 Ｆ▲f4
+;;     Ｇ▲g4 Ｈ▲h4 Ｉ▲i4 Ｊ▲j4 Ｋ▲k4   Ｌ▲l4 Ｍ▲m4 Ｎ▲n4 Ｏ▲o4 Ｐ▲p4
+;;     Ｑ▲q4 Ｒ▲r4 Ｓ▲s4 Ｔ▲t4 Ｕ▲u4   Ｖ▲v4 Ｗ▲w4 Ｘ▲x4 Ｙ▲y4 Ｚ▲z4
+;;     ａ▲a7 ｂ▲b7 ｃ▲c7 ｄ▲d7 ｅ▲e7   ｆ▲f7 ｇ▲g7 ｈ▲h7 ｉ▲i7 ｊ▲j7
+;;     ｋ▲k7 ｌ▲l7 ｍ▲m7 ｎ▲n7 ｏ▲o7   ｐ▲p7 ｑ▲q7 ｒ▲r7 ｓ▲s7 ｔ▲t7
+;;     ｕ▲u7 ｖ▲v7 ｗ▲w7 ｘ▲x7 ｙ▲y7   ｚ▲z7 Α▲a3 Β▲b3 Γ▲g3 Δ▲d3
+;;     Ε▲e3 Ζ▲z3 Η▲h3 Θ▲q3 Ι▲i3   Κ▲k3 Λ▲l3 Μ▲m3 Ν▲n3 Ξ▲x3
+;;     Ο▲o3 Π▲p3 Ρ▲r3 Σ▲s3 Τ▲t3   Υ▲u3 Φ▲f3 Χ▲c3 Ψ▲y3 Ω▲w3
+;;     α▲a8 β▲b8 γ▲g8 δ▲d8 ε▲e8   ζ▲z8 η▲h8 θ▲q8 ι▲i8 κ▲k8
+;;     λ▲l8 μ▲m8 ν▲n8 ξ▲x8 ο▲o8   π▲p8 ρ▲r8 σ▲s8 τ▲t8 υ▲u8
+;;     φ▲f8 χ▲c8 ψ▲y8 ω▲w8 弌▽.z   佇▽o0 俯▽i7 呟▽h9 喩▽k8 囁▽f3
+;;     國▽q4 址▽d3 埃▽t2 墟▽w3 奢▽s2   姜▽d2 彗▽u7 彙▽e2 彷▽.s 徨▽/s
+;;     恣▽d4 惧▽z3 應▽g2 戮▽l0 拗▽l7   撥▽/0 敲▽w4 曖▽t3 曰▽e3 朧▽u0
+;;     棘▽x2 橙▽u8 檸▽;0 檬▽j7 櫟▽t1   櫻▽6a 鬱▽w2 沐▽j6 泄▽x5 淺▽x4
+;;     滲▽v3 澤▽f4 煕▽c3 珈▽e5 珀▽.9   琥▽e4 琲▽y6 璧▽i8 疇▽7b 眩▽h8
+;;     瞼▽h7 礫▽;8 箋▽x3 絣▽s1 綺▽a3   繹▽q1 罠▽m8 羞▽s3 翔▽b3 翡▽y9
+;;     翳▽2d 苺▽e1 苻▽i6 菫▽z1 薔▽,8   薇▽l9 蛉▽;6 蜻▽c5 褪▽y0 誦▽b4
+;;     諍▽z2 謳▽g3 躇▽o8 躊▽o9 辯▽/5   鑪▽u6 頷▽v1 餉▽r4 黎▽;7 齊▽g5
+;;     遙▽l6 熙▽/z          
+
+#include TT
+
+：=jf;4
+；=jf;7
+？=jf/4
+！=jf14
+＾=jf64
+／=jf/7
+（=jf94
+）=jf04
+＄=jf44
+％=jf54
+＃=jf34
+＆=jf74
+＊=jf84
+＠=jf24
+０=jf07
+１=jf17
+２=jf27
+３=jf37
+４=jf47
+５=jf57
+６=jf67
+７=jf77
+８=jf87
+９=jf97
+Ａ=jfa4
+Ｂ=jfb4
+Ｃ=jfc4
+Ｄ=jfd4
+Ｅ=jfe4
+Ｆ=jff4
+Ｇ=jfg4
+Ｈ=jfh4
+Ｉ=jfi4
+Ｊ=jfj4
+Ｋ=jfk4
+Ｌ=jfl4
+Ｍ=jfm4
+Ｎ=jfn4
+Ｏ=jfo4
+Ｐ=jfp4
+Ｑ=jfq4
+Ｒ=jfr4
+Ｓ=jfs4
+Ｔ=jft4
+Ｕ=jfu4
+Ｖ=jfv4
+Ｗ=jfw4
+Ｘ=jfx4
+Ｙ=jfy4
+Ｚ=jfz4
+ａ=jfa7
+ｂ=jfb7
+ｃ=jfc7
+ｄ=jfd7
+ｅ=jfe7
+ｆ=jff7
+ｇ=jfg7
+ｈ=jfh7
+ｉ=jfi7
+ｊ=jfj7
+ｋ=jfk7
+ｌ=jfl7
+ｍ=jfm7
+ｎ=jfn7
+ｏ=jfo7
+ｐ=jfp7
+ｑ=jfq7
+ｒ=jfr7
+ｓ=jfs7
+ｔ=jft7
+ｕ=jfu7
+ｖ=jfv7
+ｗ=jfw7
+ｘ=jfx7
+ｙ=jfy7
+ｚ=jfz7
+Α=jfa3
+Β=jfb3
+Γ=jfg3
+Δ=jfd3
+Ε=jfe3
+Ζ=jfz3
+Η=jfh3
+Θ=jfq3
+Ι=jfi3
+Κ=jfk3
+Λ=jfl3
+Μ=jfm3
+Ν=jfn3
+Ξ=jfx3
+Ο=jfo3
+Π=jfp3
+Ρ=jfr3
+Σ=jfs3
+Τ=jft3
+Υ=jfu3
+Φ=jff3
+Χ=jfc3
+Ψ=jfy3
+Ω=jfw3
+α=jfa8
+β=jfb8
+γ=jfg8
+δ=jfd8
+ε=jfe8
+ζ=jfz8
+η=jfh8
+θ=jfq8
+ι=jfi8
+κ=jfk8
+λ=jfl8
+μ=jfm8
+ν=jfn8
+ξ=jfx8
+ο=jfo8
+π=jfp8
+ρ=jfr8
+σ=jfs8
+τ=jft8
+υ=jfu8
+φ=jff8
+χ=jfc8
+ψ=jfy8
+ω=jfw8
+弌=fj.z
+佇=fjo0
+俯=fji7
+呟=fjh9
+喩=fjk8
+囁=fjf3
+國=fjq4
+址=fjd3
+埃=fjt2
+墟=fjw3
+奢=fjs2
+姜=fjd2
+彗=fju7
+彙=fje2
+彷=fj.s
+徨=fj/s
+恣=fjd4
+惧=fjz3
+應=fjg2
+戮=fjl0
+拗=fjl7
+撥=fj/0
+敲=fjw4
+曖=fjt3
+曰=fje3
+朧=fju0
+棘=fjx2
+橙=fju8
+檸=fj;0
+檬=fjj7
+櫟=fjt1
+櫻=fj6a
+鬱=fjw2
+沐=fjj6
+泄=fjx5
+淺=fjx4
+滲=fjv3
+澤=fjf4
+煕=fjc3
+珈=fje5
+珀=fj.9
+琥=fje4
+琲=fjy6
+璧=fji8
+疇=fj7b
+眩=fjh8
+瞼=fjh7
+礫=fj;8
+箋=fjx3
+絣=fjs1
+綺=fja3
+繹=fjq1
+罠=fjm8
+羞=fjs3
+翔=fjb3
+翡=fjy9
+翳=fj2d
+苺=fje1
+苻=fji6
+菫=fjz1
+薔=fj,8
+薇=fjl9
+蛉=fj;6
+蜻=fjc5
+褪=fjy0
+誦=fjb4
+諍=fjz2
+謳=fjg3
+躇=fjo8
+躊=fjo9
+辯=fj/5
+鑪=fju6
+頷=fjv1
+餉=fjr4
+黎=fj;7
+齊=fjg5
+遙=fjl6
+熙=fj/z
