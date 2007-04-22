@@ -1,17 +1,17 @@
 // eelll.js - EELLL part for eelll/JS (JavaScript implemented EELLL)
-// 
+//
 // Copyright (C) 2005, 2006  YUSE Yosihiro
-// 
+//
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation; either version 2 of the License, or
 // (at your option) any later version.
-// 
+//
 // This program is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU General Public License
 // along with this program; if not, write to the Free Software
 // Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
@@ -112,27 +112,27 @@ EELLL.prototype.lt_userdef = function(srctext) {
       o.text = new Array;
       var a1 = e.split(/\r+\n+|\r+|\n+/);
       for (var j = 0; j < a1.length; j++) {
-	var s = a1[j];
-	var sa = s.split('');
-	// skip comment line and empty line
-	if (s.match(/^[#;]/)) { continue; }
-	if (s == '') { continue; }
+  var s = a1[j];
+  var sa = s.split('');
+  // skip comment line and empty line
+  if (s.match(/^[#;]/)) { continue; }
+  if (s == '') { continue; }
 
-	// fold long lines
-	var maxcol = 80;
-	var foldcol = 60;
-	while (maxcol < s.WIDTH()) {
-	  var chomp;
-	  for (chomp = 1; chomp <= s.length; chomp++) {
-	    if (foldcol < s.substring(0, chomp).WIDTH()) { break; }
-	  }
-	  chomp--;
-	  o.text.PUSH(s.substring(0, chomp));
-	  s = s.substring(chomp, s.length);
-	}
-	if (s != '') {
-	  o.text.PUSH(s);
-	}
+  // fold long lines
+  var maxcol = 80;
+  var foldcol = 60;
+  while (maxcol < s.WIDTH()) {
+    var chomp;
+    for (chomp = 1; chomp <= s.length; chomp++) {
+      if (foldcol < s.substring(0, chomp).WIDTH()) { break; }
+    }
+    chomp--;
+    o.text.PUSH(s.substring(0, chomp));
+    s = s.substring(chomp, s.length);
+  }
+  if (s != '') {
+    o.text.PUSH(s);
+  }
 
       }
       if (o.text.length == 0) { continue; }
@@ -153,15 +153,15 @@ EELLL.prototype.lt_userdef = function(srctext) {
   {
     for (var i = 0; i < lt.lesson.length; i++) {
       if (lt.lesson[i].title == null) {
-	var s = lt.lesson[i].text[0];
-	if (12 < s.length) {
-	  s = s.substr(0, 12 - 1) + '...';
-	}
-	lt.lesson[i].title = lt.lesson[i].name;
-	if (lt.lesson[i].lr != null) {
-	  lt.lesson[i].title += ' (' + lt.lesson[i].lr + ')';
-	}
-	lt.lesson[i].title += ' ' + s;
+  var s = lt.lesson[i].text[0];
+  if (12 < s.length) {
+    s = s.substr(0, 12 - 1) + '...';
+  }
+  lt.lesson[i].title = lt.lesson[i].name;
+  if (lt.lesson[i].lr != null) {
+    lt.lesson[i].title += ' (' + lt.lesson[i].lr + ')';
+  }
+  lt.lesson[i].title += ' ' + s;
       }
     }
   }
@@ -200,7 +200,7 @@ EELLL.prototype.setlt_with_ck = function(id) {
 // reset
 
 EELLL.prototype.reset = function() {
-  this.mode = 'quit';		// XXX
+  this.mode = 'quit';   // XXX
   this.time = 0;
   this.stall = 0;
   this.stcor = 0;
@@ -223,7 +223,7 @@ EELLL.prototype.setls = function(lsno) {
   if (ls) {
     this.lsno = parseInt(lsno);
     this.lstitle = ls.title;
-    this.lslr    = ls.lr;	// XXX normalize?
+    this.lslr    = ls.lr; // XXX normalize?
     this.lstext  = ls.text.DUP();
     this.lschnew = (ls.chars || '').split(''); // NO sort
     this.helpset(this.lschnew);
@@ -250,7 +250,7 @@ EELLL.prototype.lsreset = function () {
   this.lssterr = 0;
   ///<errorrate>
   this.lsstquest = 0;
-  
+
   this.lschtypo.length = 0;
   this.helpset(this.lschnew);
 }

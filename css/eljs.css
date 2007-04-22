@@ -42,15 +42,24 @@ div.fieldbody form { padding: 0px; margin: 0px; }
  */
 
 span.emp     { color: gray; }
-span.message { color: gray; }
+span.message {
+  color: gray;
+  /* border: -2px 0px; */
+  border-left: 4px gray solid;
+  padding: 2px 0px;
+  padding-left: 8px;
+}
 span.prompt  { color: #336699; }
 /* prompt はもっと目立った方が */
 span.prompt  { 
 /*
   font-weight: bold;
   font-weight: normal;
-  color:#66f;
+  color:#336699;
 */
+  border-left: 4px #66f solid;
+  padding: 2px 0px;
+  padding-left: 8px;
 }
 /**/
 span.usr     { color: teal; }
@@ -107,6 +116,19 @@ body#bd_kansakujs div.stdio,
 body#bd_kansakujs pre.stdio { background-color: #fff8e8; }
 body#bd_kansakujs div.stdio,
 body#bd_kansakujs pre.stdio { background-color: #fff0f4; }
+
+
+
+body#bd_kanchokujs { background-color: #80b0b0; }
+
+body#bd_kanchokujs div.fieldhead a:link    { color: #508080; }
+body#bd_kanchokujs div.fieldhead a:visited { color: #508080; }
+body#bd_kanchokujs div.fieldhead a:hover   { color: #60c0c0; }
+
+body#bd_kanchokujs div.fieldbody { background-color: #ddeee0; }
+
+body#bd_kanchokujs div.stdio,
+body#bd_kanchokujs pre.stdio { background-color: #f0fff4; }
 
 /* -------------------------------------------------------------------
  * ヘルプ

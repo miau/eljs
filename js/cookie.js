@@ -83,8 +83,11 @@ Cookie.prototype.remove = function() {
 
 Cookie.prototype.showcontent = function() {
   var s = '';
-  for (var p in el.ck.content) {
-    s += p + '=' + el.ck.content[p] + ':';
+//  for (var p in el.ck.content) {
+//    s += p + '=' + el.ck.content[p] + ':';
+//  }
+  for (var p in this.content) {
+    s += p + '=' + this.content[p] + ':';
   }
   return s;
 }

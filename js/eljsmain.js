@@ -1,17 +1,17 @@
 // elismain.js - eelll/JS (JavaScript implemented EELLL)
-// 
-// Copyright (C) 2005, 2006  YUSE Yosihiro
-// 
+//
+// Copyright (C) 2005--2007  YUSE Yosihiro
+//
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation; either version 2 of the License, or
 // (at your option) any later version.
-// 
+//
 // This program is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU General Public License
 // along with this program; if not, write to the Free Software
 // Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
@@ -22,25 +22,17 @@
 
 var c_cookie_name = 'eellljs';
 var c_mainbuf_size = 10;
-var c_prefix_message = ':: ';
-var c_prefix_prompt  = '&gt;&gt; ';
+var c_prefix_message = '';
+var c_prefix_prompt  = '';
 
 
 // ===================================================================
-// const
-
-var NL = '\n';
-var BR = '<br>';
-var NBSP = '&nbsp;';
-var NLPAT = /[\r\n]+/;
-
-// ===================================================================
 // var
 
-var el = new EELLL();		// EELLL object
+var el = new EELLL();   // EELLL object
 var ks = el;
-var elm;			// HTML elements
-var io;				// input/output
+var elm;      // HTML elements
+var io;       // input/output
 
 
 // ===================================================================
@@ -71,25 +63,25 @@ function do_init() {
 }
 
 // ===================================================================
-// elm 
+// elm
 
 function do_init_elm() {
   var id;
   id = [
-	'dv_config', 'sl_im', 'sl_lt', 'sl_kb',
-	'sl_lesson',
-	'dv_main', 'dv_stdout',
-	'tx_stdin', 'sb_cr',
-	'cb_shuffle',
-	'dv_help', 'dv_stdhelp',
-	'sl_helpstyle',
-	'ta_userdef_im', 'dv_userdef_im',
-	'ta_userdef_lt', 'dv_userdef_lt',
-	'dv_debug',
-	'dv_log', 'ta_log',
-	'dv_ck', 'ta_ck',
-	'dv_dbg', 'ta_dbg',
-	null];
+  'dv_config', 'sl_im', 'sl_lt', 'sl_kb',
+  'sl_lesson',
+  'dv_main', 'dv_stdout',
+  'tx_stdin', 'sb_cr',
+  'cb_shuffle',
+  'dv_help', 'dv_stdhelp',
+  'sl_helpstyle',
+  'ta_userdef_im', 'dv_userdef_im',
+  'ta_userdef_lt', 'dv_userdef_lt',
+  'dv_debug',
+  'dv_log', 'ta_log',
+  'dv_ck', 'ta_ck',
+  'dv_dbg', 'ta_dbg',
+  null];
 
   elm = new Object;
   for (var i = 0; i < id.length; i++) {
@@ -100,7 +92,7 @@ function do_init_elm() {
 function do_init_io() {
   // io
   io = new Object;
-  
+
   //io.text  = new OS(null, elm.ta_text,  false);
   io.main  = new OS(c_mainbuf_size, elm.dv_stdout,  true);
   io.help  = new OS(null, elm.dv_stdhelp,  true);
@@ -116,7 +108,7 @@ function do_init_io() {
   io.log.refresh();
   io.ck.refresh();
   io.dbg.refresh();
-  
+
   io.input = new IS(elm.tx_stdin);
 }
 
@@ -177,7 +169,7 @@ function do_set_config() {
 }
 
 function do_cancel_config() {
-  return do_init_config();	// XXX redundant?
+  return do_init_config();  // XXX redundant?
 }
 
 // ===================================================================
@@ -190,7 +182,7 @@ function do_init_lesson() {
   for (var i = 0; i < a.length; i++) {
     sl.options[i].value = i;
     sl.options[i].text  = a[i].title;
-    
+
   }
   // default
   if (sl.options[0]) { sl.options[0].selected = true; }
@@ -277,7 +269,7 @@ function do_input() {
     }
     break;
   case 'quit':    elm.tx_stdin.blur(); return false; // unfocus
-  default:        ;		// nop
+  default:        ;   // nop
   }
 
   do_focus_input();
@@ -368,13 +360,13 @@ function do_result(res) {
       // typo
       s += '<span class="err">' + escapeHTML(a[2], true) + '</span>';
       for (var j = 0; j < a[1].length; j++) {
-	t += a[1][j][0];
-	log += a[1][j][0] + '[' + a[1][j][1] + ']';
-	aerr.PUSH(a[1][j][0]);
+  t += a[1][j][0];
+  log += a[1][j][0] + '[' + a[1][j][1] + ']';
+  aerr.PUSH(a[1][j][0]);
       }
       if (log != '') {
-	log += ' * (' + a[2] + ')';
-	io.log.puts(log);
+  log += ' * (' + a[2] + ')';
+  io.log.puts(log);
       }
     }
   }
@@ -454,7 +446,7 @@ function do_next_line() {
     ///<errorrate>
     do_score(el.lstime, el.lsstall, el.lsstcor, el.lssterr,  el.lsstquest);
     do_log(el.lstime, el.lsstall, el.lsstcor, el.lssterr,  el.lsstquest);
-  
+
     if (0 < el.lschtypo.length) {
       var t = el.lschtypo.UNIQ().join('');
       var s = '[この課でまちがえた文字]=> 『';
@@ -483,11 +475,11 @@ function do_next_line() {
       var a = el.lsline.split('');
       var s = '';
       for (var i = 0; i < a.length; i++) {
-	if (el.lschweak.MEMBERP(a[i])) {
-	  s += '<span\tclass="weak">' + a[i] + '</span>';
-	} else {
-	  s += a[i];
-	}
+  if (el.lschweak.MEMBERP(a[i])) {
+    s += '<span\tclass="weak">' + a[i] + '</span>';
+  } else {
+    s += a[i];
+  }
       }
       do_puts(s);
     }
@@ -643,8 +635,8 @@ function do_ck() {
 function do_ck_remove() {
   var s = el.ck.showcontent();
   if (confirm('本当にクッキーを消去してもいいですか?' + '\n' +
-	      'クッキーの名前: ' + el.ck.name + '\n' +
-	      'クッキーの内容: ' + s)) {
+        'クッキーの名前: ' + el.ck.name + '\n' +
+        'クッキーの内容: ' + s)) {
     el.ck.remove();
     el.ck.read();
     do_ck_refresh();
@@ -672,7 +664,7 @@ function do_ck_refresh() {
 // function do_init_style() {
 //   // XXX
 //   elm.sl_style = getelm('sl_style');
-// 
+//
 //   var o = document.styleSheets;
 //   var p = elm.sl_style.options;
 //   p.length = o.length;
@@ -681,12 +673,12 @@ function do_ck_refresh() {
 //     p[i].text  = o[i].title;
 //     // XXX
 //     if (!p[i].text || '' == p[i].text) {
-// 	 p[i].text = '標準';
-// 	 p[i].selected = true;
+//   p[i].text = '標準';
+//   p[i].selected = true;
 //     }
 //   }
 // }
-// 
+//
 // function do_set_style() {
 //   var n = elm.sl_style.value;
 //   for (i = 0; i < document.styleSheets.length; i++) {
@@ -739,7 +731,7 @@ function do_prompt(s) {
 
 // // ===================================================================
 // // text proc
-// 
+//
 // function text_fold(str, maxcol, foldcol) {
 //   var sa = str.split(NLPAT);
 //   var foldp = false;
@@ -747,21 +739,21 @@ function do_prompt(s) {
 //     if (maxcol < sa[i].WIDTH()) { foldp = true; break; }
 //   }
 //   if (!foldp) { return sa; }
-// 
+//
 //   var a = new Array();
 //   for (var i = 0; i < sa.length; i++) {
 //     var col = 0, s = '';
 //     var saa = sa[i].split('');
 //     for (var j = 0; j < saa.length; j++) {
-// 	 var w = saa[j].WIDTH();
-// 	 if (foldcol < col + w) { a.PUSH(s); s = ''; col = 0; }
-// 	 col += w; s += saa[j];
+//   var w = saa[j].WIDTH();
+//   if (foldcol < col + w) { a.PUSH(s); s = ''; col = 0; }
+//   col += w; s += saa[j];
 //     }
 //     if (col != 0) { a.PUSH(s); }
 //   }
 //   return a;
 // }
-// 
+//
 // ===================================================================
 
 function do_sl_im() {
@@ -839,7 +831,7 @@ function do_submit_log() {
     'eljs: ' + eljs.value + '\n' +
     'date: ' + date.value + '\n' +
     'user: ' + user.value + '\n'; // +
-    // '\n' + 
+    // '\n' +
     // ta.value + '\n';
   return confirm(msg);
 }
