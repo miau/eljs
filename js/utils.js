@@ -1,22 +1,30 @@
 // utils.js - misc utils for eelll/JS
-// 
+//
 // Copyright (C) 2005, 2006  YUSE Yosihiro
-// 
+//
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation; either version 2 of the License, or
 // (at your option) any later version.
-// 
+//
 // This program is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU General Public License
 // along with this program; if not, write to the Free Software
 // Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 
+// ===================================================================
+// const
+
+var NL = '\n';
+var BR = '<br>';
+var NBSP = '&nbsp;';
+var NLPAT = /[\r\n]+/;
+
 // ===================================================================
 // document element
 
@@ -72,8 +80,8 @@ function unescapeHTML(s) {
 // IO
 
 function OS(size, elm, htmlp) {
-  this.size = size;		// max and min size if set
-  this.htmlp = htmlp;		// true for HTML or false for plaintext
+  this.size = size;     // max and min size if set
+  this.htmlp = htmlp;       // true for HTML or false for plaintext
   this.elm = elm;
 
   if (this.size == null) { this.buf = new Array(); }
@@ -132,6 +140,11 @@ IS.prototype.gets = function() {
 
 IS.prototype.focus = function() {
   if (this.elm) { this.elm.focus(); }
+}
+
+//2007-03-24
+IS.prototype.puts = function(s) {
+  this.elm.value += s;
 }
 
 
@@ -280,7 +293,7 @@ function div_detail_beg(title) {
 
   document.write('<div class="div_detail_beg">');
   document.write('<a href="javascript:div_togglevisible(\'' +
-		 div_detail_id + '\')";>');
+         div_detail_id + '\')";>');
   document.write(title);
   document.write('</a>');
   document.write('</div>');
@@ -290,7 +303,7 @@ function div_detail_beg(title) {
 function div_detail_end() {
   document.write('<div class="div_detail_end">');
   document.write('<a href="javascript:div_togglevisible(\'' +
-		 div_detail_id + '\')";>');
+         div_detail_id + '\')";>');
   document.write('詳細を隠す');
   document.write('</a>');
   document.write('</div>');

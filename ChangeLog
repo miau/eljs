@@ -1,3 +1,33 @@
+2007-04-22  yuse  <yuse@sato.kuis.kyoto-u.ac.jp>
+
+	* index.html: add link to kanchokujs.html
+
+2007-04-03  yuse  <yuse@nana.herbgarden.or.jp>
+
+	* kanchokujs.html: modified
+
+2007-03-31  yuse  <yuse@nana.herbgarden.or.jp>
+
+	* js/cookie.js: bug fix
+
+	* kansakujs.html: resolve conflict of shortcutkeys `R'
+
+2007-03-24  Yuse  <yuse@lovage>
+
+	* kanchoku/JS v0.2: initial prototype
+	- kanchokujs.html : new
+	- css/eljs.css : modified
+	- img/kcjs.png : new
+	- js/kanchoku.js : new
+	- js/kcjsmain.js : new
+
+2006-05-12  Yuse  <yuse@soapwort.herbpage.or.jp>
+
+	* v0.2.1:
+	
+	* eellljs.html: input field width: 50 -> 70  (cf. [tcode-ml:2671])
+	* eljsmain.js: do escapeHTML(hoge, true) for question chars
+
 2006-04-28  Yuse  <yuse@soapwort.herbpage.or.jp>
 
 	* eelll/JS v0.2:
