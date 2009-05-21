@@ -1,6 +1,20 @@
+2009-05-21  YUSE Yoshihiro  <yuse@sato.kuis.kyoto-u.ac.jp>
+
+	* eelll/JS v0.2.3:
+
+	* index.html: history
+
+	* kanchokujs.html: lang="en" in <input type="text"...>
+
+	* eellljs.html: lang="en" in <input type="text"...>
+
 2007-04-22  yuse  <yuse@sato.kuis.kyoto-u.ac.jp>
 
 	* index.html: add link to kanchokujs.html
+
+2007-04-19  yuse  <yuse@sato.kuis.kyoto-u.ac.jp>
+
+	* eelll/JS v0.2.2:
 
 2007-04-03  yuse  <yuse@nana.herbgarden.or.jp>
 
