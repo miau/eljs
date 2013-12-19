@@ -1,7 +1,7 @@
 <!--
   :: KANCHOKU/JS (KANCHOKU input on JavaScript)
   :: 
-  :: Copyright (C) 2007  YUSE Yosihiro
+  :: Copyright (C) 2007, 2012, 2013  YUSE Yosihiro
   :: 
   :: This program is free software; you can redistribute it and/or modify
   :: it under the terms of the GNU General Public License as published by
@@ -19,7 +19,7 @@
   -->
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
- "http://www.w3.org/TR/html4/strict.dtd">
+"http://www.w3.org/TR/html4/strict.dtd">
 
 <html lang="ja">
 
@@ -36,12 +36,11 @@
 <!-- ============================================================= -->
 <!-- Title -->
 
-<title>漢直/JS 0.2</title>	<!-- version/ -->
+<title>漢直/JS</title>
 
 <!-- ============================================================= -->
 <!-- Style -->
 
-<link rel="stylesheet" href="css/default.css" charset="UTF-8">
 <link rel="stylesheet" href="css/eljs.css" charset="UTF-8">
 
 <!-- ============================================================= -->
@@ -62,9 +61,10 @@
 -->
 <link rel="contents" href="index.html">
 <link rel="copyright" href="gpl.txt" type="text/plain">
-<link rev="made" href="mailto:yuse@kuis.kyoto-u.ac.jp">
+<link rev="made" href="mailto:yoyuse@gmail.com">
 <link rel="previous" href="kansakujs.html">
 
+<link rel="shortcut icon" href="img/kcjs.ico" type="image/vnd.microsoft.icon">
 <link rel="icon" href="img/kcjs.png" type="image/png">
 
 <!-- ============================================================= -->
@@ -89,7 +89,10 @@
 <script type="text/javascript" src="js/im/t.js"></script>
 
 <!-- TUT-Code -->
+<!--
 <script type="text/javascript" src="js/im/tut.js"></script>
+-->
+<script type="text/javascript" src="js/im/tut-shiftkana.js"></script>
 
 <!-- G-Code -->
 <script type="text/javascript" src="js/im/g.js"></script>
@@ -105,10 +108,12 @@
 <!-- TT-Code -->
 <script type="text/javascript" src="js/im/tt.js"></script>
 
-<!-- phoenix-->
-<!--
+<!-- phoenix -->
 <script type="text/javascript" src="js/im/phoenix.js"></script>
--->
+
+<!-- L-code -->
+<script type="text/javascript" src="js/im/l.js"></script>
+<script type="text/javascript" src="js/im/lshort.js"></script>
 
 <!-- ASCII -->
 <script type="text/javascript" src="js/im/ascii.js" charset="utf-8"></script>
@@ -133,8 +138,8 @@
 <!-- 本体 -->
 
 <body class="eljs" id="bd_kanchokujs"
- onload="do_init();"
- onunload="watch_end();">
+onload="do_init();"
+onunload="watch_end();">
 
 <!-- ============================================================= -->
 
@@ -149,10 +154,10 @@
 <div class="field" id="dv_field_config">
 <!-- タイトル -->
 <div class="fieldhead" id="dv_config_head">
- <a href="#fd_config" name="fd_config"
-  class="fieldtitle" title="設定を行います"
-  onclick="div_togglevisible(elm.dv_config); return false;"
-  accesskey="c">設定(<span class="accesskey">C</span>)</a>
+<a href="#fd_config" name="fd_config"
+class="fieldtitle" title="設定を行います"
+onclick="div_togglevisible(elm.dv_config); return false;"
+accesskey="c">設定(<span class="accesskey">C</span>)</a>
 </div>
 <!-- 本体 -->
 <!-- 詳細 -->
@@ -160,66 +165,72 @@
 <div id="dv_config" style="display: block;" class="fieldbody">
 
 <form action="#" method="post" id="fm_config"
- onsubmit="return do_set_config();">
+onsubmit="return do_set_config();">
 
 <table class="layout">
-<tbody>
-<tr>
-<td>
-<!-- 入力方式 -->
- <label for="sl_im" title="入力方式を指定します"
-  accesskey="i">入力方式(<span class="accesskey">I</span>)</label>
-</td>
-<td>
- <select id="sl_im" title="入力方式を指定します">
-  <option></option>
- </select>
-</td>
-</tr>
+ <tbody>
+ <tr>
+  <td>
+   <!-- 入力方式 -->
+   <label for="sl_im" title="入力方式を指定します"
+   accesskey="i">入力方式(<span class="accesskey">I</span>)</label>
+  </td>
 
-<tr>
-<td>
-<!-- キーボード -->
- <label for="sl_kb" title="キーボードを指定します"
-  accesskey="q">キーボード(<span class="accesskey">Q</span>)</label>
-</td>
-<td>
- <select id="sl_kb" title="キーボードを指定します">
-  <option></option>
- </select>
-</td>
+  <td>
+   <select id="sl_im" title="入力方式を指定します">
+    <option></option>
+   </select>
+  </td>
 
-<td>
-<a href="#fd_debug" name="fd_debug"
- title="デバッグ情報を表示します"
- onclick="div_togglevisible(elm.dv_debug); return false;"
- >デバッグ</a>
-</td>
-</tr>
+  <td>
+  </td>
+ </tr>
 
-<tr>
-<td></td>
-<td colspan="3" align="left">
-<!-- 設定・キャンセル -->
+ <tr>
+  <td>
+   <!-- キーボード -->
+   <label for="sl_kb" title="キーボードを指定します"
+   accesskey="q">キーボード(<span class="accesskey">Q</span>)</label>
+  </td>
+  <td>
+   <select id="sl_kb" title="キーボードを指定します">
+    <option></option>
+   </select>
+  </td>
 
- <!-- OK -->
- <input type="button" value="OK(O)" style="width: 6em;"
-  accesskey="o"
-  onclick="do_set_config(); div_visible(elm.dv_config, false);">
+  <td>
+   <a href="#fd_debug" name="fd_debug"
+   title="デバッグ情報を表示します"
+   onclick="div_togglevisible(elm.dv_debug); return false;"
+   >デバッグ</a>
+  </td>
+ </tr>
 
- <!-- キャンセル -->
- <input type="button" value="キャンセル"
-  style="width: 6em;"
-  onclick="do_cancel_config();">
+ <tr>
+  <td>
+   <label for="bt_ok" title="設定">設定</label>
+  </td>
 
- <!-- 適用 -->
- <input type="submit" value="適用" style="width: 5em;">
+  <td colspan="2">
+   <!-- 設定・キャンセル -->
+   <!-- OK -->
+   <input type="button" value="OK(O)" style="width: 6em;"
+   accesskey="o" id="bt_ok"
+   onclick="do_set_config(); div_visible(elm.dv_config, false);">
 
- <!-- ヘルプ -->
- <input type="button" value="ヘルプ" style="width: 5em;" disabled>
-</td>
-</tr>
-</tbody>
+   <!-- キャンセル -->
+   <input type="button" value="キャンセル"
+   style="width: 7em;"
+   onclick="do_cancel_config();">
+
+   <!-- 適用 -->
+   <input type="submit" value="適用" style="width: 5em;">
+
+   <!-- ヘルプ -->
+   <input type="button" value="ヘルプ" style="width: 5em;" disabled>
+  </td>
+ </tr>
+ </tbody>
 </table>
 
 </form>
@@ -232,10 +243,11 @@
 <!-- クッキー -->
 <div>
 <a href="#fd_ck" name="fd_ck"
- title="クッキー情報を表示します"
+title="クッキー情報を表示します"
  onclick="div_togglevisible(elm.dv_ck); return false;">Cookie</a></div>
 <div id="dv_ck" style="display: none;">
-<textarea cols="80" rows="8" id="ta_ck" name="ta_ck" readonly></textarea>
+<textarea cols="80" rows="8" id="ta_ck" name="ta_ck" readonly class="stdio"
+></textarea>
 
 <div>
 <!-- 更新 -->
@@ -250,10 +262,10 @@
 <!-- デバッグ -->
 <div>
 <a href="#fd_dbg" name="fd_dbg" title="デバッグ情報を表示します"
- onclick="div_togglevisible(elm.dv_dbg); return false;"
+onclick="div_togglevisible(elm.dv_dbg); return false;"
 >Debug</a></div>
 <div id="dv_dbg" style="display: none;">
-<textarea cols="80" rows="8" id="ta_dbg" readonly></textarea>
+<textarea cols="80" rows="8" id="ta_dbg" readonly class="stdio"></textarea>
 
 <div>
 <!-- 更新 -->
@@ -265,11 +277,6 @@
 <hr>
 </div>
 
-
-
-
-
-
 </div>
 </div>
 
@@ -280,71 +287,69 @@
 
 <div class="field" id="dv_field_query">
 
-
 <!-- タイトル -->
 <div class="fieldhead" id="dv_main_head">
 <a href="#fd_main" name="fd_main"
- title="入力を行います"
- class="fieldtitle"
- onclick="div_togglevisible(elm.dv_main); return false;"
- accesskey="l">入力(<span class="accesskey">L</span>)</a>
+title="入力を行います"
+class="fieldtitle"
+onclick="div_togglevisible(elm.dv_main); return false;"
+accesskey="l">入力(<span class="accesskey">L</span>)</a>
 </div>
 
 <div class="fieldbody" id="dv_main">
 
 <form action="#" method="post" id="fm_query" onsubmit="return do_input();">
 <table class="layout">
-<tbody>
-<tr>
-<td
- style="width: 4em;"
->
-<!-- 入力欄 -->
-<label for="tx_stdin" title="コードを入力します"
- >入力(<span class="accesskey">J</span>)</label>
-</td>
-<td
- style="width: 800px;"
- > <!-- XXX -->
-<input type="text" value="" size="200"
- lang="en"
- id="tx_stdin" name="input"
- title="コードを入力します"
- accesskey="j"
- style="width: 100%;"
- >
-</td>
+ <tbody>
+ <tr>
+  <td style="width: 4em;">
+   <!-- 入力欄 -->
+   <label for="tx_stdin" title="コードを入力します"
+   >入力(<span class="accesskey">J</span>)</label>
+  </td>
 
-<td>
-<input type="reset" value="クリア(R)"
- title="入力欄の内容を消去します"
- accesskey="r"
- onclick="do_focus_input(); return true;">
-</td>
-</tr>
+  <td
+   style="width: 800px; padding-right: 10px;"> <!-- XXX -->
+   <input type="text" value="" size="200"
+   lang="en"
+   spellcheck="false"
+   id="tx_stdin" name="input" class="stdio"
+   placeholder="ここに入力します"
+   title="コードを入力します"
+   accesskey="j"
+   style="width: 100%; margin-right: 10px;"> <!-- XXX -->
+  </td>
 
-<tr>
-<td>
-<label for="tx_stdout" title="変換結果を表示します"
- >変換</label>
-</td>
-<td>
+  <td>
+   <input type="reset" value="クリア(R)"
+   title="入力欄の内容を消去します"
+   accesskey="r"
+   onclick="do_focus_input(); return true;">
+  </td>
+ </tr>
 
-<input type="text" value="" size="200"
- id="tx_stdout" name="output"
- title="変換結果を表示します"
- style="width: 100%;"
- >
-</td>
+ <tr>
+  <td>
+   <label for="tx_stdout" title="変換結果を表示します"
+   >変換</label>
+  </td>
 
-<td>
-<input type="submit" value="確定(M)" id="bt_ok"
- title="確定入力します"
- accesskey="m"
->
-</td>
-</tr>
-</tbody>
+  <td
+   style="width: 800px; padding-right: 10px;"> <!-- XXX -->
+   <input type="text" value="" size="200"
+   id="tx_stdout" name="output" class="stdio"
+   title="変換結果を表示します"
+   style="width: 100%; pading-right: 0px"
+   >
+  </td>
+
+  <td>
+   <input type="submit" value="確定(M)"
+   title="確定入力します"
+   accesskey="m">
+  </td>
+ </tr>
+ </tbody>
 </table>
 
 </form>
@@ -355,42 +360,39 @@
 <!-- 出力欄 -->
 
 <form action="#" method="post" id="fm_result"
- onsubmit="getelm('ta_stdout').select(); return false;">
+onsubmit="getelm('ta_stdout').select(); return false;">
 <table class="layout">
-<tbody>
-<tr>
+ <tbody>
+ <tr>
 
-<td class="vtop"
- style="width: 4em;"
->
-<label for="ta_stdout" title="出力結果を表示します"
- accesskey="t"
- >出力(<span class="accesskey">T</span>)</label>
-</td>
+  <td class="vtop" style="width: 4em;">
+   <label for="ta_stdout" title="出力結果を表示します"
+   accesskey="t"
+   >出力(<span class="accesskey">T</span>)</label>
+  </td>
 
-<td class="vtop"
- style="width: 800px;"
- > <!-- XXX -->
- <textarea cols="200" rows="25" id="ta_stdout"
-  title="出力結果を表示します"
-  style="width: 100%;"
- ></textarea>
-</td>
+  <td class="vtop"
+   style="width: 800px; padding-right: 10px;"> <!-- XXX -->
+   <textarea cols="200" rows="25" id="ta_stdout" class="stdio"
+   title="出力結果を表示します"
+   style="width: 100%;"
+   ></textarea>
+  </td>
 
-<td class="vtop">
-<!-- -->
-<input type="button" value="全選択(S)"
- accesskey="s"
- onclick="getelm('ta_stdout').select();">
-<br>
-<!-- -->
-<input type="reset" value="全消去(X)"
- title="出力欄の内容を消去します"
- accesskey="x"
- onclick="do_focus_input(); return confirm('全消去しますか?');">
-</td>
-</tr>
-</tbody>
+  <td class="vtop">
+   <!-- -->
+   <input type="button" value="全選択(S)"
+   accesskey="s"
+   onclick="getelm('ta_stdout').select();">
+   <br>
+   <!-- -->
+   <input type="reset" value="全消去(X)"
+   title="出力欄の内容を消去します"
+   accesskey="x"
+   onclick="do_focus_input(); return confirm('全消去しますか?');">
+  </td>
+ </tr>
+ </tbody>
 </table>
 </form>
 
@@ -403,18 +405,24 @@
 <hr>
 
 <div class="version">
-KANCHOKU/JS version <!-- version -->0.2.3<!-- /version -->
-<!-- time-stamp-start -->2009-05-21 yuse<!-- time-stamp-end -->
+KANCHOKU/JS
+&nbsp;
+version
+<!-- version -->0.3<!-- /version -->
+&nbsp;
+<!-- time-stamp-start -->2013-12-10<!-- time-stamp-end -->
 </div>
 
 </body>
+
+</html>
+
 <!-- ============================================================= -->
 <!--
   :: Local Variables:
-  :: time-stamp-line-limit: -20
+  :: time-stamp-line-limit: -24
   :: time-stamp-start: "<!-\\- *time-stamp-start *-\\-."
   :: time-stamp-end:   "<!-\\- *time-stamp-end *-\\-."
-  :: time-stamp-format: "%:y-%02m-%02d %u"
+  :: time-stamp-format: "%:y-%02m-%02d"
   :: End:
   -->
-</html>

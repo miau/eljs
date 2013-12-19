@@ -1,7 +1,7 @@
 <!--
   :: KANSAKU/JS (T-Code search on JavaScript)
   :: 
-  :: Copyright (C) 2006, 2007  YUSE Yosihiro
+  :: Copyright (C) 2006, 2007, 2012, 2013  YUSE Yosihiro
   :: 
   :: This program is free software; you can redistribute it and/or modify
   :: it under the terms of the GNU General Public License as published by
@@ -19,7 +19,7 @@
   -->
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
- "http://www.w3.org/TR/html4/strict.dtd">
+"http://www.w3.org/TR/html4/strict.dtd">
 
 <html lang="ja">
 
@@ -30,18 +30,17 @@
 <meta http-equiv="Content-Script-Type" content="text/javascript">
 
 <meta name="author" content="YUSE Yosihiro">
-<meta name="description" content="eelll/JS (JavaScript implemented KANSAKU)">
+<meta name="description" content="KANSAKU/JS (JavaScript implemented KANSAKU)">
 <meta name="keywords" content="T-Code,TUT-Code,漢索,漢直,検索,コード">
 
 <!-- ============================================================= -->
 <!-- Title -->
 
-<title>漢索/JS 0.2</title>	<!-- version/ -->
+<title>漢索/JS</title>
 
 <!-- ============================================================= -->
 <!-- Style -->
 
-<link rel="stylesheet" href="css/default.css" charset="UTF-8">
 <link rel="stylesheet" href="css/eljs.css" charset="UTF-8">
 
 <!-- ============================================================= -->
@@ -62,10 +61,11 @@
 -->
 <link rel="contents" href="index.html">
 <link rel="copyright" href="gpl.txt" type="text/plain">
-<link rev="made" href="mailto:yuse@kuis.kyoto-u.ac.jp">
+<link rev="made" href="mailto:yoyuse@gmail.com">
 <link rel="previous" href="eellljs.html">
 <link rel="next" href="kanchokujs.html">
 
+<link rel="shortcut icon" href="img/ksjs.ico" type="image/vnd.microsoft.icon">
 <link rel="icon" href="img/ksjs.png" type="image/png">
 
 <!-- ============================================================= -->
@@ -73,6 +73,10 @@
 
 <!-- main -->
 <script type="text/javascript" src="js/utils.js"></script>
+<script type="text/javascript" src="js/dic/dummymazegakidic.js"></script>
+<!--
+<script type="text/javascript" src="js/dic/mazegakidic.js"></script>
+-->
 <script type="text/javascript" src="js/kansaku.js"></script>
 <script type="text/javascript" src="js/ksjsmain.js"></script>
 
@@ -104,8 +108,12 @@
 <!-- TT-Code -->
 <script type="text/javascript" src="js/im/tt.js"></script>
 
-<!-- phoenix-->
+<!-- phoenix -->
 <script type="text/javascript" src="js/im/phoenix.js"></script>
+
+<!-- L-code -->
+<script type="text/javascript" src="js/im/l.js"></script>
+<script type="text/javascript" src="js/im/lshort.js"></script>
 
 <!-- ASCII -->
 <script type="text/javascript" src="js/im/ascii.js" charset="utf-8"></script>
@@ -135,8 +143,8 @@
 <!-- 本体 -->
 
 <body class="eljs" id="bd_kansakujs"
- onload="do_init();"
- onunload="watch_end();">
+onload="do_init();"
+onunload="watch_end();">
 
 <!-- ============================================================= -->
 
@@ -151,10 +159,10 @@
 <div class="field" id="dv_field_config">
 <!-- タイトル -->
 <div class="fieldhead" id="dv_config_head">
- <a href="#fd_config" name="fd_config"
-  class="fieldtitle" title="設定を行います"
-  onclick="div_togglevisible(elm.dv_config); return false;"
-  accesskey="c">設定(<span class="accesskey">C</span>)</a>
+<a href="#fd_config" name="fd_config"
+class="fieldtitle" title="設定を行います"
+onclick="div_togglevisible(elm.dv_config); return false;"
+accesskey="c">設定(<span class="accesskey">C</span>)</a>
 </div>
 <!-- 本体 -->
 <!-- 詳細 -->
@@ -165,104 +173,115 @@
  onsubmit="return false;">
 
 <table class="layout">
-<tbody>
-<tr>
-<td class="vtop">
+ <tbody>
+ <tr>
+  <td class="vtop">
 
-<table class="layout">
-<tbody>
-<tr>
-<td class="vtop">
-<!-- 入力方式 -->
- <label for="sl_im" title="入力方式を指定します (複数選択可)"
-  accesskey="i">入力方式<span class="footnotemark">*</span>(<span class="accesskey">I</span>)</label>
-</td>
-<td class="vtop">
- <select id="sl_im" title="入力方式を指定します (複数選択可)"
-  multiple size="7"
-  onchange="ks.helpinvalidate(); ks.setim(this.value); do_help();">
-  <!-- XXX ↑ ks.setim(this.value) は不要? -->
-  <option></option>
- </select>
-</td>
-<td class="vtop">
- <input type="button" value="↑" title="選択した項目を上に並べかえます"
-  onclick="do_bt_up(elm.sl_im);">
-<br>
- <input type="button" value="↓" title="選択した項目を下に並べかえます"
-  onclick="do_bt_dn(elm.sl_im);">
-</td>
-</tr>
-</tbody>
+   <table class="layout">
+    <tbody>
+    <tr>
+     <td class="vtop">
+      <!-- 入力方式 -->
+      <label for="sl_im" title="入力方式を指定します (複数選択可)"
+      accesskey="i">入力方式<span class="footnotemark">*</span>(<span class="accesskey">I</span>)</label>
+     </td>
+     <td class="vtop">
+      <select id="sl_im" title="入力方式を指定します (複数選択可)"
+       multiple size="9" class="select"
+       onchange="ks.helpinvalidate(); ks.setim(this.value); do_help();">
+       <!-- XXX ↑ ks.setim(this.value) は不要? -->
+       <option></option>
+      </select>
+     </td>
+     <td class="vtop">
+      <input type="button" value="↑" title="選択した項目を上に並べかえます"
+      onclick="do_bt_up(elm.sl_im);">
+      <br>
+      <input type="button" value="↓" title="選択した項目を下に並べかえます"
+      onclick="do_bt_dn(elm.sl_im);">
+     </td>
+    </tr>
+    </tbody>
+   </table>
+
+  </td>
+  <td class="vtop">
+
+   <table class="layout">
+    <tbody>
+    <tr>
+     <td class="vtop">
+      <!-- 文字ヘルプのスタイル -->
+      &nbsp;
+      <label for="sl_hs" title="コードの表示形式を指定します (複数選択可)"
+      accesskey="Y"
+      >スタイル<span class="footnotemark">*</span>(<span class="accesskey">Y</span>)</label>
+     </td>
+     <td class="vtop">
+      <select name="sl_hs" id="sl_hs"
+       title="コードの表示形式を指定します (複数選択可)"
+       multiple size="4" class="select"
+       onchange="do_help();">
+       <option value="dothelp" selected>打鍵図 (橋田表)</option>
+       <option value="alnum">英字</option>
+       <option value="hasidamnem">橋田ニモニック</option>
+       <option value="stroketable" disabled>ストローク表</option>
+      </select>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <!-- キーボード -->
+      <label for="sl_kb" title="キーボードを指定します"
+      accesskey="k">キーボード(<span class="accesskey">K</span>)</label>
+     </td>
+     <td>
+      <select id="sl_kb" title="キーボードを指定します"
+       onchange="ks.helpinvalidate(); ks.setkb(this.value); do_help();">
+       <!-- XXX ↑ ks.setkb(this.value) は不要? -->
+       <option></option>
+      </select>
+     </td>
+    </tr>
+    <tr>
+     <td class="vtop">
+      検索オプション
+     </td>
+     <td class="vtop">
+      <!-- リアルタイム -->
+      <input type="checkbox" id="cb_realtime" name="realtime"
+      value="cb_incremental"
+      title="検索ボタンが押されなくても自動的に検索を行います"
+      accesskey="t"
+      onchange="do_cb_realtime();">
+      <label for="cb_realtime"
+      title="検索ボタンが押されなくても自動的に検索を行います"
+      >リアルタイム(<span class="accesskey">T</span>)</label>
+      <br />
+      <!-- 交ぜ書き変換 -->
+      <input type="checkbox" id="cb_mazegaki" name="mazegaki"
+      value="cb_mazegaki_conv"
+      title="交ぜ書き変換辞書から漢字を引きます"
+      accesskey="z"
+      onchange="do_cb_mazegaki();">
+      <label for="cb_mazegaki"
+      title="交ぜ書き変換辞書から漢字を引きます"
+      >交ぜ書き変換(<span class="accesskey">Z</span>)</label>
+     </td>
+    </tr>
+    </tbody>
+   </table>
+
+  </td>
+ </tr>
+ </tbody>
 </table>
 
-</td>
-<td class="vtop">
-
-<table class="layout">
-<tbody>
-<tr>
-<td class="vtop">
-<!-- 文字ヘルプのスタイル -->
- &nbsp;
- <label for="sl_helpstyle" title="コードの表示形式を指定します (複数選択可)"
-  accesskey="Y"
-  >スタイル<span class="footnotemark">*</span>(<span class="accesskey">Y</span>)</label>
-</td>
-<td class="vtop">
- <select name="sl_helpstyle" id="sl_helpstyle"
-  title="コードの表示形式を指定します (複数選択可)"
-  multiple size="4"
-  onchange="do_help();">
-  <option value="dothelp" selected>打鍵図 (橋田表)</option>
-  <option value="alnum">英字</option>
-  <option value="hasidamnem">橋田ニモニック</option>
-  <option value="stroketable" disabled>ストローク表</option>
- </select>
-</td>
-</tr>
-<tr>
-<td>
-<!-- キーボード -->
- <label for="sl_kb" title="キーボードを指定します"
-  accesskey="k">キーボード(<span class="accesskey">K</span>)</label>
-</td>
-<td>
- <select id="sl_kb" title="キーボードを指定します"
-  onchange="ks.helpinvalidate(); ks.setkb(this.value); do_help();">
-  <!-- XXX ↑ ks.setkb(this.value) は不要? -->
-  <option></option>
- </select>
-</td>
-</tr>
-<tr>
-<td>
-検索オプション
-</td>
-<td>
-<!-- リアルタイム -->
- <input type="checkbox" id="cb_realtime" name="realtime"
-  value="cb_incremantal"
-  title="検索ボタンが押されなくても自動的に検索を行います"
-  accesskey="t"
-  onchange="do_cb_realtime();">
- <label for="cb_realtime"
-  title="検索ボタンが押されなくても自動的に検索を行います"
- >リアルタイム(<span class="accesskey">T</span>)</label>
-</td>
-</tr>
-</tbody>
-</table>
-
-</td>
-</tr>
-</tbody>
-</table>
-
-<div>
+<div class="footnote">
 <span class="footnotemark">(*)</span>
 入力方式・スタイルは複数選択できます
-(Ctrl + クリック (Windows)、Command + クリック (MacOS))
+(<span class="modifier"><kbd>Ctrl</kbd></span> + クリック (Windows)、
+<span class="modifier"><kbd>Command</kbd></span> + クリック (Mac OS X))
 </div>
 </form>
 </div>
@@ -278,31 +297,32 @@
 <!-- タイトル -->
 <div class="fieldhead" id="dv_main_head">
 <a href="#fd_main" name="fd_main"
- title="検索を行います"
- class="fieldtitle"
- onclick="div_togglevisible(elm.dv_main); return false;"
- accesskey="l">検索(<span class="accesskey">L</span>)</a>
+title="検索を行います"
+class="fieldtitle"
+onclick="div_togglevisible(elm.dv_main); return false;"
+accesskey="l">検索(<span class="accesskey">L</span>)</a>
 </div>
 
 <div class="fieldbody" id="dv_main">
 <!-- 入力欄 -->
 <label for="tx_stdin" title="検索文字列を入力します"
- >検索(<span class="accesskey">J</span>)</label>
+>検索(<span class="accesskey">J</span>)</label>
 
-<input type="text" value="" size="40" id="tx_stdin" name="input"
- title="検索文字列を入力します"
- accesskey="J"
- onfocus="this.select();">
+<input type="text" value="" size="40" id="tx_stdin" name="input" class="stdio"
+placeholder="ここに入力します"
+title="検索文字列を入力します"
+accesskey="J"
+onfocus="this.select();">
 
 <input type="button" value="検索(M)" id="bt_query"
- title="検索を実行します"
- accesskey="M"
- onclick="return do_input();">
+title="検索を実行します"
+accesskey="M"
+onclick="return do_input();">
 
 <input type="reset" value="クリア(R)" id="bt_clear"
- title="検索欄の内容を消去します"
- accesskey="r"
- onclick="do_focus_input(); return true;">
+title="検索欄の内容を消去します"
+accesskey="r"
+onclick="do_focus_input(); return true;">
 </div>
 
 <div class="fieldbody" id="dv_stdhelp">
@@ -320,18 +340,24 @@
 <hr>
 
 <div class="version">
-KANSAKU/JS version <!-- version -->0.2.2<!-- /version -->
-<!-- time-stamp-start -->2007-04-19 yuse<!-- time-stamp-end -->
+KANSAKU/JS
+&nbsp;
+version
+<!-- version -->0.3<!-- /version -->
+&nbsp;
+<!-- time-stamp-start -->2013-12-10<!-- time-stamp-end -->
 </div>
 
 </body>
+
+</html>
+
 <!-- ============================================================= -->
 <!--
   :: Local Variables:
-  :: time-stamp-line-limit: -20
+  :: time-stamp-line-limit: -24
   :: time-stamp-start: "<!-\\- *time-stamp-start *-\\-."
   :: time-stamp-end:   "<!-\\- *time-stamp-end *-\\-."
-  :: time-stamp-format: "%:y-%02m-%02d %u"
+  :: time-stamp-format: "%:y-%02m-%02d"
   :: End:
   -->
-</html>

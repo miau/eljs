@@ -1,40 +1,60 @@
 /* -------------------------------------------------------------------
- * eelll/JS, 漢索/JS
+ * eelll/JS, 漢索/JS, 漢直/JS
+ */
+
+/* -------------------------------------------------------------------
+ * font size
  */
 
 body.eljs,
 body.eljs textarea { font-size: 9pt; }
-body.eljs textarea { line-height: 100%; }
-/* ↑ ユーザ定義のテキストエリア */
+body.eljs textarea { line-height: 100%; border: solid 1px gray; padding: 4px; }
 
 /* -------------------------------------------------------------------
  * field
  */
 
 div.fieldhead {
-  font-size: 10pt;
-  background-color: white;
-  margin: 8px 0px 0px 0px;
-  padding: .4em .8em;
+    font-size: 10pt;
+    background-color: white;
+    margin: 8px 0px 0px 0px;
+    padding: .4em .8em;
+    border-radius: 4px 4px 0px 0px;
 }
 
 div.fieldhead a:link,
 div.fieldhead a:visited,
-div.fieldhead a:hover
-{ font-weight: bold; text-decoration: none; }
+div.fieldhead a:hover {
+    font-weight: bold;
+    text-decoration: none;
+}
 
 div.fieldbody {
-  margin: 0px;
-  padding: .4em;
-  border: solid white;
-  border-width: 0 1px 1px 1px;
+    margin: 0px;
+    padding: .4em;
+    border: solid white;
+    border-width: 0 1px 1px 1px;
 }
 
 div.fieldbody a:link,
-div.fieldbody a:visited,
-div.fieldbody a:hover { color: black; }
+div.fieldbody a:visited {
+    color: black;
+    text-decoration: none;
+}
 
-/* IE が妙なアキを入れるので */
+div.fieldbody a:hover {
+    color: black;
+    text-decoration: underline;
+}
+
+span.accesskey {
+    font-family: monospace;
+    text-decoration: underline;
+}
+
+div.version { text-align: right; }
+
+/* for IE */
 div.fieldbody form { padding: 0px; margin: 0px; }
 
 /* -------------------------------------------------------------------
@@ -43,23 +63,23 @@ div.fieldbody form { padding: 0px; margin: 0px; }
 
 span.emp     { color: gray; }
 span.message {
-  color: gray;
-  /* border: -2px 0px; */
-  border-left: 4px gray solid;
-  padding: 2px 0px;
-  padding-left: 8px;
+    color: gray;
+    /* border: -2px 0px; */
+    border-left: 4px gray solid;
+    padding: 2px 0px;
+    padding-left: 8px;
 }
 span.prompt  { color: #336699; }
 /* prompt はもっと目立った方が */
 span.prompt  { 
-/*
-  font-weight: bold;
-  font-weight: normal;
-  color:#336699;
-*/
-  border-left: 4px #66f solid;
-  padding: 2px 0px;
-  padding-left: 8px;
+    /*
+      font-weight: bold;
+      font-weight: normal;
+      color:#336699;
+      */
+    border-left: 4px #6666ff solid;
+    padding: 2px 0px;
+    padding-left: 8px;
 }
 /**/
 span.usr     { color: teal; }
@@ -71,16 +91,12 @@ div.stdio,
 /* input.stdio, */ /* ← 漢索/JS の入力欄には除外 */
 #bd_eellljs input#tx_stdin /* ← なぜかこれが必要 */
 {
-  font-size: 14px;
-  /* へた字萌え …なんだけど
-  /*
-  font-family: 'へた字7OT','Osaka－等幅',monospace;
-  */
-  font-family: monospace;
-  margin: 0px;
-  padding: 2px;
-  border: solid 1px #7f9db9; /* IE っぽく */
-  line-height: 120%;
+    font-size: 14px;
+    font-family: monospace;
+    margin: 0px;
+    padding: 2px;
+    border: solid 1px #7f9db9; /* IE っぽく */
+    line-height: 120%;
 }
 
 /* -------------------------------------------------------------------
@@ -98,9 +114,15 @@ body#bd_eellljs div.fieldhead a:hover   { color: #50b0b0; }
 body#bd_eellljs div.fieldbody { background-color: #dce0ff; }
 
 body#bd_eellljs div.stdio,
-body#bd_eellljs pre.stdio { background-color: #f0f4ff; }
+body#bd_eellljs pre.stdio {
+    background-color: #f0f4ff;
+    padding: 4px 2px;
+}
 
-
+body#bd_eellljs .stdio {
+    border: solid 1px #7f9d89;
+    padding: 4px 2px;
+}
 
 body#bd_kansakujs { background-color: #ddbbaa; }
 body#bd_kansakujs { background-color: #ddaabb; }
@@ -113,11 +135,26 @@ body#bd_kansakujs div.fieldbody { background-color: #f0e4d0; }
 body#bd_kansakujs div.fieldbody { background-color: #fae0e4; }
 
 body#bd_kansakujs div.stdio,
-body#bd_kansakujs pre.stdio { background-color: #fff8e8; }
-body#bd_kansakujs div.stdio,
-body#bd_kansakujs pre.stdio { background-color: #fff0f4; }
+body#bd_kansakujs pre.stdio {
+    border: solid 1px #c898a0;
+    background-color: #fff0f4;
+    padding: 4px 2px;
+}
 
+body#bd_kansakujs .stdio {
+    border: solid 1px #c898a0;
+    padding: 4px 2px;
+}
 
+body#bd_kansakujs .select {
+    /*
+    border: solid 1px #c898a0;
+    */
+    /* 2013-11-28
+     * [IE10/Win7] <select> 要素にスタイルを指定すると
+     * スクリプトで生成した <option> を選択できなくなる
+     */
+}
 
 body#bd_kanchokujs { background-color: #80b0b0; }
 
@@ -128,7 +165,15 @@ body#bd_kanchokujs div.fieldhead a:hover   { color: #60c0c0; }
 body#bd_kanchokujs div.fieldbody { background-color: #ddeee0; }
 
 body#bd_kanchokujs div.stdio,
-body#bd_kanchokujs pre.stdio { background-color: #f0fff4; }
+body#bd_kanchokujs pre.stdio {
+    background-color: #f0fff4;
+    border: solid 1px #609090;
+}
+
+body#bd_kanchokujs .stdio {
+    border: solid 1px #70a0a0;
+    padding: 4px 2px;
+}
 
 /* -------------------------------------------------------------------
  * ヘルプ
@@ -139,16 +184,16 @@ span.dothelp, span.alnum, span.hasidamnem { white-space: pre; }
 /* ヘルプの見出しの色を青くすると、見やすくなるのだが、
  * リンクのように見えてしまう */
 /*
-span.dothelp span.ch,
-span.alnum span.ch,
-span.hasidamnem span.ch { color: #3366cc; }
-*/
+  span.dothelp span.ch,
+  span.alnum span.ch,
+  span.hasidamnem span.ch { color: #3366cc; }
+  */
 /* でも黒だと、英字や橋田ニモニックでかなりまぎらわしい … teal でどうか */
 /*
-span.dothelp span.ch,
-span.alnum span.ch,
-span.hasidamnem span.ch { color: teal; }
-*/
+  span.dothelp span.ch,
+  span.alnum span.ch,
+  span.hasidamnem span.ch { color: teal; }
+  */
 /* もうちょっと青く */
 span.dothelp span.ch,
 span.alnum span.ch,
@@ -159,30 +204,30 @@ span.hasidamnem span.ch { color: #336699; }
 /* dothelp */
 
 span.dothelp {
-  margin: 0px 4px;
-  padding: 0px 0px;
+    margin: 0px 4px;
+    padding: 0px 0px;
 }
 
 span.dothelp span.ch {
-  font-family: monospace;
-  position: relative;
-  font-size: 14pt;
-  bottom: 16px;
+    font-family: monospace;
+    position: relative;
+    font-size: 14pt;
+    bottom: 16px;
 }
 
 span.dothelp span.st {
-  /* 打鍵図に枠をつけたいが、つけるとずれてしまう */
-  /*
-  border-right: 2px silver solid;
-  border-right: 1px #666666 solid;
-  /* */
-  /*
-  margin: 0px 4px;
-  padding: 0px 4px;
-  */
-  margin: 0px 0px;
-  padding: 0px 0px;
-  height: 40px;
+    /* 打鍵図に枠をつけたいが、つけるとずれてしまう */
+    /*
+      border-right: 2px silver solid;
+      border-right: 1px #666666 solid;
+      /* */
+    /*
+      margin: 0px 4px;
+      padding: 0px 4px;
+      */
+    margin: 0px 0px;
+    padding: 0px 0px;
+    height: 40px;
 }
 
 span.dothelp span.st img.basic,
@@ -190,9 +235,9 @@ span.dothelp span.st img.alt,
 span.dothelp span.st img.outset,
 span.dothelp span.st img.llap100 
 {
-  padding: 0px;
-  margin: 0px;
-  width: 100px; /* オフライン時のせめてもの対策 … でもダメ */
+    padding: 0px;
+    margin: 0px;
+    width: 100px; /* オフライン時のせめてもの対策 … でもダメ */
 }
 
 /* span.dothelp span.st img.outset { background-color: #ffcc99; } */
@@ -210,9 +255,9 @@ span.dothelp span.st img.llap100 { margin-left: -100px; }
 
 span.dothelp span.note 
 {
-  position: relative;
-  bottom: 24px;
-  color: red;
+    position: relative;
+    bottom: 24px;
+    color: red;
 }
 
 /* alnum */
@@ -220,41 +265,41 @@ span.dothelp span.note
 span.alnum span.ch,
 span.hasidamnem span.ch
 {
-  font-family: monospace;
-  font-size: 10pt;
-  position: relative;
-  bottom: 0.4em;
+    font-family: monospace;
+    font-size: 10pt;
+    position: relative;
+    bottom: 0.4em;
 }
 
 span.alnum span.st,
 span.hasidamnem span.st
 {
-  color: #333;
-  font-size: 11pt;
-  font-weight: bold;
-  font-family: monospace;
-  padding: 0px 2px;
-  border: none 0px;
-  border-bottom: solid 2px #9cf;
-  line-height: 140%;
+    color: #333333;
+    font-size: 11pt;
+    font-weight: bold;
+    font-family: monospace;
+    padding: 0px 2px;
+    border: none 0px;
+    border-bottom: solid 2px #99ccff;
+    line-height: 140%;
 }
 
 span.alnum span.outset, span.hasidamnem span.outset {
-  /*
-  color: #ff6633;
-  background-color: #ffcc99;
-  */
-  background-color: #ffcccc;
-  color: #993333;
+    /*
+      color: #ff6633;
+      background-color: #ffcc99;
+      */
+    background-color: #ffcccc;
+    color: #993333;
 }
 
 span.alnum span.alt, span.hasidamnem span.alt {
-  /*
-  color: #339966;
-  background-color: #99cc99;
-  */
-  background-color: #bbddbb;
-  color: #336633;
+    /*
+      color: #339966;
+      background-color: #99cc99;
+      */
+    background-color: #bbddbb;
+    color: #336633;
 }
 
 /* -------------------------------------------------------------------
@@ -262,24 +307,24 @@ span.alnum span.alt, span.hasidamnem span.alt {
  */
 
 .eljs table.layout {
-  font-size: 9pt;
-  padding: 0px;
-  margin: 0px;
-  border: none;
+    font-size: 9pt;
+    padding: 0px;
+    margin: 0px;
+    border: none;
 }
 
 .eljs table.layout tr,
-  .eljs table.layout td {
-  margin: 0px;
-  padding: 0px;
+.eljs table.layout td {
+    margin: 0px;
+    padding: 0px;
 }
 
 .eljs table.layout td.vtop {
-  vertical-align: top;
+    vertical-align: top;
 }
 
 /* -------------------------------------------------------------------
- * Time-stamp: <2006-04-28 07:06:34 yuse>
+ * Time-stamp: <2013-11-28 19:56:16 yuse>
  *
  * Local Variables:
  * time-stamp-line-limit: -20

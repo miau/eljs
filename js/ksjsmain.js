@@ -1,6 +1,6 @@
 // ksjsmain.js - KANSAKU/JS (JavaScript implemented KANSAKU)
 // 
-// Copyright (C) 2006  YUSE Yosihiro
+// Copyright (C) 2006, 2013  YUSE Yosihiro
 // 
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -61,6 +61,12 @@ function do_init() {
 
   elm.bt_query.disabled = true;
   elm.cb_realtime.checked = true;
+  //maze
+  elm.cb_mazegaki.checked = false;
+  //
+  //2013-11-28
+  if (!mazegakidic) { elm.cb_mazegaki.disabled = true; }
+
   watch_beg();
 
   return;
@@ -74,8 +80,14 @@ function do_init_elm() {
   id = [
 	'dv_config', 'sl_im', 'sl_kb',
 	'dv_query', 'pr_query',
-	'sl_helpstyle',
+        //// YYY ZZZ
+	//'sl_helpstyle',
+	'sl_hs',
+        ////
 	'cb_realtime',
+        //maze
+        'cb_mazegaki',
+        //
 	'tx_stdin',
 	'bt_query',
 	'dv_help', 'dv_stdhelp',
@@ -156,7 +168,10 @@ function do_help() {
     ks.setim(imid);
 
     var a0 = new Array();
-    var o = elm.sl_helpstyle.options;
+    //// YYY ZZZ
+    //var o = elm.sl_helpstyle.options;
+    var o = elm.sl_hs.options;
+    ////
     for (var j = 0; j < o.length; j++) {
       if (o[j].selected) {
 	var style = o[j].value;
@@ -197,7 +212,13 @@ function do_input() {
   s = io.input.peek();
   elm.tx_stdin.select();
 
-  if (s != '') { ks.helpset(s); }
+  //maze
+  var b = elm.cb_mazegaki.checked;
+
+  if (b) { s = mazegaki(s); }
+  //if (s != '') { ks.helpset(s); }
+  ks.helpset(s);
+  //
   do_help();
 
   do_focus_input();
@@ -267,6 +288,32 @@ function do_cb_realtime() {
   //do_focus_input();
 }
 
+// ===================================================================
+//maze
+
+function do_cb_mazegaki() {
+  var b = elm.cb_mazegaki.checked;
+  //
+  //do_help();
+}
+
+// ===================================================================
+//maze
+
+function mazegaki(s) {
+  //2013-11-28
+  if (!mazegakidic) { return s; }
+
+  var yomi = s;
+  var kouho = mazegakidic[yomi] || '';
+  var s2 = '';
+  var a = kouho.split('/').join('').split('');
+  for (var i = 0; i < a.length; i++) {
+    if (yomi.indexOf(a[i]) == -1) { s2 += a[i]; }
+  }
+  return s2;
+}
+
 
 // ===================================================================
 
@@ -297,11 +344,19 @@ watch_fun = function() {
   var s1 = ks.chars.join('');
   //if (s0 == '') { return true; }
   if (s0 == s1) { return true; }
+  //maze
+  var b = elm.cb_mazegaki.checked;
+  
+  if (b) {
+    var s2 = mazegaki(s0);
+    if (s2 == s1) { return true; } else { s0 = s2; }
+  }
+  //
+  
   ks.helpset(s0);
   do_help();
   return true;
-}
-
+};
 
 // ===================================================================
 // Local Variables:

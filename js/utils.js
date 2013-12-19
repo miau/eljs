@@ -303,7 +303,7 @@ function div_detail_beg(title) {
 function div_detail_end() {
   document.write('<div class="div_detail_end">');
   document.write('<a href="javascript:div_togglevisible(\'' +
-         div_detail_id + '\')";>');
+         div_detail_id + '\');">');
   document.write('詳細を隠す');
   document.write('</a>');
   document.write('</div>');

@@ -1,7 +1,7 @@
 <!--
   :: eelll/JS (JavaScript implemented EELLL)
   :: 
-  :: Copyright (C) 2005, 2006  YUSE Yosihiro
+  :: Copyright (C) 2005, 2006, 2009, 2011--2013  YUSE Yosihiro
   :: 
   :: This program is free software; you can redistribute it and/or modify
   :: it under the terms of the GNU General Public License as published by
@@ -36,12 +36,11 @@
 <!-- ============================================================= -->
 <!-- Title -->
 
-<title>eelll/JS 0.2</title>	<!-- version/ -->
+<title>eelll/JS</title>
 
 <!-- ============================================================= -->
 <!-- Style -->
 
-<link rel="stylesheet" href="css/default.css" charset="UTF-8">
 <link rel="stylesheet" href="css/eljs.css" charset="UTF-8">
 
 <!-- ============================================================= -->
@@ -62,9 +61,10 @@
 -->
 <link rel="contents" href="index.html">
 <link rel="copyright" href="gpl.txt" type="text/plain">
-<link rev="made" href="mailto:yuse@kuis.kyoto-u.ac.jp">
+<link rev="made" href="mailto:yoyuse@gmail.com">
 <link rel="next" href="kansakujs.html">
 
+<link rel="shortcut icon" href="img/eljs.ico" type="image/vnd.microsoft.icon">
 <link rel="icon" href="img/eljs.png" type="image/png">
 
 <!-- ============================================================= -->
@@ -111,8 +111,28 @@
 <script type="text/javascript" src="js/lt/eellltxt_ttr.js"></script>
 <script type="text/javascript" src="js/lt/eellltxt_ttl.js"></script>
 
-<!-- phoenix-->
+<script type="text/javascript" src="js/lt/common2136.js"></script>
+<!--
+<script type="text/javascript" src="js/lt/common2136all.js"></script>
+-->
+<script type="text/javascript" src="js/lt/kanji2136.js"></script>
+
+<!-- phoenix -->
 <script type="text/javascript" src="js/im/phoenix.js"></script>
+
+<!-- L-code -->
+<script type="text/javascript" src="js/im/l.js"></script>
+<!--
+<script type="text/javascript" src="js/im/lshort.js"></script>
+-->
+<!--
+<script type="text/javascript" src="js/lt/llllltxtg6hs.js"></script>
+<script type="text/javascript" src="js/lt/llllltxtg6ts.js"></script>
+-->
+<script type="text/javascript" src="js/lt/llllltxtg6.js"></script>
+<!-- -->
+<script type="text/javascript" src="js/lt/yallltxtg6.js"></script>
+<!-- -->
 
 <!-- userdef -->
 <script type="text/javascript" src="js/im/userdef.js"></script>
@@ -130,11 +150,11 @@ function do_img_preload() {
   for (var m = 0; m < mth.length; m++) {
     var s = '';
     var sp = getelm('sp_preload_' + mth[m]);
-    sp.innerHTML = '<img src="img/0/0.png" width="100" height="40" class="base">';
+    sp.innerHTML = '<img src="img/0/0.png" alt="" width="100" height="40" class="base">';
     for (var n = 0; n < 40; n++) {
       if (n < 10) { n = '0' + n; }
       var nm = 'img/' + mth[m] + '/' + n + '.png';
-      var e = '<img src="' + nm + '" width="100" height="40" class="llap100">';
+      var e = '<img src="' + nm + '" alt="" width="100" height="40" class="llap100">';
       s += e;
     }
     sp.innerHTML += s;
@@ -156,7 +176,8 @@ function do_img_preload() {
 <!-- 本体 -->
 
 <body class="eljs" id="bd_eellljs"
- onload="do_init();">
+ onload="do_init();"
+ onunload="watch_end();">
 
 <!-- ============================================================= -->
 
@@ -224,7 +245,7 @@ function do_img_preload() {
   >定義内容</label><br>
  -->
  <textarea cols="20" rows="8" id="ta_userdef_im" name="ta_userdef_im"
-  style="vertical-align: top;"
+  style="vertical-align: top;" class="stdio"
   title="『の=kd』のように、一行に一つずつ定義を書きます"
   ></textarea>
  </div>
@@ -240,7 +261,7 @@ function do_img_preload() {
   >定義内容</label><br>
   -->
  <textarea cols="50" rows="8" id="ta_userdef_lt" name="ta_userdef_lt"
-  style="vertical-align: top;"
+  style="vertical-align: top;" class="stdio"
   title="練習テキストを定義します"
   ></textarea>
  </div>
@@ -260,10 +281,36 @@ function do_img_preload() {
 </td>
 
 <td>
-<a href="#fd_debug" name="fd_debug"
- title="デバッグ情報を表示します"
- onclick="div_togglevisible(elm.dv_debug); return false;"
- accesskey="d">デバッグ(<span class="accesskey">D</span>)</a>
+<!-- 文字ヘルプのスタイル -->
+ <label for="sl_hs" title="コードの表示形式を指定します"
+  accesskey="Y">スタイル(<span class="accesskey">Y</span>)</label>
+</td>
+<td>
+ <select name="sl_hs" id="sl_hs"
+  title="コードの表示形式を指定します"
+  onchange="do_help();">
+  <option value="dothelp" selected>打鍵図 (橋田表)</option>
+  <option value="alnum">英字</option>
+  <option value="hasidamnem">橋田ニモニック</option>
+  <option value="stroketable" disabled>ストローク表</option>
+ </select>
+
+ <!--
+ <select name="sl_echo" id="sl_echo"
+  title="エコーの有無を指定します"
+  >
+  <option value="noecho" selected>エコーなし</option>
+  <option value="echo">エコーあり</option>
+ </select>
+ -->
+<!-- エコーバック -->
+ &emsp;
+ <input type="checkbox" id="cb_echo" name="cb_echo" value="false"
+  title="入力キーをエコーバックします"
+  accesskey="e"
+  onclick="do_cb_echo();">
+ <label for="cb_echo" title="入力キーをエコーバックします"
+  >エコー(<span class="accesskey">E</span>)</label>
 </td>
 </tr>
 
@@ -273,13 +320,13 @@ function do_img_preload() {
 <!-- 設定・キャンセル -->
 
  <!-- OK -->
- <input type="button" value="OK(O)" style="width: 6em;"
+ <input type="button" value="OK(O)" style="width: 7em;"
   accesskey="o"
   onclick="do_set_config(); div_visible(elm.dv_config, false);">
 
  <!-- キャンセル -->
  <input type="button" value="キャンセル"
-  style="width: 6em;"
+  style="width: 7em;"
   onclick="do_cancel_config();">
 
  <!-- 適用 -->
@@ -287,6 +334,14 @@ function do_img_preload() {
 
  <!-- ヘルプ -->
  <input type="button" value="ヘルプ" style="width: 5em;" disabled>
+
+ <!-- デバッグ -->
+ &emsp;
+ <a href="#fd_debug" name="fd_debug"
+  title="デバッグ情報を表示します"
+  onclick="div_togglevisible(elm.dv_debug); return false;"
+  accesskey="d">デバッグ(<span class="accesskey">D</span>)</a>
+
 </td>
 </tr>
 </tbody>
@@ -316,7 +371,8 @@ function do_img_preload() {
 
 <!-- ログの内容 -->
 <div>
-<textarea cols="80" rows="8" id="ta_log" name="log" readonly></textarea>
+<textarea cols="80" rows="8" id="ta_log" name="log" readonly class="stdio"
+></textarea>
 </div>
 
 <div>
@@ -332,17 +388,18 @@ function do_img_preload() {
 <!-- 送信設定 -->
  &nbsp;
  <label for="tx_log_cgi">URL</label>
- <input type="text" size="24" value="" title="送信先 URL を指定します"
+ <input type="text" size="24" value="" class="stdio"
+  title="送信先 URL を指定します"
   lang="en"
   id="tx_log_cgi" name="cgi">
  &nbsp;
  <label for="tx_log_user">user</label>
  <input type="text" size="24" id="tx_log_user" name="user" value=""
-  lang="en"
+  lang="en" class="stdio"
   title="ユーザ名を指定します">
  <input type="hidden" id="tx_log_date" name="date" value="">
  <input type="hidden" id="tx_log_eljs" name="eljs"
-  value="eelll/JS v0.2.3">	<!-- version/ -->
+  value="eelll/JS v0.3">	<!-- version/ -->
 </div>
 </form>
 <hr>
@@ -354,7 +411,8 @@ function do_img_preload() {
  title="クッキー情報を表示します"
  onclick="div_togglevisible(elm.dv_ck); return false;">Cookie</a></div>
 <div id="dv_ck" style="display: none;">
-<textarea cols="80" rows="8" id="ta_ck" name="ta_ck" readonly></textarea>
+<textarea cols="80" rows="8" id="ta_ck" name="ta_ck" readonly class="stdio"
+></textarea>
 
 <div>
 <!-- 更新 -->
@@ -372,7 +430,7 @@ function do_img_preload() {
  onclick="div_togglevisible(elm.dv_dbg); return false;"
 >Debug</a></div>
 <div id="dv_dbg" style="display: none;">
-<textarea cols="80" rows="8" id="ta_dbg" readonly></textarea>
+<textarea cols="80" rows="8" id="ta_dbg" readonly class="stdio"></textarea>
 
 <div>
 <!-- 更新 -->
@@ -396,47 +454,47 @@ function do_img_preload() {
 
 <div>
 <span class="dothelp"><span class="st" id="sp_preload_1"
-><img src="img/0/0.png" width="100" height="40" class="base"></span></span>
+><img src="img/0/0.png" alt="" width="100" height="40" class="base"></span></span>
 <span class="dothelp"><span class="st" id="sp_preload_2"
-><img src="img/0/0.png" width="100" height="40" class="base"></span></span>
+><img src="img/0/0.png" alt="" width="100" height="40" class="base"></span></span>
 <span class="dothelp"><span class="st" id="sp_preload_3"
-><img src="img/0/0.png" width="100" height="40" class="base"></span></span>
+><img src="img/0/0.png" alt="" width="100" height="40" class="base"></span></span>
 <span class="dothelp"><span class="st" id="sp_preload_4"
-><img src="img/0/0.png" width="100" height="40" class="base"></span></span>
+><img src="img/0/0.png" alt="" width="100" height="40" class="base"></span></span>
 </div>
 
 <div>
 <span class="dothelp"><span class="st" id="sp_preload_w"
-><img src="img/0/0.png" width="100" height="40" class="base"></span></span>
+><img src="img/0/0.png" alt="" width="100" height="40" class="base"></span></span>
 <span class="dothelp"><span class="st" id="sp_preload_x"
-><img src="img/0/0.png" width="100" height="40" class="base"></span></span>
+><img src="img/0/0.png" alt="" width="100" height="40" class="base"></span></span>
 </div>
 
 <div>
 <span class="dothelp"><span class="st" id="sp_preload_a1"
-><img src="img/0/0.png" width="100" height="40" class="base"></span></span>
+><img src="img/0/0.png" alt="" width="100" height="40" class="base"></span></span>
 <span class="dothelp"><span class="st" id="sp_preload_a2"
-><img src="img/0/0.png" width="100" height="40" class="base"></span></span>
+><img src="img/0/0.png" alt="" width="100" height="40" class="base"></span></span>
 <span class="dothelp"><span class="st" id="sp_preload_aw"
-><img src="img/0/0.png" width="100" height="40" class="base"></span></span>
+><img src="img/0/0.png" alt="" width="100" height="40" class="base"></span></span>
 </div>
 
 <div>
 <span class="dothelp"><span class="st" id="sp_preload_l1"
-><img src="img/0/0.png" width="100" height="40" class="base"></span></span>
+><img src="img/0/0.png" alt="" width="100" height="40" class="base"></span></span>
 <span class="dothelp"><span class="st" id="sp_preload_l2"
-><img src="img/0/0.png" width="100" height="40" class="base"></span></span>
+><img src="img/0/0.png" alt="" width="100" height="40" class="base"></span></span>
 <span class="dothelp"><span class="st" id="sp_preload_lw"
-><img src="img/0/0.png" width="100" height="40" class="base"></span></span>
+><img src="img/0/0.png" alt="" width="100" height="40" class="base"></span></span>
 </div>
 
 <div>
 <span class="dothelp"><span class="st" id="sp_preload_r1"
-><img src="img/0/0.png" width="100" height="40" class="base"></span></span>
+><img src="img/0/0.png" alt="" width="100" height="40" class="base"></span></span>
 <span class="dothelp"><span class="st" id="sp_preload_r2"
-><img src="img/0/0.png" width="100" height="40" class="base"></span></span>
+><img src="img/0/0.png" alt="" width="100" height="40" class="base"></span></span>
 <span class="dothelp"><span class="st" id="sp_preload_rw"
-><img src="img/0/0.png" width="100" height="40" class="base"></span></span>
+><img src="img/0/0.png" alt="" width="100" height="40" class="base"></span></span>
 </div>
 
 <div>
@@ -473,7 +531,7 @@ function do_img_preload() {
 <!-- 詳細 -->
 <div class="fieldbody" id="dv_main" style="display: block;">
 
-<div>
+<div class="toolbar">
 <!-- 本体 -->
 <!-- レッスン -->
  <label for="sl_lesson" title="レッスン番号を指定します"
@@ -490,18 +548,6 @@ function do_img_preload() {
   onclick="do_cb_shuffle();">
  <label for="cb_shuffle" title="問題文をシャッフルして出題します"
   >シャッフル(<span class="accesskey">F</span>)</label>
-
-<!-- 文字ヘルプのスタイル -->
- &nbsp;<label for="sl_helpstyle" title="コードの表示形式を指定します"
-  accesskey="Y">スタイル(<span class="accesskey">Y</span>)</label>
- <select name="sl_helpstyle" id="sl_helpstyle"
-  title="コードの表示形式を指定します"
-  onchange="do_help();">
-  <option value="dothelp" selected>打鍵図 (橋田表)</option>
-  <option value="alnum">英字</option>
-  <option value="hasidamnem">橋田ニモニック</option>
-  <option value="stroketable" disabled>ストローク表</option>
- </select>
 </div>
 
 <div>
@@ -533,17 +579,21 @@ function do_img_preload() {
 <!-- 本体 -->
 <!-- 出力欄 -->
  <div id="dv_stdout" class="stdio"
-  title="[出力欄] 問題文や採点結果が表示されます"></div>
+  title="[出力欄] 問題文や採点結果が表示されます"
+  style="margin-bottom: 4px;"></div>
 <span>
 <!-- 入力欄 -->
 <!-- XXX -->
  <input type="text" size="70" id="tx_stdin" name="tx_stdin"
   lang="en"
+  spellcheck="false"
+  autocomplete="off"
+  placeholder="ここに入力します"
   title="[入力欄] ここに入力します"
   style="color: white;"
   accesskey="j"
-  onfocus="with (this.style) { color = backgroundColor = '#d0f0ff'; }"
-  onblur=" with (this.style) { color = backgroundColor = 'white'; }"
+  onfocus="with (this.style) { color = backgroundColor = '#d0f0ff'; } if (elm.cb_echo.checked) { this.style.color = 'black'; }"
+  onblur=" with (this.style) { color = backgroundColor = 'white'; } if (elm.cb_echo.checked) { this.style.color = 'black'; }"
   value="">
 <!-- 送信 -->
  <input type="submit" value="Return(M)" id="sb_cr"
@@ -571,18 +621,24 @@ function do_img_preload() {
 <hr>
 
 <div class="version">
-eelll/JS version <!-- version -->0.2.3<!-- /version -->
-<!-- time-stamp-start -->2009-05-21 yuse<!-- time-stamp-end -->
+eelll/JS
+&nbsp;
+version
+<!-- version -->0.3<!-- /version -->
+&nbsp;
+<!-- time-stamp-start -->2013-12-19<!-- time-stamp-end -->
 </div>
 
 </body>
+
+</html>
+
 <!-- ============================================================= -->
 <!--
   :: Local Variables:
-  :: time-stamp-line-limit: -20
+  :: time-stamp-line-limit: -24
   :: time-stamp-start: "<!-\\- *time-stamp-start *-\\-."
   :: time-stamp-end:   "<!-\\- *time-stamp-end *-\\-."
-  :: time-stamp-format: "%:y-%02m-%02d %u"
+  :: time-stamp-format: "%:y-%02m-%02d"
   :: End:
   -->
-</html>

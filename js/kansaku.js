@@ -1,6 +1,6 @@
 // kansaku.js - core of eelll/JS (JavaScript implemented EELLL)
 // 
-// Copyright (C) 2005  YUSE Yosihiro
+// Copyright (C) 2005, 2013  YUSE Yosihiro
 // 
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -38,6 +38,22 @@ function KANSAKU() {
   this.chars = new Array();
   this.obary = new Array();
   this.ready = true;
+
+  //// YYY ZZZ
+  this.hs = null;
+  this.hsid = null;
+}
+
+// ===================================================================
+// YYY
+// split into chars
+
+KANSAKU.prototype.kssplit = function(str) {
+  if (this.im && this.im.charpattern) {
+    return str.match(this.im.charpattern) || [];
+  } else {
+    return str.split('');
+  }
 }
 
 // ===================================================================
@@ -165,6 +181,13 @@ KANSAKU.prototype.setkb = function(id) {
   } else {
     return false;
   }
+}
+
+//// YYY ZZZ
+KANSAKU.prototype.seths = function(id) {
+  this.hs = id;                 // XXX
+  this.hsid = id;               // XXX
+  return true;
 }
 
 // ===================================================================
@@ -341,7 +364,11 @@ KANSAKU.prototype.helpclear = function() {
 
 KANSAKU.prototype.helpset = function(s) {
   // if arg string, convert to array
-  if (typeof s == 'string') { s = s.split(''); }
+  //// YYY
+  //if (typeof s == 'string') { s = s.split(''); }
+  if (typeof s == 'string') { s = this.kssplit(s); }
+  //alert(s);
+  ////
 
   this.chars = s.DUP();
   this.obary.CLEAR();
@@ -356,8 +383,12 @@ KANSAKU.prototype.helpmk_sub = function() {
 
   for (var i = 0; i < ac.length; i++) {
     var ch = ac[i];
+    // 2011-03-01 : 0.2.4 : ignore white spaces
+    if (ch == " ") { continue; }
+    //
     var st_prefix = this.encodech_internal_deprefixed(ch);
     var sta = (this.encodech_internal(ch) || ch).split('');
+    var sta = (this.encodech_internal(ch) || ch).split(/\s*/);
     var st = st_prefix[0] || '';
     var prefix = st_prefix[1];
 

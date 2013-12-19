@@ -1,0 +1,3 @@
+Options +ExecCGI
+AddType text/html cgi
+AddHandler cgi-script cgi

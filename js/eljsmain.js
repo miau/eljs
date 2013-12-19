@@ -1,6 +1,6 @@
 // elismain.js - eelll/JS (JavaScript implemented EELLL)
 //
-// Copyright (C) 2005--2007  YUSE Yosihiro
+// Copyright (C) 2005--2007, 2013  YUSE Yosihiro
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -74,7 +74,11 @@ function do_init_elm() {
   'tx_stdin', 'sb_cr',
   'cb_shuffle',
   'dv_help', 'dv_stdhelp',
-  'sl_helpstyle',
+  //// YYY ZZZ
+  //'sl_helpstyle',
+  'sl_hs',
+  'cb_echo',
+  ////
   'ta_userdef_im', 'dv_userdef_im',
   'ta_userdef_lt', 'dv_userdef_lt',
   'dv_debug',
@@ -119,6 +123,10 @@ function do_init_config() {
   do_init_config_sub(el.imid, el.ck.get('im'), el.ims, elm.sl_im);
   do_init_config_sub(el.kbid, el.ck.get('kb'), el.kbs, elm.sl_kb);
   do_init_config_sub(el.ltid, el.ck.get('lt'), el.lts, elm.sl_lt);
+  //// YYY ZZZ
+  do_init_config_sub2(el.hsid, el.ck.get('hs'), elm.sl_hs);
+  elm.cb_echo.checked = (el.ck.get('echo') == 'true');
+  // YYY: manipulate CSS here
 
   elm.cb_shuffle.checked = (el.ck.get('shuffle') == 'true');
 
@@ -144,12 +152,24 @@ function do_init_config_sub(iddef, idck, ob, sl) {
   }
 }
 
+//// YYY ZZZ
+function do_init_config_sub2(iddef, idck, sl) {
+  // cookie
+  if (idck == null) { return; }
+  for (var i = 0; i < sl.options.length; i++) {
+    if (idck == sl.options[i].value) { sl.options[i].selected = true; }
+  }
+}
+
+
 // ===================================================================
 
 function do_set_config() {
   el.setim_with_ck(elm.sl_im.value);
   el.setkb_with_ck(elm.sl_kb.value);
   el.setlt_with_ck(elm.sl_lt.value);
+  //// YYY ZZZ
+  el.seths_with_ck(elm.sl_hs.value);
 
   //// user def
   if (el.im.customizable) {
@@ -195,6 +215,9 @@ function do_init_lesson() {
 }
 
 function do_set_lesson() {
+  //2013-11-28
+  watch_end();
+
   el.setls(elm.sl_lesson.value);
   do_ck(); // el.ck.write();
 
@@ -234,7 +257,9 @@ function do_start_lesson_sub() {
 // do help
 
 function do_help() {
-  var style = elm.sl_helpstyle.options[elm.sl_helpstyle.selectedIndex].value;
+  //// YYY ZZZ
+  //var style = elm.sl_helpstyle.options[elm.sl_helpstyle.selectedIndex].value;
+  var style = elm.sl_hs.options[elm.sl_hs.selectedIndex].value;
 
   //var a = el.helpdata.mk_with_style(style, el);
   var a = el.helpmk_with_style(style);
@@ -267,12 +292,16 @@ function do_input() {
     if (s == 'q' || s == 'Q') {
       elm.tx_stdin.blur(); return false; // unfocus XXX
     }
+    //2012-02-25
+    if (s == '') { watch_end(); }
+    //
     break;
   case 'quit':    elm.tx_stdin.blur(); return false; // unfocus
   default:        ;   // nop
   }
 
   do_focus_input();
+
   return false;
 }
 
@@ -320,7 +349,10 @@ function do_input_text(s) {
   el.lstimeend = (new Date()).getTime();
   el.lstime += el.lstimeend - el.lstimebeg;
 
-  var a = el.lsline.split('');
+  ////
+  // var a = el.lsline.split('');  // YYY
+  var a = el.kssplit(el.lsline);
+  ////
   var r = new Array();
 
   for (var i = 0; i < a.length; i++) {
@@ -360,13 +392,13 @@ function do_result(res) {
       // typo
       s += '<span class="err">' + escapeHTML(a[2], true) + '</span>';
       for (var j = 0; j < a[1].length; j++) {
-  t += a[1][j][0];
-  log += a[1][j][0] + '[' + a[1][j][1] + ']';
-  aerr.PUSH(a[1][j][0]);
+	t += a[1][j][0];
+	log += a[1][j][0] + '[' + a[1][j][1] + ']';
+	aerr.PUSH(a[1][j][0]);
       }
       if (log != '') {
-  log += ' * (' + a[2] + ')';
-  io.log.puts(log);
+	log += ' * (' + a[2] + ')';
+	io.log.puts(log);
       }
     }
   }
@@ -384,7 +416,10 @@ function do_result(res) {
   do_puts(s);
 
   //el.helpdata.set(t);
-  el.helpset(t);
+  // 2011-03-01 : 0.2.4 : ignore white space typos
+  //el.helpset(t);
+  el.helpset(t.split(/\s*/).join(''));
+  //
   do_help();
 
   if (t != '') {
@@ -425,6 +460,8 @@ function do_input_command(c) {
     break;
 
   default:
+    //2012-02-25
+    watch_beg();
     // NOP
     ;
   }
@@ -464,6 +501,8 @@ function do_next_line() {
 
     el.mode = 'command';
     do_prompt('もう一度トライしますか? (もう一度(A) / 次へ(N) / 終了(Q))');
+    //2012-02-25
+    watch_beg();
 
   } else {
     el.lsline = el.lstext[el.lslineno];
@@ -472,14 +511,20 @@ function do_next_line() {
     //el.helpdata.set(el.lsline);
     el.helpset(el.lsline);
     {
-      var a = el.lsline.split('');
+      //// YYY XXX
+      //var a = el.lsline.split('');
+      var a = el.kssplit(el.lsline);
+      ////
       var s = '';
       for (var i = 0; i < a.length; i++) {
-  if (el.lschweak.MEMBERP(a[i])) {
-    s += '<span\tclass="weak">' + a[i] + '</span>';
-  } else {
-    s += a[i];
-  }
+	// 2011-03-01 : 0.2.4 : ignore white space typos
+	//if (el.lschweak.MEMBERP(a[i])) {
+	if (el.lschweak.MEMBERP(a[i]) && ! a[i].match(/^\s+$/)) {
+	  //
+	  s += '<span\tclass="weak">' + a[i] + '</span>';
+	} else {
+	  s += a[i];
+	}
       }
       do_puts(s);
     }
@@ -694,6 +739,9 @@ function do_bt_command(c) {
   elm.sb_cr.click();
 
   //do_focus_input();
+
+  //2012-02-25
+  watch_end();
 }
 
 function do_cb_shuffle() {
@@ -705,6 +753,16 @@ function do_cb_shuffle() {
 
 function do_focus_input() {
   elm.tx_stdin.focus();
+}
+
+// ===================================================================
+// YYY ZZZ
+
+function do_cb_echo() {
+  el.ck.set('echo', elm.cb_echo.checked);
+  do_ck(); // el.ck.write();
+
+  do_focus_input();
 }
 
 // ===================================================================
@@ -836,6 +894,43 @@ function do_submit_log() {
   return confirm(msg);
 }
 
+
+
+
+// ===================================================================
+//2012-02-25
+
+var watch_tm = null;
+var watch_wait = null;
+var watch_fun = null;
+
+function watch_end() {
+  if (watch_tm) { clearTimeout(watch_tm); }
+}
+
+function watch_beg() {
+  watch_end();
+  var ret = true;
+  if (watch_fun) { ret = watch_fun(); }
+  if (ret && watch_wait) {
+    watch_tm = setTimeout('watch_beg()', watch_wait);
+  }
+}
+
+
+
+//watch_wait = 1000;
+//watch_wait = 500;
+watch_wait = 50;                // XXX
+
+watch_fun = function() {
+  var s = io.input.peek();
+  if (s == '') { return true; }
+
+  //alert(s + ' pressed.');
+  do_input();
+  return false;
+}
 
 
 

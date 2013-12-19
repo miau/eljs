@@ -1,80 +1,91 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
  "http://www.w3.org/TR/html4/strict.dtd">
+
 <html lang="ja">
+
 <head>
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="Content-Style-Type" content="text/css">
 <meta http-equiv="Content-Script-Type" content="text/javascript">
-<!--
-<meta name="author" content="">
-<meta name="description" content="">
-<meta name="keywords" content="">
--->
+
+<meta name="author" content="YUSE Yosihiro">
+<meta name="description" content="EELLLTXT table of contents">
+<meta name="keywords" content="EELLLTXT">
+
 <title>EELLLTXT もくじ</title>
-<link rel="stylesheet" href="css/default.css">
-<!--
-<link rel="alternate" href="">
-<link rel="start" href="">
-<link rel="next" href="">
-<link rel="previous" href="">
-<link rel="contents" href="">
-<link rel="index" href="">
-<link rel="glossary" href="">
-<link rel="copyright" href="">
-<link rel="chapter" href="">
-<link rel="section" href="">
-<link rel="subsection" href="">
-<link rel="help" href="">
-<link rel="bookmark" href="">
--->
-</head>
-<body>
-<!-- STYLE BEG -->
+
+<link rel="stylesheet" href="css/tift.css" charset="UTF-8">
+<link rel="stylesheet" href="css/eljs.css" charset="UTF-8">
+
+<link rel="shortcut icon" href="img/tift.ico" type="image/vnd.microsoft.icon">
+<link rel="icon" href="img/tift.png" type="image/png">
+
+<!-- ============================================================= -->
+
 <style type="text/css">
 <!--
 table.eellltxt {
-  font-family: monospace;
-  font-size: small;
   margin-left: auto;
   margin-right: auto;
 }
 
-.eellltxt tr    { line-height: 100%; }
-.eellltxt tr.odd  { background-color: #dde; }
-.eellltxt tr.even { background-color: #eee; }
+.eellltxt tr      { line-height: 100%; }
+.eellltxt tr.odd  { background-color: #ccddee; }
+.eellltxt tr.even { background-color: #eeeeee; }
 
 .eellltxt td {
-  vertical-align : top;
+  vertical-align : center;
   text-align: left;
-  padding: 0px 0.2em;
+  padding: 0px 0.8em;
 }
 
 .eellltxt tr.section {
-  color: #fff;
-  background-color: #336;
+  color: #ffffff;
+  background-color: #335588;
   line-height: 320%;
   font-weight: bold;
 }
 
 .eellltxt tr.subsection {
-  color: #fff;
-  background-color: #679;
+  color: #ffffff;
+  background-color: #5588bb;
   line-height: 176%;
 }
 
 .eellltxt tr.subsubsection {
-  color: #003;
-  background-color: #abc;
+  color: #000033;
+  background-color: #aaccee;
   line-height: 100%;
 }
 -->
 </style>
-<!-- STYLE END -->
+
 </head>
+
+<!-- ============================================================= -->
+
 <body>
+
+<div class="container">
+
+<h1><a href="#top" name="top">EELLLTXT もくじ</a></h1>
+
+<p>
+以下は、<a href="http://openlab.jp/tcode/soft.html#software"
+class="external">tc2</a>
+に付属する T-Code 用練習テキスト EELLLTXT の、各課の新出文字をまとめたものです。
+</p>
+<p>
+左列から、
+「レッスン番号」「右手 (R)・左手 (L) の順序」「コードの特徴」「新出文字」
+の順に記してあります。
+「(未)」とある部分は、未完成と思われるものです。
+</p>
+
 <!-- TABLE BEG -->
 <table class="eellltxt">
-<caption>EELLLTXT もくじ</caption>
+<!-- <caption>EELLLTXT もくじ</caption> -->
 <tr class="section"> <td colspan="4">000 番台	かな (1)</td> </tr>
 <tr class="subsection"> <td colspan="4">ひらがな (1)</td> </tr>
 <tr class="subsubsection"> <td colspan="4">中段</td> </tr>
@@ -380,5 +391,32 @@ table.eellltxt {
 <tr class="section"> <td colspan="4">700 番台	漢字 (RR!・LL!) (未)</td> </tr>
 </table>
 <!-- TABLE END -->
+<!-- ============================================================= -->
+<!-- footer -->
+
+<hr>
+
+<div class="menu">
+<a href=".">もどる</a>
+</div>
+
+<div class="version">
+<!-- time-stamp-start -->2013-12-10<!-- time-stamp-end -->
+</div>
+
+<!-- ============================================================= -->
+</div> <!-- container -->
+
 </body>
+
 </html>
+
+<!-- ============================================================= -->
+<!--
+:: Local Variables:
+:: time-stamp-line-limit: -24
+:: time-stamp-start: "<!-\\- *time-stamp-start *-\\-."
+:: time-stamp-end:   "<!-\\- *time-stamp-end *-\\-."
+:: time-stamp-format: "%:y-%02m-%02d"
+:: End:
+-->

@@ -1,3 +1,101 @@
+2013-11-12  Tue  <yuse@nana.local>
+
+	* version 0.3:
+	- eellljs.html: tx_stdin: autocomplete="off"
+
+	* L-code (仮) 対応:
+	- kansakujs.html: tx_stdin onfocus/onblur: change color
+	- js/eljsmain.js: cb_echo, do_cb_echo: new
+	- eellljs.html: sl-hs: 設定 <- 練習; <checkbox id="cb_echo" ...>
+	- js/ksjsmain.js: sl_hs <- sl_helpstyle
+	- js/eljsmain.js: sl_hs <- sl_helpstyle
+	- kansakujs.html: sl_hs <- sl_helpstyle; multiple size="8"
+	- eellljs.html: sl_hs <- sl_helpstyle
+	- js/eljsmain.js: el.kssplit(el.lsline) <- el.lsline.split('');
+	- js/kansaku.js: this.kssplit(s) <- s.split('');
+	- js/kansaku.js: kssplit: new function
+	- js/im/l.js: charpattern: new property
+
+	* L-code (仮) 仮対応:
+	- [DEL:]eellljs.html: 文字ヘルプのスタイルに英字をデフォルトに[:DEL]
+
+2013-11-11  Mon  <yuse@nana.local>
+
+	* L-code (仮) 仮対応:
+	- js/im/l.js: L-code (仮) 2013-11-10 版
+	- *js.html: l.js を読み込む
+
+	* TODO:
+	- ちゃんとしたローマ字への対応 -- DONE (訓令式には)
+	- 短縮コード対応・ヘボン式対応 … それは多分無理
+	- 入力のエコーバック -- DONE
+	- ヘルプ欄を消さない
+	- favicon の色
+	- eellljs.html のページの配色 … 灰色系に
+	- 外字は赤で表示するとか
+	- 文字ヘルプスタイル: 設定に移して cookie に im ごと保存するようにする
+
+2012-03-01  Thu  <yuse@nana.local>
+
+	* KANSAKU/JS: 交ぜ書き変換: new option.
+
+2012-02-25  Sat  <yuse@nana.local>
+
+	* js/im/tt.js: HANAGORI 3 beta 3.
+
+2012-02-16  Thu  <yuse@nana.local>
+
+	* js/im/try.js: Try-code 2012-02-09_2792.
+
+2012-02-05  Sun  <yuse@nana.local>
+
+	* js/im/tt.js: TT-Code HANAGORI layout version 3 beta1.
+
+2011-04-27  Wed  <yuse@nini.local>
+
+	* js/im/tut-shiftkana.js: new file. now KATAKANA can be input with
+	Shift in TUT-Code.
+
+2011-04-16  Sat  <yuse@nini.local>
+
+	* js/lt/joyo2136.js: review finished.
+
+2011-03-28  Mon  <yuse@apricot>
+
+	* css/eljs.css: fix typo.
+
+2011-03-25  Fri  <si@apricot>
+
+	* remake new jouyoukanji text.
+
+2011-03-23  Wed  <si@apricot>
+
+	* remake new jouyoukanji text.
+
+2011-03-20  Sun  <yuse@nini.local>
+
+	* new lesson text from kiDic_gorei.
+
+2011-03-14  Mon  <yuse@nini.local>
+
+	* add: "new-general.js" lesson text. (for test)
+
+2011-03-01  yuse  <yoyuse@gmail.com>
+
+	* 0.2.4:
+
+	* js/eljsmain.js: no help nor guide for white space typos
+
+	* js/kansaku.js: ignore white spaces
+
+	* js/im/try.tbl: 2010-04-27 version. (converted from MacUIM 0.6.10-2)
+	macuim - Project Hosting on Google Code
+	http://code.google.com/p/macuim/
+
+2011-02-26  yuse  <yoyuse@gmail.com>
+
+	* js/im/tt.js: TT-Code HANAGORI layout version 2 beta2.
+
 2009-05-21  YUSE Yoshihiro  <yuse@sato.kuis.kyoto-u.ac.jp>
 
 	* eelll/JS v0.2.3:
