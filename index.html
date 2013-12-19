@@ -1,5 +1,5 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
- "http://www.w3.org/TR/html4/strict.dtd">
+"http://www.w3.org/TR/html4/strict.dtd">
 
 <html lang="ja">
 
@@ -15,24 +15,15 @@
 
 <title>eelll/JS index</title>
 
-<link rel="stylesheet" href="css/default.css" charset="EUC-JP">
+<link rel="stylesheet" href="css/tift.css" charset="EUC-JP">
 <link rel="stylesheet" href="css/eljs.css" charset="EUC-JP">
 
-<!--
-<link rel="alternate" href="">
-<link rel="start" href="">
-<link rel="next" href="">
-<link rel="previous" href="">
-<link rel="contents" href="">
-<link rel="index" href="">
-<link rel="glossary" href="">
-<link rel="copyright" href="">
-<link rel="chapter" href="">
-<link rel="section" href="">
-<link rel="subsection" href="">
-<link rel="help" href="">
-<link rel="bookmark" href="">
--->
+<link rel="copyright" href="gpl.txt" type="text/plain">
+<link rev="made" href="mailto:yoyuse@gmail.com">
+<link rel="next" href="memo.html">
+
+<link rel="shortcut icon" href="img/tift.ico" type="image/vnd.microsoft.icon">
+<link rel="icon" href="img/tift.png" type="image/png">
 
 <!-- ============================================================= -->
 
@@ -52,795 +43,376 @@
 
 <!-- ============================================================= -->
 
-<body class="eljs">
+<body>
 
-<h1><a name="top">eelll/JS 目次</a></h1>
+<div class="container">
 
-<h2><a name="sec_what">eelll/JS とは</a></h2>
+<h1><a name="top" href="#top">eelll/JS index</a></h1>
 
-<p>
-<em><a href="eellljs.html">eelll/JS</a></em> は、
-伝統ある T-Code 練習プログラム
-<a href="http://openlab.jp/tcode/soft.html">DOGGG</a> (どっぐぐぐ),
-EELLL (うなぎぎぎ、<a href="http://openlab.jp/tcode/soft.html"
->tc2</a> に付属) の JavaScript 版です。
-<!--  <span class="footnotemark">(*)</span> -->
-TUT-Code にも対応しています。
-MSIE6 などで動作します。
-要 JavaScript。Cookie 推奨。
-GNU GPL ライセンス。
-</p>
+<!-- ============================================================= -->
+<!-- eelll/JS -->
 
-<p>
-コード検索専用の
-<em><a href="kansakujs.html">漢索/JS</a></em>
-も<a href="#sec_kansakujs">付属しています</a>。
-</p>
+<h2><a name="sec_what" href="#sec_what">eelll/JS</a></h2>
 
-<p>特徴</p>
-<ul>
- <li> 近代的な Web ブラウザの多くでおそらく動作します。
-      Windows, MacOS, Linux などプラットフォームを選びません。
- <li> T-Code, TUT-Code, G-Code など、
-      代表的な<em>無想式直接入力方式</em>の比較的多くに対応しています。
-      <br>
-      内部に漢字コード逆変換表を持っているため、
-      直接入力のための環境を用意しなくても練習できます。
-      他の入力方式にも、
-      ユーザ定義機能によってある程度は対応できます。
- <li> 複数の練習テキストに対応しています。
-      デフォルトでは、<a href="http://openlab.jp/tcode/soft.html"
-      >DOGGG や EELLL</a> でおなじみの T-Code の標準テキスト EELLLTXT や、
-      TUT-Code の標準的なテキスト
-      <a href="http://www.crew.sfc.keio.ac.jp/~chk/data/kanji_a1.txt"
-      >kanji_a1.txt</a> などを用意しています。
- <li> <a href="http://openlab.jp/tcode/soft.html">橋田表</a
-      >風の打鍵図で、コード (文字の打ち方) を表示できます。
-</ul>
+<p><a href="eellljs.html">eelll/JS</a>
+<a href="eellljs.html"><img src="img/eljs.png"
+alt="" title="eelll/JS" width="16" height="16"></a>
+は、<a href="http://openlab.ring.gr.jp/tcode/intro.html">T-Code</a>
+や
+<a href="http://www.crew.sfc.keio.ac.jp/~chk/index-old.html">TUT-code</a>
+などの
+<dfn>漢字直接入力</dfn>
+の練習プログラムです。T-Code の伝統的な練習プログラム
+<a href="http://openlab.jp/tcode/soft.html#software">DOGGG</a>
+(どっぐぐぐ) や、EELLL
+(うなぎぎぎ、<a href="http://openlab.jp/tcode/soft.html#software">tc2</a>
+に付属) を JavaScript
+に移植し、 Web ブラウザ上で動作するようにしたものです。</p>
 
-<p>動作環境</p>
+<p>コード検索を行う
+<a href="kansakujs.html">漢索/JS</a>
+<a href="kansakujs.html"><img src="img/ksjs.png"
+alt="" title="漢索/JS" width="16" height="16"></a>
+(<a href="#sec_kansakujs">漢索/JS の説明</a>)
+と、Web ブラウザ上で簡単な漢字直接入力を行う
+<a href="kanchokujs.html">漢直/JS</a>
+<a href="kanchokujs.html"><img src="img/kcjs.png"
+alt="" title="漢直/JS" width="16" height="16"></a>
+(<a href="#sec_kanchokujs">漢直/JS の説明</a>)
+も付属しています。</p>
 
-<ul>
- <li> JavaScript と DOM にそれなりに対応しているブラウザ。
-      <br>
-      Internet Explorer 6.0,
-      Netscape 7.1,
-      Opera 7.54u2,
-      FireFox 1.5.0.1 (以上、WindowsXP)、
-      Internet Explorer 5.0 (MacOS 8.5)
-      で動作確認しています。
-      <br>
-      Mozilla 1.8a3 (WindowsXP)
-      では動作しないという報告がありました。(eelll/JS v0.1)
- <li> クッキーを有効にしておくと、
-      練習の設定 (入力方式やレッスンなど) をブラウザが記憶してくれますので、
-      幸せになれるでしょう。
- <li> なるべく高速なマシンと、なるべく高速なネットワーク環境を、強く推奨。
-</ul>
-
-
-
-<!--  <p> -->
-<!--  <span class="footnotemark">(*)</span> -->
-<!--  …といいつつ、本家 EELLL とはあまり似ていないかも知れません。 -->
-<!--  作者が elisp をろくに読めないので、ほぼ scratch から書いたのです… -->
-<!--  </p> -->
-
-
-<h2>
-<a name="sec_usage">使い方</a>
-</h2>
+<h3><a name="sec_usage" href="#sec_usage">eelll/JS の使い方</a></h3>
 
 <ol>
- <li> <p><em><a href="eellljs.html">eelll/JS のページ</a>に進む</em></p>
-      <p>
-      ページの読みこみに少し時間がかかりますが、じっとがまんしてください。
-      IME や 漢直Win は OFF にしておきます。
-      </p>
-
-      <script type="text/javascript">
-      <!--
-      div_detail_beg('オフライン');
-      // -->
-      </script>
-      <div class="detail">
-      <p>
-      諸般の事情から、オフラインで練習したい人がいるかもしれません。
-      …が、
-      eelll/JS 0.2 では、
-      打鍵図の表示に画像ファイルを使用しているので、
-      ページの読みこみ完了後もオンラインのままにしておく方がよいです。
-      (画像を使わない英字表記ヒントなら、オフラインにしても構いません)
-      </p>
-      <p>
-      打鍵図を表示してほしいけれど、
-      どうしてもオフラインで練習したいという場合は、
-      [設定(C)] - [デバッグ(D)] - [IMG Preload] を選択し、
-      [preload] ボタンをクリックして、
-      すべての画像を読みこんでからオフラインにするようにすると、
-      うまくいく …かもしれません。
-      </p>
-      </div>
-      <script type="text/javascript">
-      <!--
-      div_detail_end();
-      // -->
-      </script>
+ <li> <p><span class="item_header"
+      ><a href="eellljs.html"
+      >eelll/JS</a>
+      <a href="eellljs.html"><img src="img/eljs.png"
+      alt="" title="eelll/JS" width="16" height="16"></a>
+      のページに進む。</span>
+      IME などは OFF にしておきます。</p>
       </li>
 
- <li> <p><em>設定する</em></p>
-      <p>
-      画面上半分にある
-      [設定(C)] セクションで、[入力方式(I)] と [練習テキスト(T)] を選び、
-      [OK] ボタンをクリックします。
-      </p>
+ <li> <p><span class="item_header">設定する。</span> 画面上部の
+      [設定(C)] パネルで、
+      [入力方式(I)] と [練習テキスト(T)] を選び、
+      [OK] ボタンをクリックします。</p>
+      </li>
 
-      <script type="text/javascript">
-      <!--
-      div_detail_beg('[キーボード(K)]');
-      // -->
-      </script>
-      <div class="detail">
-      <p>
-      キーボードにこだわりのある人は、
-      [キーボード(K)] の項目も適当に選んでください。
-      QWERTY 日本語 (デフォルト)、QWERTY 英語、Dvorak から選べます。
-      これ以外のキーボード配列には残念ながら対応していません。
-      ごめんなさい。
-      </p>
-      <p>
-      ここでの設定は、キーコードは関係なく、
-      そのキーを押した時にどの<em>文字</em>が実際に入力されるかで決まります。
-      たとえば、
-      日本語キーボードを<a href="http://mayu.sourceforge.net/"
-      >窓使いの憂鬱</a>で英語配列化している場合は、
-      [QWERTY 英語] を選びます。
-      </p>
-      <p>
-      なお、T-Code, TUT-Code, G-Code に関しては、
-      [QWERTY 日本語] と [QWERTY 英語] の違いはありません。
-      </p>
-      </div>
-      <script type="text/javascript">
-      <!--
-      div_detail_end();
-      // -->
-      </script>
-
-      <script type="text/javascript">
-      <!--
-      div_detail_beg('[入力方式(I)] - [ユーザ定義]');
-      // -->
-      </script>
-      <div class="detail">
-      <p>
-      [入力方式(I)] の選択岐にない方式も、
-      ユーザ定義を行うことによって、
-      (eelll/JS が対応できる範囲内で) 利用することができます。
-      </p>
-      <p>
-      ユーザ定義を行う場合の、設定の手順は次のとおりです。
-      </p>
-      <ol>
-       <li> [入力方式(I)] から [ユーザ定義] を選択します。
-	    すると、定義を書き込むためのテキストエリアが現れます。
-       <li> テキストエリアに、
-	    <code><var>文字</var> = <var>コード</var></code>
-	    の書式で一行ずつ定義を書いてください。
-	    たとえば、次のように書きます。
-	    <pre>あ=yf
-い=hd
-う=yd
-愛=fh
-言=gl</pre>
-       <li> その他の項目 ([練習テキスト(T)] など) を適宜選択してから、
-	    [OK(O)] または [適用] ボタンをクリックします。
-       <li> あとは、通常どおりに練習を行います。
-      </ol>
-
-      <p>
-      なお、
-      [ユーザ定義] の定義内容は、クッキーに<em>保存されません</em>。
-      消えてしまうと困るものは、
-      <em>手元のファイルに保存しておいて</em>ください。
-      </p>
-
-      <p>
-      コードを定義する際は、次の点に注意してください。
-      </p>
-      <ol>
-       <li> 「#」や「;」で始まる行はコメントとして読みとばされます。
-	    が、<em>行の途中の「#」や「;」は、コード定義の一部</em>
-	    とみなされます。
-	    <br>
-	    →
-	    <code>#=sharp</code> のような定義はできません
-	    (<code>ぁ=#</code> は可能です)。
-       <li> <var>文字</var> の部分は、
-	    <em>1 文字</em> でなければなりません。
-	    <br>
-	    →
-	    <code>った=tta</code> や <code>きゃ=kya</code>
-	    のような定義はできません。
-       <li> <var>コード</var> の部分は、
-	    1 文字以上の (印字可能な) 文字列でなければなりません。
-	    <br>
-	    →
-	    <kbd>F1</kbd> などのファンクションキー、
-	    <kbd>変換</kbd>・<kbd>無変換</kbd> キー、
-	    <kbd>Shift</kbd>+<kbd>0</kbd> などは、
-	    コードとして使うことはできません。
-	    また、
-	    <kbd>Shift</kbd>+<kbd>Space</kbd> と <kbd>Space</kbd>、
-	    <kbd>＼</kbd> と <kbd>￥</kbd> などは、
-	    それぞれ同一視されます。
-       <li> <em>一つの <var>文字</var> に対して、
-	    <var>コード</var> は高々一つ</em>でなければなりません。
-	    <br>
-	    →
-	    <code>し=si</code> と
-	    <code>し=shi</code> の両方を書いた場合は、
-	    あとに書いた方だけが有効です。
-       <li> <var>コード</var> は、
-	    <em>QWERTY 日本語配列のキーで表記</em>します。
-       <li> 空行は適宜挿入してもかまいせんが、
-	    不必要な空白やタブ文字は書かないようにしてください
-	    (コード定義の一部とみなされる可能性があります)。
-	    特に <code>=</code> の両側に空白は入れないでください。
-       <li> 書式に合わない行は、(コメント行と同様に)
-	    警告なしに読みとばされます。
-      </ol>
-
-      <p>
-      以下は暫定的な仕様です。
-      </p>
-      <ul>
-       <li> <code>#include T</code> のように書くと、その場所に、
-	    T-Code の全定義を書き込んだことと同等になります。
-	    既存の入力方式をカスタマイズ
-	    (定義の追加・上書き)
-	    する場合に便利です。
-	    <code>T</code> のほかに、
-	    <code>TUT</code>, <code>G</code>, <code>Try</code>,
-	    <code>TT</code>, <code>phoenix</code> を指定できます。
-	    大文字・小文字の違いは区別されますので、注意してください。
-
-       <li> <code>澤~沢</code> のように書くと、『沢』と同じコードを、
-	    『澤』にも割り当てます
-	    (『沢』にはすでにコードが割り当てられているとします)。
-	    『~』(tilde) の右は、二文字以上で定義することができます。
-      </ul>
-      </div>
-      <script type="text/javascript">
-      <!--
-      div_detail_end();
-      // -->
-      </script>
-
-      <script type="text/javascript">
-      <!--
-      div_detail_beg('[入力方式(I)] - [ユーザ定義] の例 … タッチ17、部首合成');
-      // -->
-      </script>
-      <div class="detail">
-
-      <p>
-      TUT-Code で、
-      <a href="http://plone.crew.sfc.keio.ac.jp/groups/tut-code/tut-architecture/kana-customize">タッチ17</a>
-      を実現するには、[ユーザ定義] に以下の内容を指定します。
-      ただし、半濁音のもともとの 4 ストローク定義は使えなくなります。
-      </p>
-      <p>
-      同様の方法で、Touch16+ (→ 森田祐二氏の
-      <a href="http://www.gar.sakura.ne.jp/tut-code/">TUT-Code</a>
-      -
-      Touch16+ (http://www.gar.sakura.ne.jp/tut-code/touch16+.html))
-      などを実装することもできます。
-      </p>
-      <pre>#include TUT
-
-ぱ=t;k
-ぴ=t;i
-ぷ=t;u
-ぺ=t;h
-ぽ=t;j
-づ=d;u
-集=t:
-長=d:
-パ~ぱ
-ピ~ぴ
-プ~ぷ
-ペ~ぺ
-ポ~ぽ
-ヅ~づ</pre>
-
-      <p>
-      次のように [ユーザ定義] を行うと、
-      T-Code の部首合成をエミュレートできる …かもしれません。
-      ただし、一つの文字に一つの定義しか書けませんし、
-      文字ヘルプも見づらいですし、
-      そもそも部首合成定義を全部書くのは大変なので、
-      こんなこともできるぐらいに思ってください。
-      </p>
-      <pre>#include T
-
-◆=jf
-林~◆木木
-鍵~◆金建
-冬~◆終糸
-</pre>
-
-      </div>
-      <script type="text/javascript">
-      <!--
-      div_detail_end();
-      // -->
-      </script>
-
-      <script type="text/javascript">
-      <!--
-      div_detail_beg('[入力方式(I)] - [ユーザ定義] の例 … 『き』');
-      // -->
-      </script>
-      <div class="detail">
-      <p>
-      [ユーザ定義] の例として、
-      越川和忠氏による『き』(の JIS X 0208 部分のみ) を
-      エミュレートし (ようとし) た定義例を示します。
-      <br>
-      → <a href="misc/ki_data.txt" type="text/plain"
-      hreflang="ja" charset="EUC-JP">ki_data.txt</a>
-      (そのまま copy &amp; paste して使えます)
-      </p>
-      <p>
-      本来の『き』では、日本語キーボードの 48 鍵とスペースキー、
-      およびそのシフトケースをフルに使用しますが、
-      eelll/JS では、
-      <kbd>￥</kbd> は <kbd>＼</kbd> と、
-      <kbd>Shift</kbd>+<kbd>Space</kbd> は <kbd>Space</kbd> と、
-      それぞれ同一視され、また、
-      <kbd>Shift</kbd>+<kbd>0</kbd> は扱えないため、
-      ここでは、その点を妥協した、不完全な定義になっています。
-      たとえば、本来は、
-      『？』は「<kbd>?</kbd> <kbd>Shift</kbd>+<kbd>Space</kbd>」、
-      『支』は「<kbd>i</kbd> <kbd>Shift</kbd>+<kbd>0</kbd>」ですが、
-      それぞれ
-      <code>？=? </code>、
-      <code>支=i</code> と定義しています。
-      </p>
-      </div>
-      <script type="text/javascript">
-      <!--
-      div_detail_end();
-      // -->
-      </script>
-
-      <script type="text/javascript">
-      <!--
-      div_detail_beg('[入力方式(I)] - [ユーザ定義] の裏技 … IME や 漢直Win を利用する方法');
-      // -->
-      </script>
-      <div class="detail">
-      <p>
-      [ユーザ定義] でうまく定義できない入力方式も、
-      最後の手段として、
-      [ユーザ定義] の<em>定義内容を空っぽ</em>にして設定しておいて、
-      練習時に
-      IME や <a href="http://www.sato.kuis.kyoto-u.ac.jp/~yuse/tcode/kw/"
-      >漢直Win</a>
-      で入力する、という方法もあります。
-      もっとも、練習時は入力キーのエコーバックがないため、
-      IME では練習しづらいかもしれません。
-      また、この場合は、文字ヘルプの機能は使えなくなります。
-      </p>
-      </div>
-      <script type="text/javascript">
-      <!--
-      div_detail_end();
-      // -->
-      </script>
-
-      <script type="text/javascript">
-      <!--
-      div_detail_beg('[練習テキスト(T)] - [ユーザ定義]');
-      // -->
-      </script>
-      <div class="detail">
-      <p>
-      [練習テキスト] も [ユーザ定義] が可能です。
-      設定の手順は次のとおりです。
-      </p>
-      <ol>
-       <li> [練習テキスト(T)] から [ユーザ定義] を選択します。
-	    すると、テキストを書き込むためのテキストエリアが現れます。
-       <li> テキストエリアに、練習したい文章を書きこんでください。
-	    「#」で始まる行はコメントとして読みとばされます。
-	    また、空行を入れると、そこがレッスンの区切りになります。
-	    たとえば、次の例は、一課が二行ずつからなるレッスンを、
-	    三課分定義しています。
-	    <pre>の、が、のが
-て、ての、と、のと、とが
-
-なにをしないでいたいの。
-はるになると、たのしい。
-
-うろうろしていて、おろされた。
-かっこでくくることができる。</pre>
-       <li> その他の項目 ([入力方式(I)] など) を適宜選択してから、
-	    [OK(O)] または [適用] ボタンをクリックします。
-       <li> あとは、通常どおりに練習を行います。
-      </ol>
-
-      <p>
-      なお、
-      [ユーザ定義] の定義内容は、クッキーに<em>保存されません</em>。
-      消えてしまうと困るものは、
-      <em>手元のファイルに保存しておいて</em>ください。
-      </p>
-      </div>
-      <script type="text/javascript">
-      <!--
-      div_detail_end();
-      // -->
-      </script>
-
- <li> <p><em>レッスンの準備をする</em></p>
-      <p>
-      [練習(L)] セクションの出力欄に、
-      『<span class="prompt">リターンキーを打てば始まります</span>』
-      と表示されています。
-      出力欄の下の入力欄 (細長いテキストフィールド)
-      をクリックするなどして、フォーカスを移動してください。
-      </p>
-      <p>
+ <li> <p><span class="item_header">レッスンの準備をする。</span>
       入力欄の下のヒント欄に、
-      新しく練習する文字 (もしあれば) の打ち方が表示されています。
+      この課で新しく練習する文字の打ち方が表示されています。
       レッスンを始める前に、よく見て確認しておきましょう。
-      </p>
-      <p>
-      心の準備ができたら、リターンキーを押してください。
-      レッスンが始まります。
-      </p>
-
-      <script type="text/javascript">
-      <!--
-      div_detail_beg('入力欄のアクセスキー');
-      // -->
-      </script>
-      <div class="detail">
-      <p>
-      アクセスキー
-      <span class="accesskey">J</span> で、
-      入力欄にフォーカスを移すことができます。
-      (Windows の場合は <kbd>Alt</kbd>+<kbd>J</kbd>、
-      MacOS の場合は <kbd>Ctrl</kbd>+<kbd>J</kbd>。
-      Opera なら <kbd>Shift</kbd>+<kbd>Esc</kbd> <kbd>J</kbd>)
-      </p>
-      </div>
-      <script type="text/javascript">
-      <!--
-      div_detail_end();
-      // -->
-      </script>
-
-      <script type="text/javascript">
-      <!--
-      div_detail_beg('レッスンの選択、ランダム、シャッフル、…');
-      // -->
-      </script>
-      <div class="detail">
-      <p>
-      練習文は課 (レッスン) に分かれています。
-      通常は、最初のレッスンから順番に進めていくとよいのですが、
-      [レッスン(S)] から、目的のレッスンを直接選ぶこともできます。
-      </p>
-      <p>
-      [ランダム(R)] ボタンをクリックと、レッスンをランダムに選びます。
-      </p>
-      <p>
-      [シャッフル(F)] のチェックをオンにすると、
-      一つのレッスンの中で、問題文をシャッフルして出題します。
-      </p>
-      </div>
-      <script type="text/javascript">
-      <!--
-      div_detail_end();
-      // -->
-      </script>
+      <!-- XXX
+      打鍵図の読み方は、<a href="memo.html#sec_code_help">文字ヘルプ</a>
+      を参照してください。
+      -->
+      リターンキーを押すとレッスンが始まります。</p>
       </li>
 
- <li> <p><em>入力する</em></p>
-      <p>
-      練習テキストの問題文が一行ずつ表示されますので、
-      T-Code や TUT-Code などで入力してください。
-      </p>
-      <p>
+ <li> <p><span class="item_header">入力する。</span>
+      練習テキストの問題文が一行ずつ表示されますので、入力します。
       <em>入力したキーは、画面には表示されません。</em>
       まちがいを気にせずに (BackSpace で消したりせずに)
-      どんどん入力しましょう。
-      </p>
-      <p>
-      問題文の中の、赤の<span class="weak">下線</span>つきの文字は、
-      前回まちがえた文字です。
-      同じあやまちは繰りかえさないようにしましょう。
-      …といいたいところですが、あまり気にしない方がいいかもしれません。
-      </p>
-      <p>
+      続けて入力しましょう。
+      問題文の中の、赤の<span class="weak">下線</span
+      >の文字は、前回のレッスンでまちがえた文字です。
       文字の打ち方を忘れてしまったときは、
-      [ヒント(<span class="sccesskey"
-      >H</span>)] ボタンをクリックしてください。
-      ヒント欄に問題文の打ち方が表示されます。
-      </p>
+      [ヒント(<span class="sccesskey">H</span>)]
+      ボタンをクリックすると、ヒント欄に問題文の打ち方が表示されます。</p>
+      </li>
 
-      <script type="text/javascript">
-      <!--
-      div_detail_beg('[ヒント(H)] について');
-      // -->
-      </script>
-      <div class="detail">
-      <p>
-      [ヒント(H)] ボタンを押すのにマウスを使うと、
-      手がキーボードから離れてしまうので、
-      かわりに、アクセスキー<span class="accesskey"
-      >H</span> を使うのがいいでしょう。
-      (Windows の場合は <kbd>Alt</kbd>+<kbd>H</kbd>、
-      Macintosh の場合は <kbd>Ctrl</kbd>+<kbd>H</kbd>。
-      Opera なら <kbd>Shift</kbd>+<kbd>Esc</kbd> <kbd>H</kbd>) 
-      </p>
-      <p>
-      [スタイル(Y)] でヒントの表示形式を選択できます。
-      [<em>打鍵図</em>] は、
-      <a href="http://openlab.jp/tcode/soft.html"
-      >tc2 や橋田表</a>でも用いられている表示方法で、
-      特に T-Code を練習する場合におすすめです。
-      <!--
-      T-Code で使う以外のキー (<kbd>Space</kbd> や右手小指の外側のキー、
-      また <kbd>Shift</kbd> したキーなど) が表示できないのが璧に瑕です。
-      -->
-      TUT-Code 文化圏の人は、[<em>英字</em>] がお好みかも知れません。
-      コンパクトに表記できてキーボードに依存しない
-      [<em>橋田ニモニック</em>] も、試験的に導入しました。
-      なお、
-      「木を見て森を見る」形式の [<em>ストローク表</em>] は、
-      現在のバージョンでは機能しません。ごめんなさい。
-      </p>
-      </div>
-      <script type="text/javascript">
-      <!--
-      div_detail_end();
-      // -->
-      </script>
 
- <li> <p><em>入力をチェックする</em></p>
-      <p>
+ <li> <p><span class="item_header">入力をチェックする。</span>
       一行分の入力が終わったら、リターンキーを押してください。
       入力したキーがチェックされ、結果が表示されます。
       <span class="usr">水色</span>は正しく入力した文字、
       <span class="err">赤色</span>はまちがった文字です。
-      </p>
-      <p>
-      次の問題文 (もしあれば) が表示されていますので、
-      続けて同じように入力します。
-      </p>
+      次の問題文が表示されますので、続けて同じように入力します。</p>
       </li>
 
- <li> <p><em>次のレッスンに進む/終了する</em></p>
-      <p>
-      レッスンの最後まで来ると、
-      『<span class="prompt">もう一度トライしますか?</span>』と訊かれます。
-      同じレッスンをもう一度練習するときは
-      <kbd>a</kbd> (Again) と入力して、
-      次のレッスンに進みたいなら
-      <kbd>n</kbd> (Next) と入力して、リターンキーを押します。
-      
-      また、<kbd>q</kbd> (Quit) と入力してリターンキーを押すと、
-      練習を終了し、総合成績を表示します。
-      </p>
-
-      <script type="text/javascript">
-      <!--
-      div_detail_beg('その他のキー、ボタン');
-      // -->
-      </script>
-      <div class="detail">
-      <p>
-      <kbd>p</kbd> (Previous) で前のレッスンに、
-      <kbd>r</kbd> (Random) でランダムなレッスンにジャンプします。
-      何も入力しないでただリターンキーを押した場合は、
-      <kbd>n</kbd> と同じです。
-      </p>
-      <p>
-      キーのかわりに、[← 前(P)] [もう一度(A)] [次(N) →] [ランダム(R)]
-      [終了 (Q)] の各ボタン (またはそのアクセスキー) を押してもかまいません。
-      </p>
-      <p>
-      いったん終了したあとでも、
-      [もう一度(A)] ボタンなどをクリックすると、
-      練習を再開することができます。
-      </p>
-      </div>
-      <script type="text/javascript">
-      <!--
-      div_detail_end();
-      // -->
-      </script>
+ <li> <p><span class="item_header">次のレッスンに進む/終了する。</span>
+      レッスンの最後まで来ると、『<span class="prompt"
+      >もう一度トライしますか?</span>』と訊かれます。
+      同じレッスンをもう一度練習するときは <kbd>A</kbd>
+      (Again)、次のレッスンに進みたいなら <kbd>N</kbd> (Next) キーを押します。
+      また、<kbd>Q</kbd> (Quit)
+      キーを押すと、練習を終了し、総合成績を表示します。</p>
       </li>
 </ol>
 
 <!-- ============================================================= -->
-<h2><a name="sec_kansakujs">漢索/JS</a></h2>
+<!-- 漢索/JS -->
+
+<h2><a name="sec_kansakujs" href="#sec_kansakujs">漢索/JS</a></h2>
 
 <p>
-<em><a href="kansakujs.html">漢索/JS</a></em> は、
-「<a href="http://t.pos.to/tc/kansaku.html">漢索板</a>」
-や、
-「漢索窓」(<a href="http://www.sato.kuis.kyoto-u.ac.jp/~yuse/tcode/kw/"
->漢直Win</a> に付属しています)
-の JavaScript 版です。
-</p>
+<a href="kansakujs.html">漢索/JS</a>
+<a href="kansakujs.html"><img src="img/ksjs.png"
+alt="" title="漢索/JS" width="16" height="16"></a>
+は、
+入力された文字の漢字直接入力のコードを検索するプログラムです。
+「<a href="http://web.archive.org/web/*/http://t.pos.to/tc/kansaku.html">漢索板</a>」
+や、「漢索窓」(<a href="http://www.sato.kuis.kyoto-u.ac.jp/~yuse/tcode/kw/"
+>漢直Win</a> に付属) の JavaScript 版です。</p>
 
-<p>使い方</p>
-<ul>
- <li> <p><em>基本的な使い方</em></p>
-      <p>
-      <em><a href="kansakujs.html">漢索/JS のページ</a></em>に進み、
-      [検索(J)] 欄に、コードを調べたい文字 (列) を
-      (IME や <a href="http://www.sato.kuis.kyoto-u.ac.jp/~yuse/tcode/kw/"
-      >漢直Win</a> などを用いて) 入力します。
-      検索欄の下のコード欄に、打鍵図が表示されます。
-      </p>
- <li> <p><em>リアルタイム検索</em></p>
-      <p>
-      デフォルトでは、入力とほぼ同時に自動で検索を行いますので、
-      [検索(M)] ボタンを押す必要はありません
-      (通常の状態では、[検索(M)] ボタンは押せないはずです)。
-      うまく検索できない場合や、動作が非常に遅い場合は、
-      [設定(C)] セクションの [検索オプション] の
-      [リアルタイム(R)] オプションのチェックをオフにしたうえで、
-      [検索(M)] ボタンを押して検索を行ってみてください。
-      </p>
- <li> <p><em>入力方式と表示形式</em></p>
-      <p>
-      [設定(C)] セクションで、
-      [入力方式(I)] (どのコード体系で調べるか) と
-      [スタイル(Y)] (どのようにコードを表示するか) を選択できます。
-      入力方式もスタイルも、項目を複数選ぶことができます。
-      Windows の場合は <kbd>Ctrl</kbd>+クリックで、
-      MacOS の場合は <kbd>Command</kbd>+クリックで選択してください。
-      </p>
-      <p>
-      ※ [入力方式(I)] の [ASCII] は、
-      「エスケープシーケンスのない JIS コード」あるいは、
-      「MSB (Most Significant Bit) を落とした EUC 日本語コード」で、
-      実は入力方式でもなんでもないのですが、面白そうなので入れてみました。
-      [スタイル(Y)] で [英字] を、
-      [キーボード(K)] で [QWERTY 日本語] を選択してお楽しみ下さい。
-      </p>
-      <p>
-      ※ [スタイル(Y)] の [ストローク表] は、
-      「木を見て森を見る」形式の表示ですが、
-      現在のバージョンでは機能しません。ごめんなさい。
-<!--        (まっとうなブラウザでは選択することもできないはずです) -->
-      </p>
- <li> <p><em>応用例</em></p>
-      <p>
-      ブラウザの印刷機能を利用することで、
-      私家版の<a href="http://openlab.jp/tcode/soft.html"
-      >橋田表</a>もどきを手軽に作ることができます。
-      [設定(C)] と [検索(L)] のタイトル部分をクリックすると、
-      不要な部分を非表示にできますので、この状態で印刷を行うとよいでしょう。
-      印刷のオプションやプリンタの設定で、必要に応じて、
-      縮尺や余白の大きさなどを設定してみてください。
-      </p>
-</ul>
+<h3><a name="subsec_kansakujs_usage" href="#subsec_kansakujs_usage">使い方</a></h3>
+
+<p><a href="kansakujs.html">漢索/JS</a>
+<a href="kansakujs.html"><img src="img/ksjs.png"
+alt="" title="漢索/JS" width="16" height="16"></a>
+のページに進み、画面上部の [設定(C)] パネルで
+[入力方式(I)] と [スタイル(Y)] を選びます。
+[検索(J)] 欄に、コードを調べたい文字を
+(IME や <a href="http://www.sato.kuis.kyoto-u.ac.jp/~yuse/tcode/kw/"
+>漢直Win</a> などを用いて) 入力すると、
+選択した入力方式・スタイルでコードが表示されます。</p>
 
 <!-- ============================================================= -->
-<h2><a name="sec_document">ドキュメント</a></h2>
+<!-- 漢直/JS -->
 
-<p>未整備です。</p>
+<h2><a name="sec_kanchokujs" href="#sec_kanchokujs">漢直/JS</a></h2>
 
-<ul>
- <li> <a href="misc/misc.html">おぼえがき</a>
-      <ul>
-       <li> <a href="misc/misc.html#sec_codehelp">文字ヘルプの見かた</a>
-       <li> <a href="misc/misc.html#sec_lcs">eelll/JS の誤字判定</a>
-       <li> <a href="misc/misc.html#sec_related">関連リンク集</a>
-      </ul>
- <li> <a href="misc/eellltxtindex.html">EELLTXT のもくじ</a>
-</ul>
+<p><a href="kanchokujs.html">漢直/JS</a>
+<a href="kanchokujs.html"><img src="img/kcjs.png"
+alt="" title="漢直/JS" width="16" height="16"></a>
+は、JavaScript で実装された、シンプルな日本語入力 Web アプリケーションです。
+日本語入力環境のインストールされていないコンピュータでも、
+ブラウザ内で日本語入力を行い、メーラや
+<a href="http://www.google.co.jp/">Google</a>
+などの検索フィールドに copy and paste して利用することができます。
+</p>
+
+<h3><a name="subsec_kanchokujs_usage" href="#subsec_kanchokujs_usage">使い方</a></h3>
+
+<ol>
+ <li> <p>
+      <span class="item_header"><a href="kanchokujs.html"
+      >漢直/JS</a>
+      <a href="kanchokujs.html"><img src="img/kcjs.png"
+      alt="" title="漢直/JS" width="16" height="16"></a>
+      のページに進む。</span></p>
+      </li>
+
+ <li> <p><span class="item_header">設定する。</span>
+      画面上部の [設定(C)] パネルで、[入力方式(I)] を選び、
+      [OK] ボタンをクリックします。</p>
+      </li>
+      
+ <li> <p><span class="item_header">入力する。</span>
+      [入力(J)] 欄に、選択した入力方式のコードで文章を入力します。
+      入力するにつれて、 [変換] 欄に変換されたかな漢字交じり文が表示されます。
+      一行入力し終えたら、リターンキーを押すと、入力内容が確定し、
+      [出力(T)] 欄に書きこまれます。
+      同様にして、入力を続けてください。
+      変換された入力内容が、出力欄の末尾に次々と追記されていきます。
+      TUT-Code で、かたかなを入力するには、
+      <kbd class="modifier">Shift</kbd> を押しながら
+      (つまり大文字で) 入力してください。
+      現在のところ、
+      <dfn>部首合成変換</dfn>
+      や
+      <dfn>交ぜ書き変換</dfn>
+      は、残念ながら使えません。
+      英数字は、次の「<span class="item_header"
+      >編集する</span>」で入力します。</p>
+      </li>
+      
+ <li> <p><span class="item_header">編集する。</span>
+      ひととおり入力し終えたら、 [出力(T)] 欄にカーソルを移して、cut and paste
+      などを利用して、文章を編集します。
+      入力欄から直接入力できなかった英数字などの文字も、ここで入力します。</p>
+      </li>
+      
+ <li> <p><span class="item_header">他のアプリケーションにコピーする。</span>
+      編集を終えたら、適宜メーラなど他のアプリケーションに
+      copy and paste して利用してください。</p>
+      </li>
+</ol>
 
 <!-- ============================================================= -->
 <!-- ダウンロード -->
-<h2><a name="sec_download">ダウンロード</a></h2>
+
+<h2><a name="sec_download" href="#sec_download">ダウンロード</a></h2>
+
+<h3><a name="subsec_download" href="#subsec_download">ダウンロード</a></h3>
 
 <ul>
- <li> <a href="http://www.sato.kuis.kyoto-u.ac.jp/~yuse/tcode/eljs/archive/eljs023.tar.gz"
-      >eljs023.tar.gz</a> (464KB)
-      <!--
-      <br>
-      symbolic link を使っていますので、
-      Unix (互換の OS) でないとたぶんうまく動作しません。
-      -->
- <li> 古いバージョンなど:
-      <a href="http://www.sato.kuis.kyoto-u.ac.jp/~yuse/tcode/eljs/archive/"
-      >archive</a>
+ <li> <a href="http://www.sato.kuis.kyoto-u.ac.jp/~yuse/tcode/eljs/archive/eljs-0.3.tgz"
+      >eljs-0.3.tgz</a> (XXX KB)
 </ul>
 
-<!-- ============================================================= -->
-<h2><a name="sec_gpl">使用条件・配布条件・免責等</a></h2>
+<h3><a name="subsec_gpl" href="#subsec_gpl">使用条件・配布条件・免責等</a></h3>
 
-<p>
-<a href="http://www.gnu.org/licenses/gpl.html"
->GNU General Public License</a> に従います。
-</p>
+<p><a href="http://www.gnu.org/licenses/gpl.html">GNU General Public License</a>
+に従います。</p>
+
+<!-- ============================================================= -->
+<!-- ドキュメント -->
+
+<h2><a name="sec_document" href="#sec_document">ドキュメント</a></h2>
+
+<p>漢字直接入力の練習方法や、練習ソフトについて、雑多なメモ。</p>
+
+<ul>
+ <li> <a href="memo.html">おぼえがき</a>
+ <li> <a href="eellltxtindex.html">EELLTXT のもくじ</a>
+ <li> <a href="code_help.html">文字ヘルプの見かた</a>
+ <li> <a href="lcs.html">eelll/JS の誤字判定</a>
+ <li> <a href="links.html">関連リンク集</a>
+</ul>
 
 <!-- ============================================================= -->
 <!-- 履歴 -->
 
-<h2><a name="sec_history">履歴</a></h2>
+<h2><a name="sec_history" href="#sec_history">履歴</a></h2>
 
 <dl>
- <dt>2009-05-21</dt>
+ <dt>2013-12-15</dt>
  <dd>
-      eelll/JS v.0.2.3
-      <br>
-      入力欄 &lt;input type="text"...&gt; に lang="en" を追加
+      [eelll/JS]
+      js/lt/llllltxtg6.js (and js/im/l.js): F131215
+      </dd>
+
+ <dt>2013-12-05</dt>
+ <dd>
+      [eelll/JS] [漢索/JS] [漢直/JS]
+      入力欄 <code>&lt;input type=&quot;text&quot;...&gt;</code> に
+      <code>placeholder=&quot;...&quot;</code> を追加。
+      </dd>
+
+ <dt>2013-12-02</dt>
+ <dd>
+      [eelll/JS] kanji2136.js: 常用漢字 2136 字 テキストを追加
+      </dd>
+
+ <dt>2013-11-28</dt>
+ <dd>
+      [eelll/JS]
+      『<span class="prompt" >もう一度トライしますか?</span
+      >』のプロンプトの後に [OK]/[適用]/レッスン新規選択
+      のいずれかを行った際に練習文に対して正しく入力できなくなるバグを修正<br>
+      [漢索/JS]
+      IE10/Win7 で入力方式が選択できないバグを回避。
+      交ぜ書き変換オプションを封印
+      </dd>
+
+ <dt>2013-11-26</dt>
+ <dd>
+      [eelll/JS] [漢索/JS] [漢直/JS]
+      lshort.js: L-code (仮) (short code) を追加
+      </dd>
+
+ <dt>2013-11-25</dt>
+ <dd>
+      [eelll/JS] yallltxtg6.js: YALLLTXT: 学習漢字復習テキストを追加
+      </dd>
+
+ <dt>2013-11-21</dt>
+ <dd>
+      [eelll/JS] L-code (仮) 用学習漢字練習テキストを pubdic+ から作り直し
+      </dd>
+
+ <dt>2013-11-19</dt>
+ <dd>
+      [eelll/JS] L-code (仮) 用学習漢字練習テキスト改訂: HS 固定版と TS 固定版
+      </dd>
+
+ <dt>2013-11-17</dt>
+ <dd>
+      [eelll/JS] L-code (仮) 用学習漢字練習テキストを追加
+      </dd>
+
+ <dt>2013-11-12 v.0.3</dt>
+ <dd>
+      [eelll/JS] [漢索/JS] [漢直/JS]
+      L-code (仮) に対応<br>
+      [eelll/JS]
+      入力欄 <code>&lt;input type=&quot;text&quot;...&gt;</code> に
+      <code>autocomplete=&quot;off&quot;</code> を追加。
+      </dd>
+
+ <dt>2012-04-16 v.0.3β2</dt>
+ <dd>
+      [eelll/JS] 新常用漢字対応練習テキストを追加
+      </dd>
+
+ <dt>2012-03-01 v.0.3β1</dt>
+ <dd>
+      [漢索/JS]
+      交ぜ書き変換して検索するオプションを追加
+      </dd>
+
+ <dt>2012-02-25 v.0.2.6</dt>
+ <dd>
+      [eelll/JS]
+      入力欄 <code>&lt;input type=&quot;text&quot;...&gt;</code> に
+      <code>spellcheck=&quot;false&quot;</code> を追加。
+      『<span class="prompt" >もう一度トライしますか?</span
+      >』のプロンプトにリターンキーを押さなくてもいいようにした
+      </dd>
+
+ <dt>2011-04-12 v.0.2.5</dt>
+
+ <dt>2011-02-19 v.0.2.4</dt>
+
+ <dt>2009-05-21 v.0.2.3</dt>
+ <dd>
+      [eelll/JS]
+      入力欄 <code>&lt;input type=&quot;text&quot;...&gt;</code> に
+      <code>lang=&quot;en&quot;</code> を追加
       (thanks to 石原和音さん)
       </dd>
 
- <dt>2007-04-19</dt>
+ <dt>2007-04-19 v0.2.2</dt>
  <dd>
-      eelll/JS v0.2.2
-      <br>
-      副産物に <a href="kanchokujs.html">漢直/JS<a>。
+      [漢直/JS] 実装
       </dd>
 
- <dt>2006-04-28</dt>
+ <dt>2006-04-28 v0.2</dt>
  <dd>
-      eelll/JS v0.2
-      <br>
-      打鍵図ヘルプ・橋田ニモニックを装備。
+      [eelll/JS]
+      打鍵図ヘルプ・橋田ニモニックを実装。
       Try-Code, TT-Code の prefix 型の文字ヘルプに対応。
       ストローク表ヘルプのサポートは一時廃止。
-      入力方式のユーザ定義。
-      なんとか動作しているように見える。
-      副産物に <a href="kansakujs.html">漢索/JS</a>。
+      入力方式のユーザ定義<br>
+      [漢索/JS] 実装
       </dd>
 
- <dt>2005-06-20</dt>
+ <dt>2005-06-20 v0.1</dt>
  <dd>
-      eelll/JS v0.1
-      <br>
-      とりあえず動いていた。</dd>
+      [eelll/JS] 最初のバージョン
+      </dd>
 </dl>
 
-
-
 <!-- ============================================================= -->
-<h2><a name="sec_todo">今後の予定</a></h2>
+<!-- footer -->
 
-<ul>
- <li> <a href="kanchokujs.html">漢直/JS</a> をつくる
-</ul>
-
-
-<!-- ============================================================= -->
 <hr>
+
 <div class="menu">
-[<a href="..">もどる</a>]
+<a href="..">もどる</a>
 </div>
+
 <div class="version">
-<!-- time-stamp-start -->2009-05-21 yuse<!-- time-stamp-end -->
+<!-- time-stamp-start -->2013-12-15<!-- time-stamp-end -->
 </div>
+
+<div style="clear: both;"></div>
+
+<!-- ============================================================= -->
+</div> <!-- container -->
 
 </body>
+
+</html>
+
 <!-- ============================================================= -->
 <!--
-  :: Local Variables:
-  :: time-stamp-line-limit: -20
-  :: time-stamp-start: "<!-\\- *time-stamp-start *-\\-."
-  :: time-stamp-end:   "<!-\\- *time-stamp-end *-\\-."
-  :: time-stamp-format: "%:y-%02m-%02d %u"
-  :: End:
-  -->
-</html>
+:: Local Variables:
+:: time-stamp-line-limit: -24
+:: time-stamp-start: "<!-\\- *time-stamp-start *-\\-."
+:: time-stamp-end:   "<!-\\- *time-stamp-end *-\\-."
+:: time-stamp-format: "%:y-%02m-%02d"
+:: End:
+-->

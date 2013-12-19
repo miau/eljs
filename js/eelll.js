@@ -1,6 +1,6 @@
 // eelll.js - EELLL part for eelll/JS (JavaScript implemented EELLL)
 //
-// Copyright (C) 2005, 2006  YUSE Yosihiro
+// Copyright (C) 2005, 2006, 2013  YUSE Yosihiro
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -194,6 +194,13 @@ EELLL.prototype.setlt_with_ck = function(id) {
   this.lt = this.lts[this.ltid = id];
   if (! this.lt.nocookie) { this.ck.set('lt', this.ltid); } // user def
   return true;
+}
+
+//// YYY ZZZ
+EELLL.prototype.seths_with_ck = function(id) {
+  if (this.seths(id)) {
+    this.ck.set('hs', this.hsid);
+  }
 }
 
 // ===================================================================

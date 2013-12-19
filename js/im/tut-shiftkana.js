@@ -1,6 +1,6 @@
 // tut - TUT-Code input method data
 // 
-// Copyright (C) 2005, 2006  YUSE Yosihiro
+// Copyright (C) 2005, 2006, 2011  YUSE Yosihiro
 // 
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -23,8 +23,8 @@
   // ===================================================================
   // config
 
-  im.id = "TUT";
-  im.title = "TUT-Code";
+  im.id = "TUT-ShiftKANA";
+  im.title = "TUT-Code (ShiftKANA)";
 
   var o = im.encodetable = new Object();
 
@@ -141,9 +141,92 @@
   o["ゑ"] = "ah";
   o["を"] = "aj";
   o["ん"] = "fl";
-  o["ヴ"] = "rlru";
-  o["ヵ"] = "elek";
-  o["ヶ"] = "eleh";
+  o["ァ"] = "RLK";
+  o["ア"] = "RK";
+  o["ィ"] = "RLI";
+  o["イ"] = "RI";
+  o["ゥ"] = "RLU";
+  o["ウ"] = "RU";
+  o["ェ"] = "RLH";
+  o["エ"] = "RH";
+  o["ォ"] = "RLJ";
+  o["オ"] = "RJ";
+  o["カ"] = "EK";
+  o["ガ"] = "ELK";
+  o["キ"] = "EI";
+  o["ギ"] = "ELI";
+  o["ク"] = "EU";
+  o["グ"] = "ELU";
+  o["ケ"] = "EH";
+  o["ゲ"] = "ELH";
+  o["コ"] = "EJ";
+  o["ゴ"] = "ELJ";
+  o["サ"] = "SK";
+  o["ザ"] = "SLK";
+  o["シ"] = "SI";
+  o["ジ"] = "SLI";
+  o["ス"] = "SU";
+  o["ズ"] = "SLU";
+  o["セ"] = "SH";
+  o["ゼ"] = "SLH";
+  o["ソ"] = "SJ";
+  o["ゾ"] = "SLJ";
+  o["タ"] = "DK";
+  o["ダ"] = "DLK";
+  o["チ"] = "DI";
+  o["ヂ"] = "DLI";
+  o["ッ"] = "DLU";
+  o["ツ"] = "DU";
+  o["ヅ"] = "DLDU";
+  o["テ"] = "DH";
+  o["デ"] = "DLH";
+  o["ト"] = "DJ";
+  o["ド"] = "DLJ";
+  o["ナ"] = "FK";
+  o["ニ"] = "FI";
+  o["ヌ"] = "FU";
+  o["ネ"] = "FH";
+  o["ノ"] = "FJ";
+  o["ハ"] = "TK";
+  o["バ"] = "TLK";
+  o["パ"] = "TLTK";
+  o["ヒ"] = "TI";
+  o["ビ"] = "TLI";
+  o["ピ"] = "TLTI";
+  o["フ"] = "TU";
+  o["ブ"] = "TLU";
+  o["プ"] = "TLTU";
+  o["ヘ"] = "TH";
+  o["ベ"] = "TLH";
+  o["ペ"] = "TLTH";
+  o["ホ"] = "TJ";
+  o["ボ"] = "TLJ";
+  o["ポ"] = "TLTJ";
+  o["マ"] = "WK";
+  o["ミ"] = "WI";
+  o["ム"] = "WU";
+  o["メ"] = "WH";
+  o["モ"] = "WJ";
+  o["ャ"] = "QLK";
+  o["ヤ"] = "QK";
+  o["ュ"] = "QLU";
+  o["ユ"] = "QU";
+  o["ョ"] = "QLJ";
+  o["ヨ"] = "QJ";
+  o["ラ"] = "GK";
+  o["リ"] = "GI";
+  o["ル"] = "GU";
+  o["レ"] = "GH";
+  o["ロ"] = "GJ";
+  o["ヮ"] = "ALK";
+  o["ワ"] = "AK";
+  o["ヰ"] = "AI";
+  o["ヱ"] = "AH";
+  o["ヲ"] = "AJ";
+  o["ン"] = "FL";
+  o["ヴ"] = "RLRU";
+  o["ヵ"] = "ELEK";
+  o["ヶ"] = "ELEH";
   o["亜"] = "ttk";
   o["阿"] = "uha";
   o["哀"] = "hyx";
@@ -2669,96 +2752,6 @@
   o["椀"] = "/nc";
   o["湾"] = "lha";
   o["腕"] = "fbu";
-
-  // alternate definitions (optional)
-  o = im.encodetable_alt = new Object();
-  o["ァ"] = "rlk";
-  o["ア"] = "rk";
-  o["ィ"] = "rli";
-  o["イ"] = "ri";
-  o["ゥ"] = "rlu";
-  o["ウ"] = "ru";
-  o["ェ"] = "rlh";
-  o["エ"] = "rh";
-  o["ォ"] = "rlj";
-  o["オ"] = "rj";
-  o["カ"] = "ek";
-  o["ガ"] = "elk";
-  o["キ"] = "ei";
-  o["ギ"] = "eli";
-  o["ク"] = "eu";
-  o["グ"] = "elu";
-  o["ケ"] = "eh";
-  o["ゲ"] = "elh";
-  o["コ"] = "ej";
-  o["ゴ"] = "elj";
-  o["サ"] = "sk";
-  o["ザ"] = "slk";
-  o["シ"] = "si";
-  o["ジ"] = "sli";
-  o["ス"] = "su";
-  o["ズ"] = "slu";
-  o["セ"] = "sh";
-  o["ゼ"] = "slh";
-  o["ソ"] = "sj";
-  o["ゾ"] = "slj";
-  o["タ"] = "dk";
-  o["ダ"] = "dlk";
-  o["チ"] = "di";
-  o["ヂ"] = "dli";
-  o["ッ"] = "dlu";
-  o["ツ"] = "du";
-  o["ヅ"] = "dldu";
-  o["テ"] = "dh";
-  o["デ"] = "dlh";
-  o["ト"] = "dj";
-  o["ド"] = "dlj";
-  o["ナ"] = "fk";
-  o["ニ"] = "fi";
-  o["ヌ"] = "fu";
-  o["ネ"] = "fh";
-  o["ノ"] = "fj";
-  o["ハ"] = "tk";
-  o["バ"] = "tlk";
-  o["パ"] = "tltk";
-  o["ヒ"] = "ti";
-  o["ビ"] = "tli";
-  o["ピ"] = "tlti";
-  o["フ"] = "tu";
-  o["ブ"] = "tlu";
-  o["プ"] = "tltu";
-  o["ヘ"] = "th";
-  o["ベ"] = "tlh";
-  o["ペ"] = "tlth";
-  o["ホ"] = "tj";
-  o["ボ"] = "tlj";
-  o["ポ"] = "tltj";
-  o["マ"] = "wk";
-  o["ミ"] = "wi";
-  o["ム"] = "wu";
-  o["メ"] = "wh";
-  o["モ"] = "wj";
-  o["ャ"] = "qlk";
-  o["ヤ"] = "qk";
-  o["ュ"] = "qlu";
-  o["ユ"] = "qu";
-  o["ョ"] = "qlj";
-  o["ヨ"] = "qj";
-  o["ラ"] = "gk";
-  o["リ"] = "gi";
-  o["ル"] = "gu";
-  o["レ"] = "gh";
-  o["ロ"] = "gj";
-  o["ヮ"] = "alk";
-  o["ワ"] = "ak";
-  o["ヰ"] = "ai";
-  o["ヱ"] = "ah";
-  o["ヲ"] = "aj";
-  o["ン"] = "fl";
-  o["ヴ"] = "rlru";
-  o["ヵ"] = "elek";
-  o["ヶ"] = "eleh";
-
 
   // ===================================================================
   // add entry

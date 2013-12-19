@@ -1,0 +1,139 @@
+=begin
+
+= TODO
+
+== TODO
+* memo.html に llllltxtg6.js の記述. llllltxtg6b.js も
+
+* js/lt/jouyou2136 … im 名 … jouyou2136.yy
+* <!-- version -->...<!-- /version --> を毎回編集する
+* eljssave/* を消去
+* archive/*
+
+* Lesson 67: 昭
+* memo.html に新常用漢字練習テキストの記述を
+* 新常用漢字練習テキスト: 最初のレッスンの前の CERTAIN を明示 (かな、一部の記号)
+* 新常用漢字練習テキスト: 全漢字無差別出題版
+* 新常用漢字練習テキスト: new-general.js か new-general.seed2.js か… どれかに決める
+* memo.html - ストローク表の項で、RL・RR・LL・LR の全表へのリンク、▲RL などへの言及。文字ずれがないように画像にした方がいいか。
+* 新常用漢字テキスト YETTTXT* を追加
+* try.tbl 更新
+* 「… 目次」 → 「もくじ」/「index」
+* eelll/JS: [ユーザ定義] に、[ファイルをアップロード] を追加
+* favicon の修正設定
+* Web Archive:
+  ((<"Internet Archive Wayback Machine"|URL:http://waybackmachine.org/>)) に
+* memo.html: ストローク表: RL の他に RR, LL, LR も載せる (か、別ページにしてリンクを)
+* eelll/JS: 文字ヘルプ (ヒント) 欄: 空白文字はスキップ
+* 漢直/JS: 仮想鍵盤
+* 漢直/JS: 直接入力 {} || や、TUT のかたかな ~k
+* 漢直/JS: TUT: 大文字でかたかな
+* img/ 以下のシンボリックリンク問題
+* [ユーザ定義] も可能な限りクッキーに残す
+* [まちがえた文字] の表示にエラー分類:
+  e.g.
+  泡(s): 終打(l) 初打(f) 打順反転 (r) 鏡像反転(m) その他(?) / 文字の同定エラー(i) prefix(p)
+* cookie に URL と user を
+* 入力欄で BS を殺すアイデア
+* memo.html の 関連リンク集に、「入力ソフト」 - tc2, 漢直Win, 天狼, MacUIM, AquaSKK など
+* lt - eellltxt_tt[lr].js のテキスト版
+* link - tc2 のリンク先北嶋氏のページに
+* <a name="..."></a> - name 属性に大文字を許す
+* Opera 用に 用語集 作成者 などの指定
+* 「Input with TT-Code」のバナーの作成と設置
+* link - sourceforge へのリンク
+* link - dead link に、web archive のリンクを併記
+* kanchokujs - 「漢直/JS」の名前?
+* *js.html - button -
+  <button type="button" accesskey="?">
+  *(<span class="accesskey">?</span>)
+  </button>
+* mail address - kuis → @nifty
+* im - Try-Code: from MacUIM::try.scm
+* im - TT-Code Ver.2.0
+* link - kuis → @nifty. 漢直Win は sourceforge.
+* ck - クッキーに保存
+  … 「まちがえた文字」、URL・user, im/lt ごとのシャッフル
+  … cf. いったん quit すると「まちがえた文字」情報は消えてしまう仕様?
+* doc - TUT で英字表記が好まれる理由
+  … ストローク表や打鍵図では TUT 記号が書けない、
+  ストローク表では 3 ストロークに対応しづらい、
+  かな漢のローマ字変換規則を書き換えて実装する伝統の影響?
+* doc - カスタマイズ・私家版の設置のしかた
+* eelll-expert 等、eelll のオプションをまねる
+  (上級者モード/初心者モード、二回目以降またはエラー 10% 未満でヒント非表示)
+  (常にヒントを表示するオプション)
+* hint - 「〇(漢数字のゼロ)」「○(白丸)」みたいな注釈を title 属性で
+* hint - かなスキップ
+* hint - ニモニックなヘルプ (e.g. 『彩=■色』(Try), 『冒=日目』(にこにこ))
+* hint - バグ - 『(=*』@英語キーボード
+* hint - ヒントボタン二度押しでヒント消す
+* hint - 橋田ニモニックサポートとりやめ?
+* hint,ks - 部首合成対応
+  … 外字は、部首合成に相当するストロークで入力 (eelll/JS)
+  または表示 (漢索/JS) できるように
+* hint,ks,js -
+  alias["ア"] = "あ"; (@TUT), tbl["彩"] = "■色" (@TRY)
+  のように定義を書ける、ヒント表示も同様に
+* hint,ks - 仮想鍵盤、アニメーションする打鍵図 (!)
+* hint,lt - 外字に色をつける?
+* DONE - html, css - OK ボタン … nbsp でなく、size="40" 等?
+* html, css - 全エレメントに id 
+* im - ローマ字対応 (encode("った") → "tta")
+  … 無想式漢直とちがって「alphabet つづり式」だから、
+  non-trivial な変更が必要?
+  … キーマッピング (Dvorak → QWERTY 等の) を適用しないという指定
+* js - KANSAKU.mkhelp (クラスメソッド?)
+* js - String.digest(n)
+* js - yyutils.js
+* ks - かな漢字変換・POBox 風予測サーチ
+* ks - ヒストリ付ける
+* ks - 逆引き (e.g. 「l4」を入れると「漢」を検索する)
+* lt - EELLLTXT 長すぎるレッスンの分割
+* lt - TUT かなテキスト
+* lt - tut.js - postfix プロパティ - TUT 記号の打鍵図を「※」で表示
+* lt - 学習漢字〜常用漢字の汎用テキスト
+* lt, im - description 書けて、表示もできる。
+  (「D-Code … かなは QWERTY ローマ字」「参考 URL」「超絶 … 公開部分のみ」等)
+* misc - dbg(s)
+* misc - 配列データ (im/*.js) 作成支援スクリプト
+  … 漢直Win の *.tbl などから変換できるように
+* ui - Cookie.removekey(key)
+  … coockie の中の特定の key=value を削除できるように
+* ui - 「待った」ボタン/やり直し機能 (最終行でどうする?)、
+  「一行を二回ずつ練習する (初心者向け) モード」
+* ui - まちがった文字の復習レッスン (を自動生成)
+* ui - アクセスキー全見直し
+* ui - フィールドの開閉を可視化▲▼
+* ui - モードによって入力欄の色変える
+* ui - ユーザ定義、適用にアクセスキー
+* ui - 入力欄にて BS を無効にする方法 … onkeydown で BS を捕捉してつぶす
+* ui, js, lt, im - GPL, コピーライト表示 を書く・表示する
+* ui,lt - レッスン中の「2 行目/全 17 行」みたいな表示
+* ui,option - shuffle を「その場から」有効になるように
+* ui,option -
+  「初心者モード」では、空入力+改行 でヒント (?)、ツッコみのあと改行を要求
+* userdef - 禁則処理
+* ヒント - span class="visible" …「、」「 」「　」「『」などに枠を
+
+== DONE
+
+* eelll/JS: 新常用漢字対応練習テキストを作る
+  --> 作った [2011-04-16]
+* 漢直/JS をつくる
+  --> 作った [2007-04-19]
+* doc - LCS
+* doc - ユーザ定義のしかた - 『き』のサンプル
+* doc - 文字ヘルプの見かた - 透過 PNG
+* lt - EELLLTXT の目次
+* userdef - text_fold バグってる? (連続する改行を一つにする前処理を)
+* 出力欄 class="msg" の 「::」 → border の方が見張えが?
+* 出力欄で (<span class="err"> などで) 半角空白を &nbsp; にしておくこと
+  --> done
+* 入力欄が短かすぎる問題 (by 藤田氏) … 最低 64 〜 70 桁は確保を? 78 なら安心?
+  --> 70 columns
+* 漢索/JS: ショートカットキー R が重複している
+* 漢直/JS: 入力方式・キーボードをクッキーに残す; kb を実装
+
+
+=end

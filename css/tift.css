@@ -1,0 +1,435 @@
+/* -------------------------------------------------------------------
+ * body
+ */
+
+body {
+    line-height: 160%;
+    background-color: #d0e0e8;
+}
+
+div.container {
+    max-width: 640px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #ffffff;
+    padding: 16px;
+    border-radius: 4px;
+}
+
+/* -------------------------------------------------------------------
+ * link
+ */
+
+a:link    { color: #3366cc; text-decoration: none; }
+a:visited { color: #996699; text-decoration: none; }
+a:hover   { color: #3366cc; text-decoration: underline; }
+a:active  { color: #ff4466; position: relative; top: 1px; left: 1px; }
+
+/* -------------------------------------------------------------------
+ * img
+ */
+
+a img         {
+    background: transparent;
+    padding: 2px;
+    margin: -3px;
+    border: none;
+    border: solid 1px transparent;
+    border-radius: 2px;
+}
+a img:link    {}
+a img:visited {}
+a img:hover   { background: #ccddee; border-color: #bbccdd; }
+a img:active  { background: #eeccdd; border-color: #ddbbcc;
+                position: relative; /* top: 1px; left: 1px; */ }
+
+img.hr_sample {
+    float: left;
+    margin: 0px 8px 0px 0px;
+    padding: 4px;
+    border-radius: 4px;
+}
+
+a:link    img.hr_sample { border: solid 1px #999999; }
+a:visited img.hr_sample { border: solid 1px #999999; }
+a:hover   img.hr_sample { border: solid 1px #3366cc; }
+a:active  img.hr_sample { border: solid 1px #ff4466; }
+
+/* -------------------------------------------------------------------
+ * dead and external - !!!OBSOLETE!!!
+ */
+
+a.dead {
+    color: #7788aa !important;
+}
+
+a.wayback {
+    font-size: smaller;
+    position: relative;
+    top: -0.3em;
+}
+
+a.external:after {
+    content: url(../img/external.png);
+}
+
+/* -------------------------------------------------------------------
+ * external and web archive
+ */
+
+a[href^="http"]:after {
+    content: url(../img/external.png);
+}
+
+a[href^="http://web.archive.org/web/"] {
+    color: #7788aa !important;
+}
+
+a[href^="http://web.archive.org/web/"]:after {
+    content: url(../img/wayback.png);
+}
+
+/* -------------------------------------------------------------------
+ * h[123456]
+ */
+
+h1 {
+    text-align: right;
+    font-family: Verdana, Geneva, Helvetica, san-serif;
+    margin-bottom: 32px;
+    background-color: #40a8d0;
+    padding: 40px;
+    margin-top: 0px;
+    border-radius: 4px;
+}
+
+h1 a {
+    font-size: xx-large;
+    text-decoration: none !important;
+    color: #ffffff !important;
+}
+
+h2 a,
+h3 a,
+h4 a {
+    color: #000000 !important;
+    text-decoration: none !important;
+}
+
+h2 {
+    border: solid #40a8d0;
+    border-width: 0px 0px 0px 10px;
+    padding: 16px 10px 16px 10px;
+}
+
+h2 a {
+    font-size: large;
+}
+
+h3 {
+    font-size: medium;
+    padding: 2px 2px 2px 10px;
+    border: dotted #40a8d0;
+    border-width: 0px 0px 1px 0px;
+}
+
+h3 a {
+}
+
+h4 {
+}
+
+h4 a {
+    font-size: medium;
+}
+
+/* -------------------------------------------------------------------
+ * pre, kbd, code
+ */
+
+pre {
+    margin: 1em 0px;
+    padding: 1px 5px;
+    background-color: #f0f4ff;
+    border: solid 1px #607080;
+    border-radius: 2px;
+    overflow: auto;
+    white-space: pre;
+}
+
+kbd {
+    margin: 0px 2px;
+    padding: 1px 5px;
+    border: solid #999999;
+    border-width: 1px 2px 2px 1px;
+    background-color: #f8f8f0;
+    border-radius: 2px;
+}
+
+kbd.modifier, kbd.otherkey {
+    background-color: #e8ecec;
+}
+
+code {
+    margin: 0px 2px;
+    padding: 1px 5px;
+    background-color: #f0f4ff;
+    border: solid 1px #607080;
+    border-radius: 2px;
+}
+
+/* -------------------------------------------------------------------
+ * dl.compact
+ */
+
+dl.compact dt {
+    float: left;
+    width: 48px;
+    clear: both;
+}
+
+dl.compact dd {
+    margin-left: 48px;
+    padding: 0px 0px 8px 0px;
+}
+
+/* -------------------------------------------------------------------
+ * emphasis
+ */
+
+em, strong {
+    font-style: normal;
+    font-weight: bold;
+}
+
+em em, /* for RD */
+strong { color: red; }
+
+dfn {
+    font-style: normal;
+    font-weight: bold;
+    color: #cc7788;
+}
+
+span.listmark { color: #cc6666; }
+span.item_header { font-weight: bold; }
+span.note { color: #cc6666; }
+
+span.sup,
+span.cite,
+cite.sup {
+    font-style: normal;
+    font-size: 80%;
+    position: relative;
+    bottom: 0.4em;
+    font-stretch: condensed;
+}
+
+span.accesskey {
+    font-family: monospace;
+    text-decoration: underline;
+}
+
+span.detail { font-size: smaller; }
+
+/* -------------------------------------------------------------------
+ * menu, version, etc.
+ */
+
+div.menu { float: left; }
+
+div.menu a:link,
+div.menu a:visited,
+div.menu a:hover {
+    color: black;
+}
+
+div.version { text-align: right; }
+
+/* -------------------------------------------------------------------
+ * toc
+ */
+
+div.toc {
+    width: 480px;
+    padding: 4px;
+    margin: 0px;
+    margin-left: auto;
+    margin-bottom: 32px;
+    border-radius: 4px;
+    border: solid #669999 1px;
+}
+
+div.toc p.header { margin: 0px; }
+
+div.toc div { margin-left: 2em; }
+div.toc div a:link    { color: #669999; }
+div.toc div a:visited { color: #669999; }
+div.toc div a:hover   { color: #3366cc; }
+div.toc div a:active  { color: #ff4466; }
+
+div.toc ul ul.inline { margin-left: 0px; }
+
+div.toc ul li a:link,
+div.toc ul li a:visited,
+div.toc ul li a:hover {
+    color: #558888;
+    background-color: white;
+    /*
+    border: solid white 1px;
+    border-radius: 4px;
+    padding: 2px 8px;
+    margin: 2px;
+    font-size: larger;
+    */
+}
+/*
+div.toc ul li a:hover {
+    color: white;
+    background-color: #80a0a0;
+    border: solid #669999 1px;
+    text-decoration: none;
+}
+*/
+
+div.toc ul li { display: inline; }
+div.toc ul li:before { content: " | "; }
+div.toc ul:after { content: " | "; }
+
+div.toc ul ul { display: none; }
+/*
+div.toc ul ul.inline { display: inline; }
+div.toc ul ul li { display: inline; }
+*/
+
+div.toc ul ul a:link,
+div.toc ul ul a:visited,
+div.toc ul ul a:hover {
+    color: #4477aa;
+    background-color: white;
+    /*
+    padding: 1px 4px;
+    margin: 2px;
+    border: solid white 1px;
+    border-radius: 4px;
+    */
+}
+/*
+div.toc ul ul a:hover {
+    color: #4477aa;
+    background-color: #ccddee;
+    border: solid #aaccdd 1px;
+    border-radius: 4px;
+}
+*/
+div.toc ul ul li:before { content: "-"; }
+/*
+div.toc ul ul li:first-child:before { content: ""; }
+*/
+
+/* -------------------------------------------------------------------
+ * table
+ */
+
+table.vkeytbl0 {
+    border: solid 1px black;
+    margin-left:  auto;
+    margin-right: auto;
+}
+
+caption {
+    margin-left:  auto;
+    margin-right: auto;
+}
+
+table.vkeytbl td {
+    vertical-align: top;
+    line-height: 120%;
+}
+
+table.vkeytbl th {
+    vertical-align: top;
+    line-height: 120%;
+    background-color: #ccccff;
+}
+
+table.figure {
+    border: solid 0px white;
+    margin-left:  auto;
+    margin-right: auto;
+    caption-side: bottom;
+}
+
+/* -------------------------------------------------------------------
+ * others
+ */
+
+.bgred { background-color: #ffcccc; }
+.bggrn { background-color: #ccffcc; }
+.bgyel { background-color: #ffffcc; }
+.bggry { background-color: #cccccc; }
+.bgblu { background-color: #ccccff; }
+.bgcyn { background-color: #ccffff; }
+
+.fgppl { color: #800080; }
+.fgtel { color: #008080; }
+.fgred { color: #ff0000; }
+
+.vkey {
+    margin: 0px 2px;
+    padding: 1px 2px;
+    font-size: smaller;
+    border: solid #999999;
+    border-width: 1px 2px 2px 1px;
+    border-radius: 2px;
+}
+
+div.figure {
+    text-align: center;
+}
+
+/* -------------------------------------------------------------------
+ * div_detail
+ */
+
+div.div_detail_beg {
+    font-size: small;
+}
+
+div.div_detail_beg a:hover,
+div.div_detail_end a:hover { 
+    text-decoration: none;
+    border-bottom: 1px #3366cc dotted;
+} 
+
+div.div_detail_end {
+    font-size: small;
+    text-align: right;
+}
+
+div.detail
+{
+    font-size: small;
+    margin: 4px;
+    margin-left: 2em;
+    margin-right: 1em;
+    color: #333333;
+    border: dashed 1px gray;
+    padding: 8px;
+}
+
+div.detail p:first-child { margin-top: 0px; }
+
+/* -------------------------------------------------------------------
+ * XXX
+ */
+
+ol li { margin-top: 1.6em; }    /* for IE */
+
+/* -------------------------------------------------------------------
+ * Time-stamp: <2013-12-10 17:59:02 yuse>
+ *
+ * Local Variables:
+ * time-stamp-line-limit: -20
+ * End:
+ */
