@@ -1,0 +1,312 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="ja">
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+
+<meta name="author" content="YUSE Yosihiro">
+<meta name="description" content="L-code">
+<meta name="keywords" content="L-code,L-code(short code),F131215,漢直">
+
+<title>L-code</title>
+
+<link rel="stylesheet" href="css/tift.css" charset="UTF-8">
+<link rel="stylesheet" href="css/eljs.css" charset="UTF-8">
+
+<link rel="shortcut icon" href="img/tift.ico" type="image/vnd.microsoft.icon">
+<link rel="icon" href="img/tift.png" type="image/png">
+
+<!-- ============================================================= -->
+
+<style type="text/css">
+<!--
+table.evaluation {
+  border: solid 1px Black;
+  caption-side: bottom;
+}
+
+table.evaluation th {
+  background-color: #e0e8ff;
+}
+
+table.evaluation td {
+  font-family: monospace;
+  padding-left: .5em;
+  padding-right: .5em;
+}
+-->
+</style>
+
+</head>
+
+<!-- ============================================================= -->
+
+<body>
+
+<div class="container">
+
+<h1><a name="top" href="#top">L-code</a></h1>
+
+<p>
+L-code は、ローマ字入力を漢字入力にまで拡張するコード体系で、
+F131215 はその最終バージョン (2013 年 12 月 15 日版) です。
+</p>
+
+<p>
+既に QWERTY ローマ字入力を身につけている、一般的な PC ユーザのための
+漢直として、漢直Win などのような仮想鍵盤が利用できる環境を想定し、
+漢字のコードを覚えていなくても入力できることを目標に設計しました。
+</p>
+
+<!-- ============================================================= -->
+
+<h2><a name="sec_idea" href="#sec_idea">アイデア</a></h2>
+
+<p>
+<img src="img/vkbd.png" alt="実際の L-code での入力風景"
+title="実際の L-code での入力風景"
+width="360" height="240" style="float: right; margin: 0px 0px 8px 8px;">
+L-code の基本的なアイデアを具体例で説明します。
+右図のスクリーンショットは、実際の L-code での入力風景です。
+『……漢字直接入力……』の『力』を入力しようとしている場面で、
+『力 (りょく)』の読みの“頭文字”である『r』を打鍵した直後の
+仮想鍵盤を表しています。
+</p>
+
+<p>
+『らりるれろ』に交じって、「ら行」の音の読みの漢字が並んでいる
+様子が見て取れますが、この中で『力』は『h』の位置にあるので、
+結局『力』のコードは『rh』ということが分かります。
+</p>
+
+<p>
+『らりるれろ』に交じって、「ら行」の音の読みの漢字が並んでいる
+様子が見て取れますが、この中で『力』は『h』の位置にあるので、
+結局『力』のコードは『rh』ということが分かります。
+</p>
+
+<p>
+仮想鍵盤に収まりきらないその他の「ら行」の漢字は、
+『l』(小文字の L) で仮想鍵盤を“シフト”することで入力します。
+たとえば、『輪 (りん)』は『rlh』で、『恋 (れん)』は『rllh』というように。
+</p>
+
+<p>
+つまり、 L-code で漢字を入力する手順は、
+</p>
+
+<ol>
+ <li> 漢字の読みの頭文字を打鍵する (1 打鍵)。
+      この時点で仮想鍵盤の第 0 面が表示される。
+
+ <li> (目的の漢字が仮想鍵盤の第 n 面にあるとして) n 回シフトする (n 打鍵)
+
+ <li> 第 n 面仮想鍵盤から目的の漢字を選ぶ (1 打鍵)
+</ol>
+
+<p>
+となります。
+</p>
+
+<p>
+合計 (n + 2) 打鍵で 1 文字を入力することになります (n ≧ 0) が、
+この過程で、特に必要となるのは、
+目的の漢字の読みの知識と、仮想鍵盤から漢字を探し出す作業だけです。
+</p>
+
+<p>
+(無連想式の場合のように、無味乾燥なコードをひたすら覚える労力や、
+「第一打鍵はあのキーだったかな…、それともこのキーだったかな…」
+と当てずっぽうに試し打つ作業は、必要ないということです)
+</p>
+
+<h2><a name="sec_design" href="#sec_design">デザイン</a></h2>
+
+<p>
+L-code の基本的なアイデアは以上のとおりですが、
+実用化には、もう少し詳細を詰める必要があります。
+</p>
+
+<h3><a name="subsec_initial_of_a_column" href="#subsec_initial_of_a_column">「あ行」の頭文字</a></h3>
+
+<p>
+「あ行」の音の漢字については、『w』を頭文字と定義しました
+(音がよく似ていて、漢字数の少ない「わ行」と統合する)。
+</p>
+
+<h3><a name="subsec_initial_string" href="#subsec_initial_string">“頭文字列”の導入</a></h3>
+
+<p>
+「か・さ・た・は行」の音の漢字は数が多いため、シフト回数が増加しがちです。
+1 文字あたりの総打鍵数を抑えるため、以下のように、
+頭文字を“頭文字列”に拡張して、漢字を分散させることにしました。
+</p>
+
+<ul>
+ <li> 音が「きゃ行」などのように、『ゃ・ゅ・ょ』を伴う行は、『ky』のように
+      頭文字に『y』を添える。
+      <br>
+      (例: 『京 (きょう)』『局 (きょく)』……)
+
+ <li> 音が 2 文字で『ん』で終わるパターンは、『kn』のように『n』を添える。
+      <br>
+      (例: 『間 (かん)』『見 (けん)』……)
+
+ <li> 音が 2 文字で「子音 + 二重母音」のパターンは、『kw』のように『w』を添える。
+      <br>
+      (例: 『会 (かい)』『行 (こう)』……)
+
+ <li> 上記の規則は「か・さ・た・は行」にだけ適用する。
+      <br>
+      (「濁音行を持つ行、の清音行」だけ)
+</ul>
+
+<h3><a name="subsec_optimization" href="#subsec_optimization">(ある程度の) 最適化</a></h3>
+
+<p>
+コードを割り当てる際、各漢字に対して頭文字列は一意に決定しますが、
+シフト回数と最終打鍵 (仮想鍵盤上の位置) は自由が効きます。
+そこで、この部分には、その漢字の頻度順位を反映させるようにします。
+すなわち、使用頻度の高い漢字ほどシフト回数が少なくなるように、
+また打ち易いキーを使うように決めました。
+</p>
+
+<h3><a name="subsec_short_code" href="#subsec_short_code">短縮コード (short code)</a></h3>
+
+<p>
+以上の方針のもとで、実際にコードの割り当てを行ったところ、
+学習漢字 (1006 字) については 2 〜 5 打鍵の範囲に収まりましたが、
+常用漢字 (2136 字) については最長 9 打鍵となりました
+(『股 (klllllllf)』『毀 (kllllllld)』『錮 (kllllllls)』の 3 字)。
+<br>
+この文章でもよく使っている語「打鍵」「鍵盤」の『鍵』を取ってみても、
+そのコードは『knlllz』と 6 打鍵で、頻度の割に入力に手間がかかります。
+</p>
+
+<p>
+そこで、コード中のシフト操作に相当する『l+』というパターンの部分を、
+その長さの数字で置き換えた“短縮コード”を定義します。
+『knlllz』 → 『kn3z』というように。
+<br>
+この短縮コードにより、漢字 1 字あたりのコード長は 2 〜 4 打鍵になります。
+</p>
+
+<p>
+(ただし、この短縮コードは、 L-code の当初の目標とは相いれない、
+“覚えていなくては入力できないコード”です。
+<br>
+したがって L-code の実装では標準コードと短縮コードの両方を受けつけるようにし、
+普段は標準コードで入力するが、省力化したい場合に短縮コードも使用できる、
+というようにするのが望ましいでしょう)
+</p>
+
+<h2><a name="sec_evaluation" href="#sec_evaluation">評価</a></h2>
+
+<p>
+L-code の漢直としての評価について、簡単に記しておきます。
+ここでは 2 種類の例文を用意して打鍵数を計算し、他の漢直と比較しました。
+</p>
+
+<h3><a name="subsec_easy_text" href="#subsec_easy_text">学習漢字の範囲の、漢字含有率が低い平易な文章</a></h3>
+
+<p>
+小学校の国語の教科書掲載作品の、
+原民喜『たん生日』(原文 1042 文字、漢字含有率 21.11%) の場合
+</p>
+
+<table class="evaluation">
+ <tbody>
+  <tr><th>TT-Code            </th><td>2102 打鍵、 2.017 打鍵/文字</td></tr>
+  <tr><th>TUT-Code           </th><td>2228 打鍵、 2.138 打鍵/文字</td></tr>
+  <tr><th>L-code (標準コード)</th><td>2044 打鍵、 1.962 打鍵/文字</td></tr>
+  <tr><th>L-code (短縮コード)</th><td>2021 打鍵、 1.940 打鍵/文字</td></tr>
+  <tr><th>[参考] ローマ字    </th><td>2031 打鍵                  </td></tr>
+ </tbody>
+</table>
+
+<p>
+打鍵数だけを見ると L-code が TT-Code や TUT-Code よりも少なくなりました。
+L-code は、平易な文章を入力する場合に有効であると言えそうです。
+</p>
+
+<h3><a name="subsec_easy_text" href="#subsec_easy_text">常用漢字の範囲の、漢字含有率が高めで漢語の多い文章
+</a></h3>
+
+<p>
+『日本国憲法前文』(原文 643 文字、漢字含有率 40.59%) の場合
+</p>
+
+<table class="evaluation">
+ <tbody>
+  <tr><th>TT-Code            </th><td>1328 打鍵、 2.065 打鍵/文字</td></tr>
+  <tr><th>TUT-Code           </th><td>1362 打鍵、 2.118 打鍵/文字</td></tr>
+  <tr><th>L-code (標準コード)</th><td>1449 打鍵、 2.253 打鍵/文字</td></tr>
+  <tr><th>L-code (短縮コード)</th><td>1396 打鍵、 2.171 打鍵/文字</td></tr>
+  <tr><th>[参考] ローマ字    </th><td>1475 打鍵                  </td></tr>
+ </tbody>
+</table>
+
+<p>
+『日本国憲法前文』では L-code は TT-Code や TUT-Code に比べて
+打鍵数が多くなりましたが、単純なローマ字入力よりは減少しており、
+漢直として、一応の有効性が示されたと言えそうです。
+</p>
+
+<h2><a name="sec_implementation" href="#sec_implementation">実装と練習、実際の使用感</a></h2>
+
+<p>
+実装は Windows 7 上の 漢直Win 1.28 用のテーブルファイルを作成する
+という形で行いました。
+</p>
+
+<p>
+また、練習環境として Windows 7 上の Google Chrome で動作する
+eelll/JS を (機能拡充およびファイル追加などを行って) 用意し、
+実際に練習をして……
+</p>
+
+<p>
+(……その成果と実際の使用感を、最後に書くべきところなのですが、
+当時の L-code に関するドキュメントは、ここでとぎれてしまっていて、
+続きが欠落しています。
+<br>
+確か、「このコードはダメだ」と判断して計画自体を中断したのだったと
+思いますが、その理由は、結局のところ L-code は一つの試みの域を出ず、
+使い慣れた入力方式に取って代わったり併用できるだけのレベルには
+至っていなかったということなのでしょう)
+</p>
+
+<!-- ============================================================= -->
+<!-- footer -->
+
+<hr>
+
+<div class="menu">
+<a href=".">もどる</a>
+</div>
+
+<div class="version">
+<!-- time-stamp-start -->2015-10-27<!-- time-stamp-end -->
+</div>
+
+<!-- ============================================================= -->
+</div> <!-- container -->
+
+</body>
+
+</html>
+
+<!-- ============================================================= -->
+<!--
+:: Local Variables:
+:: time-stamp-line-limit: -24
+:: time-stamp-start: "<!-\\- *time-stamp-start *-\\-."
+:: time-stamp-end:   "<!-\\- *time-stamp-end *-\\-."
+:: time-stamp-format: "%:y-%02m-%02d"
+:: End:
+-->
